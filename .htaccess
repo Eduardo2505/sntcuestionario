@@ -9,7 +9,7 @@
   RewriteBase /
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d
-  RewriteRule ^(.*)$ /sntcenter/index.php?/$1 [L]
+  RewriteRule ^(.*)$ /sntcuestionario/index.php?/$1 [L]
 </IfModule>
 
 <IfModule !mod_rewrite.c>
@@ -17,6 +17,6 @@
   # can be sent to index.php, and everything works as normal.
   # Submitted by: ElliotHaughin
 
-  ErrorDocument 404 /sntcenter/index.php
+  ErrorDocument 404 /sntcuestionario/index.php
 </IfModule>
 

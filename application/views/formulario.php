@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html lang="en-ES">
 <?php include 'plantilla/head.php'; ?>
+<style>
+.verdisabled {
+	pointer-events: none;
+	cursor: default;
+	color:red;
+}
+
+</style>
 <body>
 	<header id="dz_main_header" class="clearfix">
 		<?php echo $menu; ?>
@@ -34,34 +42,37 @@
 					<h3 class="column_title_left">
 						<span>CUESTIONARIO PARA LA OBTENCION DE DATOS EN LA PRIMERA CONSULTA. </span>
 					</h3>
-					<div class="dzen-tabs" data-selected="1" data-break_point="449" data-effect="slide">
+					<div class="dzen-tabs" data-selected="<?php echo $seleccionPestalla ?>" data-break_point="449" data-effect="slide">
 						<ul>
 							<li>
-								<a href="#tab-1">Paso 1</a>
+								<a href="#tab-1"  >Paso 1</a>
 							</li>
 							<li>
-								<a href="#tab-2">Paso 2</a>
+								<a href="#tab-2" id="tab2" >Paso 2</a>
 							</li>
 							<li>
-								<a href="#tab-3">Paso 3</a>
+								<a href="#tab-3" id="tab3">Paso 3</a>
 							</li>
 							<li>
-								<a href="#tab-4">Paso 4</a>
+								<a href="#tab-4" id="tab4">Paso 4</a>
 							</li>
 							<li>
-								<a href="#tab-5">Paso 5</a>
+								<a href="#tab-5" id="tab5">Paso 5</a>
 							</li>
 							<li>
-								<a href="#tab-6">Paso 6</a>
+								<a href="#tab-6" id="tab6">Paso 6</a>
 							</li>
 							<li>
-								<a href="#tab-7">Paso 7</a>
+								<a href="#tab-7" id="tab7">Paso 7</a>
 							</li>
 							<li>
-								<a href="#tab-8">Paso 8</a>
+								<a href="#tab-8" id="tab8">Paso 8</a>
 							</li>
 							<li>
-								<a href="#tab-9">Paso 9</a>
+								<a href="#tab-9" id="tab9">Paso 9</a>
+							</li>
+							<li>
+								<a href="#tab-9" id="tab10">Paso 10</a>
 							</li>
 
 						</ul>
@@ -69,7 +80,8 @@
 						
 						<div class="dzen-tabs-wrapper">
 							<div id="tab-1">
-								<form action="#" method="post" class="contact-form">
+								<form action="<?php echo site_url('') ?>cuestionario/guardarcliente" method="post" class="contact-form">
+									<input type="hidden" name="pedidoInicial" value="<?php echo $pedidoInicial?>">
 									<div>
 										Información general: Este cuestionario tiene la finalidad de obtener la mayor cantidad de información personal posible, esto para poder realizar el mejor plan de Alimentación y Entrenamiento totalmente personalizado acorde a sus necesidades, objetivos y nivel actual, y de esta manera poder fijar metas realistas y asegurar la consecución de las mismas. Le pedimos de la manera más atenta que sea lo más específico posible al contestar. 
 									</div>
@@ -77,21 +89,29 @@
 
 									<div class="dzencf" id="dzencf-wrapper" dir="ltr">
 
-										<input type="text" name="nombreCompleto" maxlength="350" class="dzencf-text" placeholder="Nombre completo" required="">
+										<input type="text" value="<?php echo $nombre ?>" name="nombreCompleto" maxlength="300" class="dzencf-text" placeholder="Nombre completo" required="">
 
 										<select name="sexo" class="dzencf-text" required="">
 											<option value="">Seleccione Género</option>
-											<option value="Mujer">Mujer</option>
-											<option value="Hombre">Hombre</option>
+											<?php  if($sexo==='Mujer') {?>
+											<option value="Mujer" selected="selected">Mujer</option>
+											<?php }else{?>
+											<option value="Mujer" >Mujer</option>
+											<?php } if($sexo==='Hombre') { ?>
+											<option value="Hombre" selected="selected">Hombre</option>
+											<?php }else{?>
+											<option value="Hombre" >Hombre</option>
+											<?php }?>
 											
 										</select>
 										<input type="date" name="fecha"  
 										required=""  class="dzencf-text" 
 										placeholder="Fecha exacta de nacimiento (día-mes-año)">
-										<input type="text" name="telefono" maxlength="350" class="dzencf-text" placeholder="WhatsApp" required="">
-										<input type="text" name="WhatsApp" maxlength="350" class="dzencf-text" placeholder="Télefono" >
-										<input type="text" name="email" maxlength="350" class="dzencf-text" placeholder="Correo Electrónico" required="">
-										<input type="text" name="perfil" maxlength="350" class="dzencf-text" placeholder="Perfil en Facebook " >
+										<input type="text" value="<?php echo $telefono ?>" name="telefono" maxlength="300" class="dzencf-text" placeholder="Télefono" required="">
+										<input type="text" value="<?php echo $WhatsApp ?>" name="WhatsApp" maxlength="300" class="dzencf-text" placeholder="WhatsApp" >
+										<input type="text" value="<?php echo $email ?>" name="email" maxlength="300" class="dzencf-text" placeholder="Correo Electrónico" required="">
+										<input type="password" value="<?php echo $password ?>" name="password" maxlength="300" class="dzencf-text" placeholder="Contraseña" required="">
+										<input type="text" value="<?php echo $perfil ?>" name="perfil" maxlength="300" class="dzencf-text" placeholder="Perfil en Facebook " >
 										
 										
 										<!-- <div class="dzencf-response-output dzencf-display-none"></div> -->
@@ -103,12 +123,12 @@
 
 									<div class="dzencf" id="dzencf-wrapper" dir="ltr">
 
-										<input type="text" name="domicio" maxlength="350" class="dzencf-text" placeholder="Domicilio" required="">
-										<input type="text" name="colonia" maxlength="350" class="dzencf-text" placeholder="Colonia" required="">
-										<input type="text" name="ciudad" maxlength="350" class="dzencf-text" placeholder="Ciudad" required="">
-										<input type="text" name="estado" maxlength="350" class="dzencf-text" placeholder="Estado" required="">
-										<input type="text" name="Pais" maxlength="350" class="dzencf-text" placeholder="País" required="">
-										<input type="text" name="cp" maxlength="350" class="dzencf-text" placeholder="Código postal" required="">
+										<input type="text" name="domicio" maxlength="300" class="dzencf-text" placeholder="Domicilio" required="">
+										<input type="text" name="colonia" maxlength="300" class="dzencf-text" placeholder="Colonia" required="">
+										<input type="text" name="ciudad" maxlength="300" class="dzencf-text" placeholder="Ciudad" required="">
+										<input type="text" name="estado" maxlength="300" class="dzencf-text" placeholder="Estado" required="">
+										<input type="text" name="Pais" maxlength="300" class="dzencf-text" placeholder="País" required="">
+										<input type="text" name="cp" maxlength="300" class="dzencf-text" placeholder="Código postal" required="">
 									</div>
 									<input type="submit" value="GUARDAR Y SIGUINETE " class="dzencf-submit" >
 									<!--<a href="#enviar" style="background-color:#eeeeee" class="dzen-button dzen-button_light dzen-button_large">Siguiente</a>-->
@@ -129,7 +149,7 @@
 									</select>
 
 
-									<input type="text" name="actividadLaboral" maxlength="350" class="dzencf-text" placeholder="Actividad laboral remunerada" required="">
+									<input type="text" name="actividadLaboral" maxlength="300" class="dzencf-text" placeholder="Actividad laboral remunerada" required="">
 
 									<select name="nivelSocioeconomico" class="dzencf-text" required="">
 										<option value="">Nivel socio-económico</option>
@@ -139,7 +159,7 @@
 
 									</select>
 
-									<input type="text" name="actividadocio" maxlength="350" class="dzencf-text" placeholder="Actividades de ocio y placer" required="">
+									<input type="text" name="actividadocio" maxlength="300" class="dzencf-text" placeholder="Actividades de ocio y placer" required="">
 
 									<select name="estadocivil" class="dzencf-text" required="">
 										<option value="">Estado civil actual</option>
@@ -152,9 +172,9 @@
 									</select>
 
 
-									<input type="text" name="cuantosHijos" maxlength="350" class="dzencf-text" placeholder="¿Cuántos hijos tiene?" required="">
-									<input type="text" name="conquienvives" maxlength="350" class="dzencf-text" placeholder="¿Con quién vive?" required="">
-									<input type="text" name="quienpreparaTucomida" maxlength="350" class="dzencf-text" placeholder="¿Quién prepara su comida? " required="">
+									<input type="text" name="cuantosHijos" maxlength="300" class="dzencf-text" placeholder="¿Cuántos hijos tiene?" required="">
+									<input type="text" name="conquienvives" maxlength="300" class="dzencf-text" placeholder="¿Con quién vive?" required="">
+									<input type="text" name="quienpreparaTucomida" maxlength="300" class="dzencf-text" placeholder="¿Quién prepara su comida? " required="">
 
 
 									<select name="niveldeEstres" class="dzencf-text" required="">
@@ -181,8 +201,8 @@
 									</select>
 
 
-									<input type="text" name="cuantasvecesdefecta" maxlength="350" class="dzencf-text" placeholder="¿Cuántas veces defeca en promedio al día?" required="">
-									<input type="text" name="cuantasVecesOrina" maxlength="350" class="dzencf-text" placeholder="¿Cuántas veces orina en promedio al día?" required="">
+									<input type="text" name="cuantasvecesdefecta" maxlength="300" class="dzencf-text" placeholder="¿Cuántas veces defeca en promedio al día?" required="">
+									<input type="text" name="cuantasVecesOrina" maxlength="300" class="dzencf-text" placeholder="¿Cuántas veces orina en promedio al día?" required="">
 
 								</div>
 							</div>
@@ -205,7 +225,7 @@
 									<option value="10">10</option>
 
 								</select>
-								<input type="text" name="objetivoPrinConsulta" maxlength="350" class="dzencf-text" placeholder="Objetivo principal de la consulta" required="">
+								<input type="text" name="objetivoPrinConsulta" maxlength="300" class="dzencf-text" placeholder="Objetivo principal de la consulta" required="">
 
 
 								Instrucciones y objetivos específicos: Este apartado nos mostrara sus objetivos y aspiraciones con el plan de Alimentación y de Entrenamiento, así como definir la rigurosidad de los mismos, dependiendo esto de su nivel de motivación y apego a ellos. 
@@ -228,14 +248,14 @@
 										<div class="dzen_column_DD_span3">
 
 											<div class="margin_bottom">
-												<input type="text" name="vertebraCuantotiempo" maxlength="350" class="dzencf-text" placeholder="¿Hace cuánto tiempo?" required="">
+												<input type="text" name="vertebraCuantotiempo" maxlength="300" class="dzencf-text" placeholder="¿Hace cuánto tiempo?" required="">
 											</div>
 										</div>
 										<div class="dzen_column_DD_span8">
 
 											<div class="margin_bottom">
 
-												<input type="text" name="vertebraComosetrato" maxlength="350" class="dzencf-text" placeholder="¿Cómo se trató la lesión?" required="">
+												<input type="text" name="vertebraComosetrato" maxlength="300" class="dzencf-text" placeholder="¿Cómo se trató la lesión?" required="">
 
 											</div>
 										</div>
@@ -253,14 +273,14 @@
 								<div class="dzen_column_DD_span3">
 
 									<div class="margin_bottom">
-										<input type="text" name="vdorsalesCuantotiempo" maxlength="350" class="dzencf-text" placeholder="¿Hace cuánto tiempo?" required="">
+										<input type="text" name="vdorsalesCuantotiempo" maxlength="300" class="dzencf-text" placeholder="¿Hace cuánto tiempo?" required="">
 									</div>
 								</div>
 								<div class="dzen_column_DD_span8">
 
 									<div class="margin_bottom">
 
-										<input type="text" name="vdorsalesComosetrato" maxlength="350" class="dzencf-text" placeholder="¿Cómo se trató la lesión?" required="">
+										<input type="text" name="vdorsalesComosetrato" maxlength="300" class="dzencf-text" placeholder="¿Cómo se trató la lesión?" required="">
 
 									</div>
 								</div>
@@ -278,14 +298,14 @@
 						<div class="dzen_column_DD_span3">
 
 							<div class="margin_bottom">
-								<input type="text" name="vdLumbaresCuantotiempo" maxlength="350" class="dzencf-text" placeholder="¿Hace cuánto tiempo?" required="">
+								<input type="text" name="vdLumbaresCuantotiempo" maxlength="300" class="dzencf-text" placeholder="¿Hace cuánto tiempo?" required="">
 							</div>
 						</div>
 						<div class="dzen_column_DD_span8">
 
 							<div class="margin_bottom">
 
-								<input type="text" name="vdLumbaresComosetrato" maxlength="350" class="dzencf-text" placeholder="¿Cómo se trató la lesión?" required="">
+								<input type="text" name="vdLumbaresComosetrato" maxlength="300" class="dzencf-text" placeholder="¿Cómo se trató la lesión?" required="">
 
 							</div>
 						</div>
@@ -303,14 +323,14 @@
 				<div class="dzen_column_DD_span3">
 
 					<div class="margin_bottom">
-						<input type="text" name="aHombroCuantotiempo" maxlength="350" class="dzencf-text" placeholder="¿Hace cuánto tiempo?" required="">
+						<input type="text" name="aHombroCuantotiempo" maxlength="300" class="dzencf-text" placeholder="¿Hace cuánto tiempo?" required="">
 					</div>
 				</div>
 				<div class="dzen_column_DD_span8">
 
 					<div class="margin_bottom">
 
-						<input type="text" name="aHombroComosetrato" maxlength="350" class="dzencf-text" placeholder="¿Cómo se trató la lesión?" required="">
+						<input type="text" name="aHombroComosetrato" maxlength="300" class="dzencf-text" placeholder="¿Cómo se trató la lesión?" required="">
 
 					</div>
 				</div>
@@ -328,14 +348,14 @@
 		<div class="dzen_column_DD_span3">
 
 			<div class="margin_bottom">
-				<input type="text" name="aCodoCuantotiempo" maxlength="350" class="dzencf-text" placeholder="¿Hace cuánto tiempo?" required="">
+				<input type="text" name="aCodoCuantotiempo" maxlength="300" class="dzencf-text" placeholder="¿Hace cuánto tiempo?" required="">
 			</div>
 		</div>
 		<div class="dzen_column_DD_span8">
 
 			<div class="margin_bottom">
 
-				<input type="text" name="aCodoComosetrato" maxlength="350" class="dzencf-text" placeholder="¿Cómo se trató la lesión?" required="">
+				<input type="text" name="aCodoComosetrato" maxlength="300" class="dzencf-text" placeholder="¿Cómo se trató la lesión?" required="">
 
 			</div>
 		</div>
@@ -350,14 +370,14 @@
 	<div class="dzen_column_DD_span3">
 
 		<div class="margin_bottom">
-			<input type="text" name="aMunecaCuantotiempo" maxlength="350" class="dzencf-text" placeholder="¿Hace cuánto tiempo?" required="">
+			<input type="text" name="aMunecaCuantotiempo" maxlength="300" class="dzencf-text" placeholder="¿Hace cuánto tiempo?" required="">
 		</div>
 	</div>
 	<div class="dzen_column_DD_span8">
 
 		<div class="margin_bottom">
 
-			<input type="text" name="aMunecaComosetrato" maxlength="350" class="dzencf-text" placeholder="¿Cómo se trató la lesión?" required="">
+			<input type="text" name="aMunecaComosetrato" maxlength="300" class="dzencf-text" placeholder="¿Cómo se trató la lesión?" required="">
 
 		</div>
 	</div>
@@ -371,14 +391,14 @@
 	<div class="dzen_column_DD_span3">
 
 		<div class="margin_bottom">
-			<input type="text" name="adedosCuantotiempo" maxlength="350" class="dzencf-text" placeholder="¿Hace cuánto tiempo?" required="">
+			<input type="text" name="adedosCuantotiempo" maxlength="300" class="dzencf-text" placeholder="¿Hace cuánto tiempo?" required="">
 		</div>
 	</div>
 	<div class="dzen_column_DD_span8">
 
 		<div class="margin_bottom">
 
-			<input type="text" name="adedosComosetrato" maxlength="350" class="dzencf-text" placeholder="¿Cómo se trató la lesión?" required="">
+			<input type="text" name="adedosComosetrato" maxlength="300" class="dzencf-text" placeholder="¿Cómo se trató la lesión?" required="">
 
 		</div>
 	</div>
@@ -396,14 +416,14 @@ aria-labelledby="ui-accordion-1-header-4" role="tabpane4" aria-expanded="false" 
 <div class="dzen_column_DD_span3">
 
 	<div class="margin_bottom">
-		<input type="text" name="aCaderaCuantotiempo" maxlength="350" class="dzencf-text" placeholder="¿Hace cuánto tiempo?" required="">
+		<input type="text" name="aCaderaCuantotiempo" maxlength="300" class="dzencf-text" placeholder="¿Hace cuánto tiempo?" required="">
 	</div>
 </div>
 <div class="dzen_column_DD_span8">
 
 	<div class="margin_bottom">
 
-		<input type="text" name="aCaderaComosetrato" maxlength="350" class="dzencf-text" placeholder="¿Cómo se trató la lesión?" required="">
+		<input type="text" name="aCaderaComosetrato" maxlength="300" class="dzencf-text" placeholder="¿Cómo se trató la lesión?" required="">
 
 	</div>
 </div>
@@ -422,14 +442,14 @@ aria-labelledby="ui-accordion-1-header-3" role="tabpane3" aria-expanded="false" 
 <div class="dzen_column_DD_span3">
 
 	<div class="margin_bottom">
-		<input type="text" name="aRodillaCuantotiempo" maxlength="350" class="dzencf-text" placeholder="¿Hace cuánto tiempo?" required="">
+		<input type="text" name="aRodillaCuantotiempo" maxlength="300" class="dzencf-text" placeholder="¿Hace cuánto tiempo?" required="">
 	</div>
 </div>
 <div class="dzen_column_DD_span8">
 
 	<div class="margin_bottom">
 
-		<input type="text" name="aRodillaComosetrato" maxlength="350" class="dzencf-text" placeholder="¿Cómo se trató la lesión?" required="">
+		<input type="text" name="aRodillaComosetrato" maxlength="300" class="dzencf-text" placeholder="¿Cómo se trató la lesión?" required="">
 
 	</div>
 </div>
@@ -446,14 +466,14 @@ aria-labelledby="ui-accordion-1-header-2" role="tabpane2" aria-expanded="false" 
 <div class="dzen_column_DD_span3">
 
 	<div class="margin_bottom">
-		<input type="text" name="aTobilloCuantotiempo" maxlength="350" class="dzencf-text" placeholder="¿Hace cuánto tiempo?" required="">
+		<input type="text" name="aTobilloCuantotiempo" maxlength="300" class="dzencf-text" placeholder="¿Hace cuánto tiempo?" required="">
 	</div>
 </div>
 <div class="dzen_column_DD_span8">
 
 	<div class="margin_bottom">
 
-		<input type="text" name="aTobilloComosetrato" maxlength="350" class="dzencf-text" placeholder="¿Cómo se trató la lesión?" required="">
+		<input type="text" name="aTobilloComosetrato" maxlength="300" class="dzencf-text" placeholder="¿Cómo se trató la lesión?" required="">
 
 	</div>
 </div>
@@ -485,14 +505,14 @@ aria-labelledby="ui-accordion-1-header-2" role="tabpane2" aria-expanded="false" 
 		<div class="dzen_column_DD_span3">
 
 			<div class="margin_bottom">
-				<input type="text" name="humeroCuantotiempo" maxlength="350" class="dzencf-text" placeholder="¿Hace cuánto tiempo?" required="">
+				<input type="text" name="humeroCuantotiempo" maxlength="300" class="dzencf-text" placeholder="¿Hace cuánto tiempo?" required="">
 			</div>
 		</div>
 		<div class="dzen_column_DD_span8">
 
 			<div class="margin_bottom">
 
-				<input type="text" name="humeroComosetrato" maxlength="350" class="dzencf-text" placeholder="¿Cómo se trató la lesión?" required="">
+				<input type="text" name="humeroComosetrato" maxlength="300" class="dzencf-text" placeholder="¿Cómo se trató la lesión?" required="">
 
 			</div>
 		</div>
@@ -508,14 +528,14 @@ aria-labelledby="ui-accordion-1-header-10" role="tabpane10" aria-expanded="false
 <div class="dzen_column_DD_span3">
 
 	<div class="margin_bottom">
-		<input type="text" name="radioCuantotiempo" maxlength="350" class="dzencf-text" placeholder="¿Hace cuánto tiempo?" required="">
+		<input type="text" name="radioCuantotiempo" maxlength="300" class="dzencf-text" placeholder="¿Hace cuánto tiempo?" required="">
 	</div>
 </div>
 <div class="dzen_column_DD_span8">
 
 	<div class="margin_bottom">
 
-		<input type="text" name="radioComosetrato" maxlength="350" class="dzencf-text" placeholder="¿Cómo se trató la lesión?" required="">
+		<input type="text" name="radioComosetrato" maxlength="300" class="dzencf-text" placeholder="¿Cómo se trató la lesión?" required="">
 
 	</div>
 </div>
@@ -533,14 +553,14 @@ aria-labelledby="ui-accordion-1-header-9" role="tabpane9" aria-expanded="false" 
 <div class="dzen_column_DD_span3">
 
 	<div class="margin_bottom">
-		<input type="text" name="cubitoCuantotiempo" maxlength="350" class="dzencf-text" placeholder="¿Hace cuánto tiempo?" required="">
+		<input type="text" name="cubitoCuantotiempo" maxlength="300" class="dzencf-text" placeholder="¿Hace cuánto tiempo?" required="">
 	</div>
 </div>
 <div class="dzen_column_DD_span8">
 
 	<div class="margin_bottom">
 
-		<input type="text" name="cubitoComosetrato" maxlength="350" class="dzencf-text" placeholder="¿Cómo se trató la lesión?" required="">
+		<input type="text" name="cubitoComosetrato" maxlength="300" class="dzencf-text" placeholder="¿Cómo se trató la lesión?" required="">
 
 	</div>
 </div>
@@ -556,14 +576,14 @@ aria-labelledby="ui-accordion-1-header-8" role="tabpane8" aria-expanded="false" 
 <div class="dzen_column_DD_span3">
 
 	<div class="margin_bottom">
-		<input type="text" name="carpianosCuantotiempo" maxlength="350" class="dzencf-text" placeholder="¿Hace cuánto tiempo?" required="">
+		<input type="text" name="carpianosCuantotiempo" maxlength="300" class="dzencf-text" placeholder="¿Hace cuánto tiempo?" required="">
 	</div>
 </div>
 <div class="dzen_column_DD_span8">
 
 	<div class="margin_bottom">
 
-		<input type="text" name="carpianosComosetrato" maxlength="350" class="dzencf-text" placeholder="¿Cómo se trató la lesión?" required="">
+		<input type="text" name="carpianosComosetrato" maxlength="300" class="dzencf-text" placeholder="¿Cómo se trató la lesión?" required="">
 
 	</div>
 </div>
@@ -580,14 +600,14 @@ aria-labelledby="ui-accordion-1-header-7" role="tabpane7" aria-expanded="false" 
 <div class="dzen_column_DD_span3">
 
 	<div class="margin_bottom">
-		<input type="text" name="falangesCuantotiempo" maxlength="350" class="dzencf-text" placeholder="¿Hace cuánto tiempo?" required="">
+		<input type="text" name="falangesCuantotiempo" maxlength="300" class="dzencf-text" placeholder="¿Hace cuánto tiempo?" required="">
 	</div>
 </div>
 <div class="dzen_column_DD_span8">
 
 	<div class="margin_bottom">
 
-		<input type="text" name="falangesComosetrato" maxlength="350" class="dzencf-text" placeholder="¿Cómo se trató la lesión?" required="">
+		<input type="text" name="falangesComosetrato" maxlength="300" class="dzencf-text" placeholder="¿Cómo se trató la lesión?" required="">
 
 	</div>
 </div>
@@ -607,14 +627,14 @@ aria-labelledby="ui-accordion-1-header-6" role="tabpane6" aria-expanded="false" 
 <div class="dzen_column_DD_span3">
 
 	<div class="margin_bottom">
-		<input type="text" name="claviculasCuantotiempo" maxlength="350" class="dzencf-text" placeholder="¿Hace cuánto tiempo?" required="">
+		<input type="text" name="claviculasCuantotiempo" maxlength="300" class="dzencf-text" placeholder="¿Hace cuánto tiempo?" required="">
 	</div>
 </div>
 <div class="dzen_column_DD_span8">
 
 	<div class="margin_bottom">
 
-		<input type="text" name="claviculasComosetrato" maxlength="350" class="dzencf-text" placeholder="¿Cómo se trató la lesión?" required="">
+		<input type="text" name="claviculasComosetrato" maxlength="300" class="dzencf-text" placeholder="¿Cómo se trató la lesión?" required="">
 
 	</div>
 </div>
@@ -630,14 +650,14 @@ aria-labelledby="ui-accordion-1-header-5" role="tabpane5" aria-expanded="false" 
 <div class="dzen_column_DD_span3">
 
 	<div class="margin_bottom">
-		<input type="text" name="costillasCuantotiempo" maxlength="350" class="dzencf-text" placeholder="¿Hace cuánto tiempo?" required="">
+		<input type="text" name="costillasCuantotiempo" maxlength="300" class="dzencf-text" placeholder="¿Hace cuánto tiempo?" required="">
 	</div>
 </div>
 <div class="dzen_column_DD_span8">
 
 	<div class="margin_bottom">
 
-		<input type="text" name="costillasComosetrato" maxlength="350" class="dzencf-text" placeholder="¿Cómo se trató la lesión?" required="">
+		<input type="text" name="costillasComosetrato" maxlength="300" class="dzencf-text" placeholder="¿Cómo se trató la lesión?" required="">
 
 	</div>
 </div>
@@ -656,14 +676,14 @@ aria-labelledby="ui-accordion-1-header-5" role="tabpane5" aria-expanded="false" 
 	<div class="dzen_column_DD_span3">
 
 		<div class="margin_bottom">
-			<input type="text" name="craneoCuantotiempo" maxlength="350" class="dzencf-text" placeholder="¿Hace cuánto tiempo?" required="">
+			<input type="text" name="craneoCuantotiempo" maxlength="300" class="dzencf-text" placeholder="¿Hace cuánto tiempo?" required="">
 		</div>
 	</div>
 	<div class="dzen_column_DD_span8">
 
 		<div class="margin_bottom">
 
-			<input type="text" name="craneoComosetrato" maxlength="350" class="dzencf-text" placeholder="¿Cómo se trató la lesión?" required="">
+			<input type="text" name="craneoComosetrato" maxlength="300" class="dzencf-text" placeholder="¿Cómo se trató la lesión?" required="">
 
 		</div>
 	</div>
@@ -685,14 +705,14 @@ aria-expanded="false" aria-hidden="true">
 <div class="dzen_column_DD_span3">
 
 	<div class="margin_bottom">
-		<input type="text" name="caderaCuantotiempo" maxlength="350" class="dzencf-text" placeholder="¿Hace cuánto tiempo?" required="">
+		<input type="text" name="caderaCuantotiempo" maxlength="300" class="dzencf-text" placeholder="¿Hace cuánto tiempo?" required="">
 	</div>
 </div>
 <div class="dzen_column_DD_span8">
 
 	<div class="margin_bottom">
 
-		<input type="text" name="caderaComosetrato" maxlength="350" class="dzencf-text" placeholder="¿Cómo se trató la lesión?" required="">
+		<input type="text" name="caderaComosetrato" maxlength="300" class="dzencf-text" placeholder="¿Cómo se trató la lesión?" required="">
 
 	</div>
 </div>
@@ -713,14 +733,14 @@ aria-expanded="false" aria-hidden="true">
 <div class="dzen_column_DD_span3">
 
 	<div class="margin_bottom">
-		<input type="text" name="femurCuantotiempo" maxlength="350" class="dzencf-text" placeholder="¿Hace cuánto tiempo?" required="">
+		<input type="text" name="femurCuantotiempo" maxlength="300" class="dzencf-text" placeholder="¿Hace cuánto tiempo?" required="">
 	</div>
 </div>
 <div class="dzen_column_DD_span8">
 
 	<div class="margin_bottom">
 
-		<input type="text" name="femurComosetrato" maxlength="350" class="dzencf-text" placeholder="¿Cómo se trató la lesión?" required="">
+		<input type="text" name="femurComosetrato" maxlength="300" class="dzencf-text" placeholder="¿Cómo se trató la lesión?" required="">
 
 	</div>
 </div>
@@ -734,14 +754,14 @@ aria-expanded="false" aria-hidden="true">
 	<div class="dzen_column_DD_span3">
 
 		<div class="margin_bottom">
-			<input type="text" name="tibiaCuantotiempo" maxlength="350" class="dzencf-text" placeholder="¿Hace cuánto tiempo?" required="">
+			<input type="text" name="tibiaCuantotiempo" maxlength="300" class="dzencf-text" placeholder="¿Hace cuánto tiempo?" required="">
 		</div>
 	</div>
 	<div class="dzen_column_DD_span8">
 
 		<div class="margin_bottom">
 
-			<input type="text" name="tibiaComosetrato" maxlength="350" class="dzencf-text" placeholder="¿Cómo se trató la lesión?" required="">
+			<input type="text" name="tibiaComosetrato" maxlength="300" class="dzencf-text" placeholder="¿Cómo se trató la lesión?" required="">
 
 		</div>
 	</div>
@@ -756,14 +776,14 @@ aria-expanded="false" aria-hidden="true">
 	<div class="dzen_column_DD_span3">
 
 		<div class="margin_bottom">
-			<input type="text" name="peroneCuantotiempo" maxlength="350" class="dzencf-text" placeholder="¿Hace cuánto tiempo?" required="">
+			<input type="text" name="peroneCuantotiempo" maxlength="300" class="dzencf-text" placeholder="¿Hace cuánto tiempo?" required="">
 		</div>
 	</div>
 	<div class="dzen_column_DD_span8">
 
 		<div class="margin_bottom">
 
-			<input type="text" name="peroneComosetrato" maxlength="350" class="dzencf-text" placeholder="¿Cómo se trató la lesión?" required="">
+			<input type="text" name="peroneComosetrato" maxlength="300" class="dzencf-text" placeholder="¿Cómo se trató la lesión?" required="">
 
 		</div>
 	</div>
@@ -782,14 +802,14 @@ aria-labelledby="ui-accordion-1-header-12" role="tabpane12" aria-expanded="false
 <div class="dzen_column_DD_span3">
 
 	<div class="margin_bottom">
-		<input type="text" name="tarsianosCuantotiempo" maxlength="350" class="dzencf-text" placeholder="¿Hace cuánto tiempo?" required="">
+		<input type="text" name="tarsianosCuantotiempo" maxlength="300" class="dzencf-text" placeholder="¿Hace cuánto tiempo?" required="">
 	</div>
 </div>
 <div class="dzen_column_DD_span8">
 
 	<div class="margin_bottom">
 
-		<input type="text" name="tarsianosComosetrato" maxlength="350" class="dzencf-text" placeholder="¿Cómo se trató la lesión?" required="">
+		<input type="text" name="tarsianosComosetrato" maxlength="300" class="dzencf-text" placeholder="¿Cómo se trató la lesión?" required="">
 
 	</div>
 </div>
@@ -834,14 +854,14 @@ aria-labelledby="ui-accordion-1-header-12" role="tabpane12" aria-expanded="false
 					<div class="dzen_column_DD_span6">
 
 						<div class="margin_bottom">
-							<input type="text" name="pFnctipo" maxlength="350" class="dzencf-text" placeholder="¿Qué tipo de actividad?" required="">
+							<input type="text" name="pFnctipo" maxlength="300" class="dzencf-text" placeholder="¿Qué tipo de actividad?" required="">
 						</div>
 					</div>
 					<div class="dzen_column_DD_span4">
 
 						<div class="margin_bottom">
 
-							<input type="text" name="pFnchace" maxlength="350" class="dzencf-text" placeholder="¿Desde hace cuánto tiempo?" required="">
+							<input type="text" name="pFnchace" maxlength="300" class="dzencf-text" placeholder="¿Desde hace cuánto tiempo?" required="">
 
 						</div>
 					</div>
@@ -852,14 +872,14 @@ aria-labelledby="ui-accordion-1-header-12" role="tabpane12" aria-expanded="false
 					<div class="dzen_column_DD_span6">
 
 						<div class="margin_bottom">
-							<input type="text" name="pFncCuantos" maxlength="350" class="dzencf-text" placeholder="¿Cuántos días a la semana?" required="">
+							<input type="text" name="pFncCuantos" maxlength="300" class="dzencf-text" placeholder="¿Cuántos días a la semana?" required="">
 						</div>
 					</div>
 					<div class="dzen_column_DD_span4">
 
 						<div class="margin_bottom">
 
-							<input type="text" name="pFncCuantas" maxlength="350" class="dzencf-text" placeholder="¿Cuántas horas al día?" required="">
+							<input type="text" name="pFncCuantas" maxlength="300" class="dzencf-text" placeholder="¿Cuántas horas al día?" required="">
 
 						</div>
 					</div>
@@ -878,14 +898,14 @@ aria-labelledby="ui-accordion-1-header-12" role="tabpane12" aria-expanded="false
 					<div class="dzen_column_DD_span6">
 
 						<div class="margin_bottom">
-							<input type="text" name="pFctipo" maxlength="350" class="dzencf-text" placeholder="¿Qué tipo de actividad?" required="">
+							<input type="text" name="pFctipo" maxlength="300" class="dzencf-text" placeholder="¿Qué tipo de actividad?" required="">
 						</div>
 					</div>
 					<div class="dzen_column_DD_span4">
 
 						<div class="margin_bottom">
 
-							<input type="text" name="pFchace" maxlength="350" class="dzencf-text" placeholder="¿Desde hace cuánto tiempo?" required="">
+							<input type="text" name="pFchace" maxlength="300" class="dzencf-text" placeholder="¿Desde hace cuánto tiempo?" required="">
 
 						</div>
 					</div>
@@ -896,14 +916,14 @@ aria-labelledby="ui-accordion-1-header-12" role="tabpane12" aria-expanded="false
 					<div class="dzen_column_DD_span6">
 
 						<div class="margin_bottom">
-							<input type="text" name="pFcCuantos" maxlength="350" class="dzencf-text" placeholder="¿Cuántos días a la semana?" required="">
+							<input type="text" name="pFcCuantos" maxlength="300" class="dzencf-text" placeholder="¿Cuántos días a la semana?" required="">
 						</div>
 					</div>
 					<div class="dzen_column_DD_span4">
 
 						<div class="margin_bottom">
 
-							<input type="text" name="pFcCuantas" maxlength="350" class="dzencf-text" placeholder="¿Cuántas horas al día?" required="">
+							<input type="text" name="pFcCuantas" maxlength="300" class="dzencf-text" placeholder="¿Cuántas horas al día?" required="">
 
 						</div>
 					</div>
@@ -931,9 +951,9 @@ aria-labelledby="ui-accordion-1-header-12" role="tabpane12" aria-expanded="false
 		<option value="Intructor de piso">Intructor de piso</option>
 
 	</select>
-	<input type="text" name="desdecuendo" maxlength="350" class="dzencf-text" placeholder="¿Desde hace cuánto tiempo ha entrenado en un Gym? " >
-	<input type="text" name="cuentosDiasEn" maxlength="350" class="dzencf-text" placeholder="¿Cuántos días a la semana entrena actualmente?" >
-	<input type="text" name="cuentosHorasEn" maxlength="350" class="dzencf-text" placeholder="¿Cuántas horas al día entrena actualmente? " >
+	<input type="text" name="desdecuendo" maxlength="300" class="dzencf-text" placeholder="¿Desde hace cuánto tiempo ha entrenado en un Gym? " >
+	<input type="text" name="cuentosDiasEn" maxlength="300" class="dzencf-text" placeholder="¿Cuántos días a la semana entrena actualmente?" >
+	<input type="text" name="cuentosHorasEn" maxlength="300" class="dzencf-text" placeholder="¿Cuántas horas al día entrena actualmente? " >
 	<select name="utilizasMaPe" class="dzencf-text" required="">
 		<option value="">¿Utiliza las máquinas y pesos libres?</option>
 		<option value="Máquina">Máquina</option>
@@ -941,7 +961,7 @@ aria-labelledby="ui-accordion-1-header-12" role="tabpane12" aria-expanded="false
 
 	</select>
 
-	<input type="text" name="utilizasClases" maxlength="350" class="dzencf-text" placeholder="¿Usa las clases grupales? (zumba, spinning, ritmos latinos, etc.)" >
+	<input type="text" name="utilizasClases" maxlength="300" class="dzencf-text" placeholder="¿Usa las clases grupales? (zumba, spinning, ritmos latinos, etc.)" >
 </div>
 
 
@@ -954,7 +974,7 @@ aria-labelledby="ui-accordion-1-header-12" role="tabpane12" aria-expanded="false
 	<strong>Disponibilidad para la actividad física y deportiva</strong>
 	<br></br>
 
-	<input type="text" name="cuantasHorasd" maxlength="350" class="dzencf-text" placeholder="¿Cuántas horas al día dispone para hacer ejercicio? " >
+	<input type="text" name="cuantasHorasd" maxlength="300" class="dzencf-text" placeholder="¿Cuántas horas al día dispone para hacer ejercicio? " >
 	<select name="utilizasMaPe" class="dzencf-text" required="">
 		<option value="">¿Cuántos días a la semana dispone para hacer ejercicio?</option>
 		<option value="1">1</option>
@@ -965,13 +985,13 @@ aria-labelledby="ui-accordion-1-header-12" role="tabpane12" aria-expanded="false
 		<option value="6">6</option>
 		<option value="7">7</option>
 	</select>
-	<input type="text" name="conqueHorario" maxlength="350" class="dzencf-text" placeholder="¿Con que horario cuentas al día para hacer ejercicio?" >
-	<input type="text" name="quediasDispones" maxlength="350" class="dzencf-text" placeholder="¿Con que días a la semana cuentas para hacer ejercicio? " >
-	<input type="text" name="cuantotiempoAlGym" maxlength="350" class="dzencf-text" placeholder="¿Cuánto tiempo duras en trasladarte el Gym? " >
+	<input type="text" name="conqueHorario" maxlength="300" class="dzencf-text" placeholder="¿Con que horario cuentas al día para hacer ejercicio?" >
+	<input type="text" name="quediasDispones" maxlength="300" class="dzencf-text" placeholder="¿Con que días a la semana cuentas para hacer ejercicio? " >
+	<input type="text" name="cuantotiempoAlGym" maxlength="300" class="dzencf-text" placeholder="¿Cuánto tiempo duras en trasladarte el Gym? " >
 
-	<input type="text" name="conqueEquipocardioc" maxlength="350" class="dzencf-text" placeholder="¿Con que equipo para ejercicio cardiovascular cuenta?" >
-	<input type="text" name="conqueEquipoPesocuen" maxlength="350" class="dzencf-text" placeholder="¿Con que equipo para ejercicio de pesas cuenta?" >
-	<input type="text" name="quetipoClaseGruputilizar" maxlength="350" class="dzencf-text" placeholder="¿Qué tipo de clases grupales puede realizar?" >
+	<input type="text" name="conqueEquipocardioc" maxlength="300" class="dzencf-text" placeholder="¿Con que equipo para ejercicio cardiovascular cuenta?" >
+	<input type="text" name="conqueEquipoPesocuen" maxlength="300" class="dzencf-text" placeholder="¿Con que equipo para ejercicio de pesas cuenta?" >
+	<input type="text" name="quetipoClaseGruputilizar" maxlength="300" class="dzencf-text" placeholder="¿Qué tipo de clases grupales puede realizar?" >
 	<div>
 		Instrucciones y objetivos específicos: Este apartado nos servirá para conocer exactamente qué objetivos, metas y expectativas tiene con el programa de Entrenamiento y así no perder tiempo, dinero y esfuerzo en algo que no le interese. 
 	</div>
@@ -993,18 +1013,18 @@ aria-labelledby="ui-accordion-1-header-12" role="tabpane12" aria-expanded="false
 	<br>Mejora del estado de salud y calidad de vida
 	<br></br>
 
-	<input type="text" name="opemsvcro" maxlength="350" class="dzencf-text" 
+	<input type="text" name="opemsvcro" maxlength="300" class="dzencf-text" 
 	placeholder="¿Prevención de enfermedades crónicas? " >
-	<input type="text" name="opemsvespe" maxlength="350" class="dzencf-text" 
+	<input type="text" name="opemsvespe" maxlength="300" class="dzencf-text" 
 	placeholder="¿Tratamiento de enfermedad especifica?" >
 
 
 	<br>Aspecto sociocultural del ejercicio
 	<br></br>
 
-	<input type="text" name="opeSocialSensacion" maxlength="350" class="dzencf-text" 
+	<input type="text" name="opeSocialSensacion" maxlength="300" class="dzencf-text" 
 	placeholder="¿Qué sensaciones y experiencias tiene con el ejercicio? " >
-	<input type="text" name="opeSocialExpectativas" maxlength="350" class="dzencf-text" 
+	<input type="text" name="opeSocialExpectativas" maxlength="300" class="dzencf-text" 
 	placeholder="¿Qué expectativas y compromiso tiene con el plan de entrenamiento?" >
 </div>
 
@@ -1023,31 +1043,31 @@ aria-labelledby="ui-accordion-1-header-12" role="tabpane12" aria-expanded="false
 	¿Ha usado ayudas farmacológicas?<br>
 
 	<div id="FormularioFarma" style="display: none">
-		<input type="text" name="vefarHacecuanto" maxlength="350" class="dzencf-text" 
+		<input type="text" name="vefarHacecuanto" maxlength="300" class="dzencf-text" 
 		placeholder="¿Hace cuánto tiempo las uso?" >
-		<input type="text" name="vefarDuranteCuanto" maxlength="350" class="dzencf-text" 
+		<input type="text" name="vefarDuranteCuanto" maxlength="300" class="dzencf-text" 
 		placeholder="¿Durante cuánto tiempo las uso?" >
-		<input type="text" name="vefarQuienlerecomendo" maxlength="350" class="dzencf-text" 
+		<input type="text" name="vefarQuienlerecomendo" maxlength="300" class="dzencf-text" 
 		placeholder="¿Quién le recomendó usarlas?" >
-		<input type="text" name="vefarQuelomotivo" maxlength="350" class="dzencf-text" 
+		<input type="text" name="vefarQuelomotivo" maxlength="300" class="dzencf-text" 
 		placeholder="¿Qué lo motivo a usarlas?" >
-		<input type="text" name="vefarQuienloasesoro" maxlength="350" class="dzencf-text" 
+		<input type="text" name="vefarQuienloasesoro" maxlength="300" class="dzencf-text" 
 		placeholder="¿Quién le asesoro en su uso?" >
-		<input type="text" name="vefarQuefuequelauso" maxlength="350" class="dzencf-text" 
+		<input type="text" name="vefarQuefuequelauso" maxlength="300" class="dzencf-text" 
 		placeholder="¿Cómo fue que las uso?" >
-		<input type="text" name="vefarQuetipodefarmauso" maxlength="350" class="dzencf-text" 
+		<input type="text" name="vefarQuetipodefarmauso" maxlength="300" class="dzencf-text" 
 		placeholder="¿Qué tipo de fármacos uso?" >
 
-		<input type="text" name="vefarQueObjetivologrouso" maxlength="350" class="dzencf-text" 
+		<input type="text" name="vefarQueObjetivologrouso" maxlength="300" class="dzencf-text" 
 		placeholder="¿Qué objetivos logro con su uso?" >
 
-		<input type="text" name="vefarUsaActualmentefarma" maxlength="350" class="dzencf-text" 
+		<input type="text" name="vefarUsaActualmentefarma" maxlength="300" class="dzencf-text" 
 		placeholder="¿Usa actualmente farmacología?" >
 
-		<input type="text" name="vefarTienePensadousarfarma" maxlength="350" class="dzencf-text" 
+		<input type="text" name="vefarTienePensadousarfarma" maxlength="300" class="dzencf-text" 
 		placeholder="¿Tiene pensado usar farmacología? " >
 
-		<input type="text" name="vefarObjetivostieneeluso" maxlength="350" class="dzencf-text" 
+		<input type="text" name="vefarObjetivostieneeluso" maxlength="300" class="dzencf-text" 
 		placeholder="¿Qué objetivos tiene con su uso? " >
 	</div>
 
@@ -1070,14 +1090,14 @@ aria-labelledby="ui-accordion-1-header-12" role="tabpane12" aria-expanded="false
 					<div class="dzen_column_DD_span5">
 
 						<div class="margin_bottom">
-							<input type="text" name="suple1Nombre" maxlength="350" class="dzencf-text" placeholder="Nombre" required="">
+							<input type="text" name="suple1Nombre" maxlength="300" class="dzencf-text" placeholder="Nombre" required="">
 						</div>
 					</div>
 					<div class="dzen_column_DD_span6">
 
 						<div class="margin_bottom">
 
-							<input type="text" name="suple1Caracteristicas" maxlength="350" class="dzencf-text" placeholder="Características" required="">
+							<input type="text" name="suple1Caracteristicas" maxlength="300" class="dzencf-text" placeholder="Características" required="">
 
 						</div>
 					</div>
@@ -1085,14 +1105,14 @@ aria-labelledby="ui-accordion-1-header-12" role="tabpane12" aria-expanded="false
 					<div class="dzen_column_DD_span5">
 
 						<div class="margin_bottom">
-							<input type="text" name="suple1Motivo" maxlength="350" class="dzencf-text" placeholder="Motivo de uso" required="">
+							<input type="text" name="suple1Motivo" maxlength="300" class="dzencf-text" placeholder="Motivo de uso" required="">
 						</div>
 					</div>
 					<div class="dzen_column_DD_span6">
 
 						<div class="margin_bottom">
 
-							<input type="text" name="suple1Tiempo" maxlength="350" class="dzencf-text" placeholder="Tiempo de uso" required="">
+							<input type="text" name="suple1Tiempo" maxlength="300" class="dzencf-text" placeholder="Tiempo de uso" required="">
 
 						</div>
 					</div>
@@ -1100,7 +1120,7 @@ aria-labelledby="ui-accordion-1-header-12" role="tabpane12" aria-expanded="false
 					<div class="dzen_column_DD_span5">
 
 						<div class="margin_bottom">
-							<input type="text" name="suple1Cantidad" maxlength="350" class="dzencf-text" placeholder="Cantidad usada" required="">
+							<input type="text" name="suple1Cantidad" maxlength="300" class="dzencf-text" placeholder="Cantidad usada" required="">
 						</div>
 					</div>
 				</div>
@@ -1116,14 +1136,14 @@ aria-labelledby="ui-accordion-1-header-12" role="tabpane12" aria-expanded="false
 					<div class="dzen_column_DD_span5">
 
 						<div class="margin_bottom">
-							<input type="text" name="suple2Nombre" maxlength="350" class="dzencf-text" placeholder="Nombre" required="">
+							<input type="text" name="suple2Nombre" maxlength="300" class="dzencf-text" placeholder="Nombre" required="">
 						</div>
 					</div>
 					<div class="dzen_column_DD_span6">
 
 						<div class="margin_bottom">
 
-							<input type="text" name="suple2Caracteristicas" maxlength="350" class="dzencf-text" placeholder="Características" required="">
+							<input type="text" name="suple2Caracteristicas" maxlength="300" class="dzencf-text" placeholder="Características" required="">
 
 						</div>
 					</div>
@@ -1131,14 +1151,14 @@ aria-labelledby="ui-accordion-1-header-12" role="tabpane12" aria-expanded="false
 					<div class="dzen_column_DD_span5">
 
 						<div class="margin_bottom">
-							<input type="text" name="suple2Motivo" maxlength="350" class="dzencf-text" placeholder="Motivo de uso" required="">
+							<input type="text" name="suple2Motivo" maxlength="300" class="dzencf-text" placeholder="Motivo de uso" required="">
 						</div>
 					</div>
 					<div class="dzen_column_DD_span6">
 
 						<div class="margin_bottom">
 
-							<input type="text" name="suple2Tiempo" maxlength="350" class="dzencf-text" placeholder="Tiempo de uso" required="">
+							<input type="text" name="suple2Tiempo" maxlength="300" class="dzencf-text" placeholder="Tiempo de uso" required="">
 
 						</div>
 					</div>
@@ -1146,7 +1166,7 @@ aria-labelledby="ui-accordion-1-header-12" role="tabpane12" aria-expanded="false
 					<div class="dzen_column_DD_span5">
 
 						<div class="margin_bottom">
-							<input type="text" name="suple2Cantidad" maxlength="350" class="dzencf-text" placeholder="Cantidad usada" required="">
+							<input type="text" name="suple2Cantidad" maxlength="300" class="dzencf-text" placeholder="Cantidad usada" required="">
 						</div>
 					</div>
 				</div>
@@ -1161,14 +1181,14 @@ aria-labelledby="ui-accordion-1-header-12" role="tabpane12" aria-expanded="false
 					<div class="dzen_column_DD_span5">
 
 						<div class="margin_bottom">
-							<input type="text" name="suple3Nombre" maxlength="350" class="dzencf-text" placeholder="Nombre" required="">
+							<input type="text" name="suple3Nombre" maxlength="300" class="dzencf-text" placeholder="Nombre" required="">
 						</div>
 					</div>
 					<div class="dzen_column_DD_span6">
 
 						<div class="margin_bottom">
 
-							<input type="text" name="suple3Caracteristicas" maxlength="350" class="dzencf-text" placeholder="Características" required="">
+							<input type="text" name="suple3Caracteristicas" maxlength="300" class="dzencf-text" placeholder="Características" required="">
 
 						</div>
 					</div>
@@ -1176,14 +1196,14 @@ aria-labelledby="ui-accordion-1-header-12" role="tabpane12" aria-expanded="false
 					<div class="dzen_column_DD_span5">
 
 						<div class="margin_bottom">
-							<input type="text" name="suple3Motivo" maxlength="350" class="dzencf-text" placeholder="Motivo de uso" required="">
+							<input type="text" name="suple3Motivo" maxlength="300" class="dzencf-text" placeholder="Motivo de uso" required="">
 						</div>
 					</div>
 					<div class="dzen_column_DD_span6">
 
 						<div class="margin_bottom">
 
-							<input type="text" name="suple3Tiempo" maxlength="350" class="dzencf-text" placeholder="Tiempo de uso" required="">
+							<input type="text" name="suple3Tiempo" maxlength="300" class="dzencf-text" placeholder="Tiempo de uso" required="">
 
 						</div>
 					</div>
@@ -1191,7 +1211,7 @@ aria-labelledby="ui-accordion-1-header-12" role="tabpane12" aria-expanded="false
 					<div class="dzen_column_DD_span5">
 
 						<div class="margin_bottom">
-							<input type="text" name="suple3Cantidad" maxlength="350" class="dzencf-text" placeholder="Cantidad usada" required="">
+							<input type="text" name="suple3Cantidad" maxlength="300" class="dzencf-text" placeholder="Cantidad usada" required="">
 						</div>
 					</div>
 				</div>
@@ -1206,14 +1226,14 @@ aria-labelledby="ui-accordion-1-header-12" role="tabpane12" aria-expanded="false
 					<div class="dzen_column_DD_span5">
 
 						<div class="margin_bottom">
-							<input type="text" name="suple4Nombre" maxlength="350" class="dzencf-text" placeholder="Nombre" required="">
+							<input type="text" name="suple4Nombre" maxlength="300" class="dzencf-text" placeholder="Nombre" required="">
 						</div>
 					</div>
 					<div class="dzen_column_DD_span6">
 
 						<div class="margin_bottom">
 
-							<input type="text" name="suple4Caracteristicas" maxlength="350" class="dzencf-text" placeholder="Características" required="">
+							<input type="text" name="suple4Caracteristicas" maxlength="300" class="dzencf-text" placeholder="Características" required="">
 
 						</div>
 					</div>
@@ -1221,14 +1241,14 @@ aria-labelledby="ui-accordion-1-header-12" role="tabpane12" aria-expanded="false
 					<div class="dzen_column_DD_span5">
 
 						<div class="margin_bottom">
-							<input type="text" name="suple4Motivo" maxlength="350" class="dzencf-text" placeholder="Motivo de uso" required="">
+							<input type="text" name="suple4Motivo" maxlength="300" class="dzencf-text" placeholder="Motivo de uso" required="">
 						</div>
 					</div>
 					<div class="dzen_column_DD_span6">
 
 						<div class="margin_bottom">
 
-							<input type="text" name="suple4Tiempo" maxlength="350" class="dzencf-text" placeholder="Tiempo de uso" required="">
+							<input type="text" name="suple4Tiempo" maxlength="300" class="dzencf-text" placeholder="Tiempo de uso" required="">
 
 						</div>
 					</div>
@@ -1236,7 +1256,7 @@ aria-labelledby="ui-accordion-1-header-12" role="tabpane12" aria-expanded="false
 					<div class="dzen_column_DD_span5">
 
 						<div class="margin_bottom">
-							<input type="text" name="suple4Cantidad" maxlength="350" class="dzencf-text" placeholder="Cantidad usada" required="">
+							<input type="text" name="suple4Cantidad" maxlength="300" class="dzencf-text" placeholder="Cantidad usada" required="">
 						</div>
 					</div>
 				</div>
@@ -1251,14 +1271,14 @@ aria-labelledby="ui-accordion-1-header-12" role="tabpane12" aria-expanded="false
 					<div class="dzen_column_DD_span5">
 
 						<div class="margin_bottom">
-							<input type="text" name="suple5Nombre" maxlength="350" class="dzencf-text" placeholder="Nombre" >
+							<input type="text" name="suple5Nombre" maxlength="300" class="dzencf-text" placeholder="Nombre" >
 						</div>
 					</div>
 					<div class="dzen_column_DD_span6">
 
 						<div class="margin_bottom">
 
-							<input type="text" name="suple5Caracteristicas" maxlength="350" class="dzencf-text" placeholder="Características" >
+							<input type="text" name="suple5Caracteristicas" maxlength="300" class="dzencf-text" placeholder="Características" >
 
 						</div>
 					</div>
@@ -1266,14 +1286,14 @@ aria-labelledby="ui-accordion-1-header-12" role="tabpane12" aria-expanded="false
 					<div class="dzen_column_DD_span5">
 
 						<div class="margin_bottom">
-							<input type="text" name="suple5Motivo" maxlength="350" class="dzencf-text" placeholder="Motivo de uso" >
+							<input type="text" name="suple5Motivo" maxlength="300" class="dzencf-text" placeholder="Motivo de uso" >
 						</div>
 					</div>
 					<div class="dzen_column_DD_span6">
 
 						<div class="margin_bottom">
 
-							<input type="text" name="suple5Tiempo" maxlength="350" class="dzencf-text" placeholder="Tiempo de uso" >
+							<input type="text" name="suple5Tiempo" maxlength="300" class="dzencf-text" placeholder="Tiempo de uso" >
 
 						</div>
 					</div>
@@ -1281,7 +1301,7 @@ aria-labelledby="ui-accordion-1-header-12" role="tabpane12" aria-expanded="false
 					<div class="dzen_column_DD_span5">
 
 						<div class="margin_bottom">
-							<input type="text" name="suple5Cantidad" maxlength="350" class="dzencf-text" placeholder="Cantidad usada" >
+							<input type="text" name="suple5Cantidad" maxlength="300" class="dzencf-text" placeholder="Cantidad usada" >
 						</div>
 					</div>
 				</div>
@@ -1315,14 +1335,14 @@ aria-labelledby="ui-accordion-1-header-12" role="tabpane12" aria-expanded="false
 					<div class="dzen_column_DD_span4">
 
 						<div class="margin_bottom">
-							<input type="text" name="consumoSusAlcolTipo" maxlength="350" class="dzencf-text" placeholder="Tipo" >
+							<input type="text" name="consumoSusAlcolTipo" maxlength="300" class="dzencf-text" placeholder="Tipo" >
 						</div>
 					</div>
 					<div class="dzen_column_DD_span4">
 
 						<div class="margin_bottom">
 
-							<input type="text" name="consumoSusAlcolcantidad" maxlength="350" class="dzencf-text" placeholder="Cantidad">
+							<input type="text" name="consumoSusAlcolcantidad" maxlength="300" class="dzencf-text" placeholder="Cantidad">
 
 						</div>
 					</div>
@@ -1330,7 +1350,7 @@ aria-labelledby="ui-accordion-1-header-12" role="tabpane12" aria-expanded="false
 					<div class="dzen_column_DD_span3">
 
 						<div class="margin_bottom">
-							<input type="text" name="consumoSusAlcolFrecuencia" maxlength="350" class="dzencf-text" placeholder="Frecuencia" >
+							<input type="text" name="consumoSusAlcolFrecuencia" maxlength="300" class="dzencf-text" placeholder="Frecuencia" >
 						</div>
 					</div>
 					
@@ -1346,14 +1366,14 @@ aria-labelledby="ui-accordion-1-header-12" role="tabpane12" aria-expanded="false
 					<div class="dzen_column_DD_span4">
 
 						<div class="margin_bottom">
-							<input type="text" name="consumoSusTabacoTipo" maxlength="350" class="dzencf-text" placeholder="Tipo" >
+							<input type="text" name="consumoSusTabacoTipo" maxlength="300" class="dzencf-text" placeholder="Tipo" >
 						</div>
 					</div>
 					<div class="dzen_column_DD_span4">
 
 						<div class="margin_bottom">
 
-							<input type="text" name="consumoSusTabacocantidad" maxlength="350" class="dzencf-text" placeholder="Cantidad" >
+							<input type="text" name="consumoSusTabacocantidad" maxlength="300" class="dzencf-text" placeholder="Cantidad" >
 
 						</div>
 					</div>
@@ -1361,7 +1381,7 @@ aria-labelledby="ui-accordion-1-header-12" role="tabpane12" aria-expanded="false
 					<div class="dzen_column_DD_span3">
 
 						<div class="margin_bottom">
-							<input type="text" name="consumoSusTabacoFrecuencia" maxlength="350" class="dzencf-text" placeholder="Frecuencia" >
+							<input type="text" name="consumoSusTabacoFrecuencia" maxlength="300" class="dzencf-text" placeholder="Frecuencia" >
 						</div>
 					</div>
 					
@@ -1377,14 +1397,14 @@ aria-labelledby="ui-accordion-1-header-12" role="tabpane12" aria-expanded="false
 					<div class="dzen_column_DD_span4">
 
 						<div class="margin_bottom">
-							<input type="text" name="consumoSusCafeinaTipo" maxlength="350" class="dzencf-text" placeholder="Tipo" >
+							<input type="text" name="consumoSusCafeinaTipo" maxlength="300" class="dzencf-text" placeholder="Tipo" >
 						</div>
 					</div>
 					<div class="dzen_column_DD_span4">
 
 						<div class="margin_bottom">
 
-							<input type="text" name="consumoSusCafeinacocantidad" maxlength="350" class="dzencf-text" placeholder="Cantidad" >
+							<input type="text" name="consumoSusCafeinacocantidad" maxlength="300" class="dzencf-text" placeholder="Cantidad" >
 
 						</div>
 					</div>
@@ -1392,7 +1412,7 @@ aria-labelledby="ui-accordion-1-header-12" role="tabpane12" aria-expanded="false
 					<div class="dzen_column_DD_span3">
 
 						<div class="margin_bottom">
-							<input type="text" name="consumoSusCafeinaFrecuencia" maxlength="350" class="dzencf-text" placeholder="Frecuencia" >
+							<input type="text" name="consumoSusCafeinaFrecuencia" maxlength="300" class="dzencf-text" placeholder="Frecuencia" >
 						</div>
 					</div>
 					
@@ -1408,14 +1428,14 @@ aria-labelledby="ui-accordion-1-header-12" role="tabpane12" aria-expanded="false
 					<div class="dzen_column_DD_span4">
 
 						<div class="margin_bottom">
-							<input type="text" name="consumoSusOtrasTipo" maxlength="350" class="dzencf-text" placeholder="Tipo" required="">
+							<input type="text" name="consumoSusOtrasTipo" maxlength="300" class="dzencf-text" placeholder="Tipo" required="">
 						</div>
 					</div>
 					<div class="dzen_column_DD_span4">
 
 						<div class="margin_bottom">
 
-							<input type="text" name="consumoSusOtrascocantidad" maxlength="350" class="dzencf-text" placeholder="Cantidad" >
+							<input type="text" name="consumoSusOtrascocantidad" maxlength="300" class="dzencf-text" placeholder="Cantidad" >
 
 						</div>
 					</div>
@@ -1423,7 +1443,7 @@ aria-labelledby="ui-accordion-1-header-12" role="tabpane12" aria-expanded="false
 					<div class="dzen_column_DD_span3">
 
 						<div class="margin_bottom">
-							<input type="text" name="consumoSusOtrasFrecuencia" maxlength="350" class="dzencf-text" placeholder="Frecuencia" >
+							<input type="text" name="consumoSusOtrasFrecuencia" maxlength="300" class="dzencf-text" placeholder="Frecuencia" >
 						</div>
 					</div>
 					
@@ -1441,9 +1461,9 @@ aria-labelledby="ui-accordion-1-header-12" role="tabpane12" aria-expanded="false
 	</div>
 	<strong>Datos fisiológicos</strong>
 	<br></br>
-	<input type="text" name="dfFcar" maxlength="350" class="dzencf-text" placeholder="Frecuencia cardiaca en reposo (pulsaciones por minuto)" >
+	<input type="text" name="dfFcar" maxlength="300" class="dzencf-text" placeholder="Frecuencia cardiaca en reposo (pulsaciones por minuto)" >
 	
-	<input type="text" name="dfFcarres" maxlength="350" class="dzencf-text" placeholder="Frecuencia respiratoria en reposo (respiración por minuto)" >
+	<input type="text" name="dfFcarres" maxlength="300" class="dzencf-text" placeholder="Frecuencia respiratoria en reposo (respiración por minuto)" >
 	
 	<!-- fin componenete -->
 	<!-- incio componenete -->
@@ -1455,10 +1475,10 @@ aria-labelledby="ui-accordion-1-header-12" role="tabpane12" aria-expanded="false
 
 	
 
-	<input type="text" name="cdipersoAli" maxlength="350" class="dzencf-text" placeholder="¿Alimentos evitados? " >
+	<input type="text" name="cdipersoAli" maxlength="300" class="dzencf-text" placeholder="¿Alimentos evitados? " >
 
 	
-	<input type="text" name="cdipersoAliporque" maxlength="350" class="dzencf-text" placeholder="¿Por qué? " >
+	<input type="text" name="cdipersoAliporque" maxlength="300" class="dzencf-text" placeholder="¿Por qué? " >
 
 
 
@@ -1476,12 +1496,12 @@ aria-labelledby="ui-accordion-1-header-12" role="tabpane12" aria-expanded="false
 		<option value="10">10</option>
 	</select>
 
-	<input type="text" name="cdipersoANivelCambios" maxlength="350" class="dzencf-text" placeholder="¿Cambios recientes en el apetito? " required="">
+	<input type="text" name="cdipersoANivelCambios" maxlength="300" class="dzencf-text" placeholder="¿Cambios recientes en el apetito? " required="">
 
-	<input type="text" name="cdipersoAlergias" maxlength="350" class="dzencf-text" placeholder="¿Tiene alguna alergia alimentaria? " required="">
-	<input type="text" name="cdipersoIntoleranciaalimen" maxlength="350" class="dzencf-text" placeholder="¿Tiene alguna intolerancia alimentaria?" required="">
+	<input type="text" name="cdipersoAlergias" maxlength="300" class="dzencf-text" placeholder="¿Tiene alguna alergia alimentaria? " required="">
+	<input type="text" name="cdipersoIntoleranciaalimen" maxlength="300" class="dzencf-text" placeholder="¿Tiene alguna intolerancia alimentaria?" required="">
 
-	<input type="text" name="cdipersoAlinoconsumir" maxlength="350" class="dzencf-text" placeholder="¿Qué alimentos no puede conseguir fácilmente?" required="">
+	<input type="text" name="cdipersoAlinoconsumir" maxlength="300" class="dzencf-text" placeholder="¿Qué alimentos no puede conseguir fácilmente?" required="">
 
 	<!-- fin componenete -->
 </div>
@@ -1507,14 +1527,14 @@ aria-labelledby="ui-accordion-1-header-12" role="tabpane12" aria-expanded="false
 					<div class="dzen_column_DD_span6">
 
 						<div class="margin_bottom">
-							<input type="text" name="edpduraTiempo" maxlength="350" class="dzencf-text" placeholder="¿Durante cuánto tiempo?" required="">
+							<input type="text" name="edpduraTiempo" maxlength="300" class="dzencf-text" placeholder="¿Durante cuánto tiempo?" required="">
 						</div>
 					</div>
 					<div class="dzen_column_DD_span4">
 
 						<div class="margin_bottom">
 
-							<input type="text" name="edpcuantoTiempo" maxlength="350" class="dzencf-text" placeholder="¿Hace cuánto tiempo?" required="">
+							<input type="text" name="edpcuantoTiempo" maxlength="300" class="dzencf-text" placeholder="¿Hace cuánto tiempo?" required="">
 
 						</div>
 					</div>
@@ -1525,14 +1545,14 @@ aria-labelledby="ui-accordion-1-header-12" role="tabpane12" aria-expanded="false
 					<div class="dzen_column_DD_span6">
 
 						<div class="margin_bottom">
-							<input type="text" name="edpcResulobtuvo" maxlength="350" class="dzencf-text" placeholder="¿Qué resultados obtuvo?" required="">
+							<input type="text" name="edpcResulobtuvo" maxlength="300" class="dzencf-text" placeholder="¿Qué resultados obtuvo?" required="">
 						</div>
 					</div>
 					<div class="dzen_column_DD_span4">
 
 						<div class="margin_bottom">
 
-							<input type="text" name="edpcxqAbandono" maxlength="350" class="dzencf-text" placeholder="¿Por qué abandono?" required="">
+							<input type="text" name="edpcxqAbandono" maxlength="300" class="dzencf-text" placeholder="¿Por qué abandono?" required="">
 
 						</div>
 					</div>
@@ -1548,19 +1568,19 @@ aria-labelledby="ui-accordion-1-header-12" role="tabpane12" aria-expanded="false
 		Instrucciones y objetivos específicos: Este apartado nos servirá para obtener los datos corporales básicos necesarios para el cálculo de sus requerimientos diarios de energía (kcal). Para obtener esta información se necesita una únicamente una báscula y un estadimetro (instrumento para medir la talla total de la persona). 
 	</div></br>
 	<strong>Datos antropométricos básicos</strong><br>
-	<input type="text" name="dabasiPeso" maxlength="350" class="dzencf-text" placeholder="Peso total (kg.g)" r>
-	<input type="text" name="dabasiAltura" maxlength="350" class="dzencf-text" placeholder="Estatura total (cm)" >
+	<input type="text" name="dabasiPeso" maxlength="300" class="dzencf-text" placeholder="Peso total (kg.g)" r>
+	<input type="text" name="dabasiAltura" maxlength="300" class="dzencf-text" placeholder="Estatura total (cm)" >
 
 	<div>
 		Instrucciones y objetivos específicos: Este apartado nos servirá para hacer comparaciones de su progreso a través del tiempo, pudiendo así modificar los planes de Alimentación y Entrenamiento. Para obtener esta información se necesita una báscula de Bioimpedancia o con un profesional capacitado para la realización de las mediciones antropométricas (ISAK 1)
 	</div></br>
 	<strong>Datos antropométricos especializados</strong><br>
-	<input type="text" name="datosAntroespgrasa" maxlength="350" class="dzencf-text" placeholder="Grasa corporal (kg)" >
-	<input type="text" name="datosAntroespgrasaporce" maxlength="350" class="dzencf-text" placeholder="Grasa corporal (%)" >
-	<input type="text" name="datosAntroespmasakg" maxlength="350" class="dzencf-text" placeholder="Masa magra (kg)" >
-	<input type="text" name="datosAntroespmasaporcen" maxlength="350" class="dzencf-text" placeholder="Masa magra (%)" >
-	<input type="text" name="datosAntroespmasapmuskg" maxlength="350" class="dzencf-text" placeholder="Masa muscular (kg)" >
-	<input type="text" name="datosAntroespmasapmusporcentaje" maxlength="350" class="dzencf-text" placeholder="Masa muscular (%)" >
+	<input type="text" name="datosAntroespgrasa" maxlength="300" class="dzencf-text" placeholder="Grasa corporal (kg)" >
+	<input type="text" name="datosAntroespgrasaporce" maxlength="300" class="dzencf-text" placeholder="Grasa corporal (%)" >
+	<input type="text" name="datosAntroespmasakg" maxlength="300" class="dzencf-text" placeholder="Masa magra (kg)" >
+	<input type="text" name="datosAntroespmasaporcen" maxlength="300" class="dzencf-text" placeholder="Masa magra (%)" >
+	<input type="text" name="datosAntroespmasapmuskg" maxlength="300" class="dzencf-text" placeholder="Masa muscular (kg)" >
+	<input type="text" name="datosAntroespmasapmusporcentaje" maxlength="300" class="dzencf-text" placeholder="Masa muscular (%)" >
 
 
 	<div>
@@ -1581,14 +1601,14 @@ aria-labelledby="ui-accordion-1-header-12" role="tabpane12" aria-expanded="false
 					<div class="dzen_column_DD_span6">
 
 						<div class="margin_bottom">
-							<input type="text" name="patronalic1h" maxlength="350" class="dzencf-text" placeholder="Horario (hrs.min)" required="">
+							<input type="text" name="patronalic1h" maxlength="300" class="dzencf-text" placeholder="Horario (hrs.min)" required="">
 						</div>
 					</div>
 					<div class="dzen_column_DD_span4">
 
 						<div class="margin_bottom">
 
-							<input type="text" name="patronalic1l" maxlength="350" class="dzencf-text" placeholder="Ubicación (lugar)" required="">
+							<input type="text" name="patronalic1l" maxlength="300" class="dzencf-text" placeholder="Ubicación (lugar)" required="">
 
 						</div>
 					</div>
@@ -1596,7 +1616,7 @@ aria-labelledby="ui-accordion-1-header-12" role="tabpane12" aria-expanded="false
 					<div class="dzen_column_DD_span6">
 
 						<div class="margin_bottom">
-							<input type="text" name="patronalic1d" maxlength="350" class="dzencf-text" placeholder="Duración (min)" required="">
+							<input type="text" name="patronalic1d" maxlength="300" class="dzencf-text" placeholder="Duración (min)" required="">
 						</div>
 					</div>
 					
@@ -1611,14 +1631,14 @@ aria-labelledby="ui-accordion-1-header-12" role="tabpane12" aria-expanded="false
 					<div class="dzen_column_DD_span6">
 
 						<div class="margin_bottom">
-							<input type="text" name="patronalic2h" maxlength="350" class="dzencf-text" placeholder="Horario (hrs.min)" required="">
+							<input type="text" name="patronalic2h" maxlength="300" class="dzencf-text" placeholder="Horario (hrs.min)" required="">
 						</div>
 					</div>
 					<div class="dzen_column_DD_span4">
 
 						<div class="margin_bottom">
 
-							<input type="text" name="patronalic2l" maxlength="350" class="dzencf-text" placeholder="Ubicación (lugar)" required="">
+							<input type="text" name="patronalic2l" maxlength="300" class="dzencf-text" placeholder="Ubicación (lugar)" required="">
 
 						</div>
 					</div>
@@ -1626,7 +1646,7 @@ aria-labelledby="ui-accordion-1-header-12" role="tabpane12" aria-expanded="false
 					<div class="dzen_column_DD_span6">
 
 						<div class="margin_bottom">
-							<input type="text" name="patronalic2d" maxlength="350" class="dzencf-text" placeholder="Duración (min)" required="">
+							<input type="text" name="patronalic2d" maxlength="300" class="dzencf-text" placeholder="Duración (min)" required="">
 						</div>
 					</div>
 					
@@ -1641,14 +1661,14 @@ aria-labelledby="ui-accordion-1-header-12" role="tabpane12" aria-expanded="false
 					<div class="dzen_column_DD_span6">
 
 						<div class="margin_bottom">
-							<input type="text" name="patronalic3h" maxlength="350" class="dzencf-text" placeholder="Horario (hrs.min)" required="">
+							<input type="text" name="patronalic3h" maxlength="300" class="dzencf-text" placeholder="Horario (hrs.min)" required="">
 						</div>
 					</div>
 					<div class="dzen_column_DD_span4">
 
 						<div class="margin_bottom">
 
-							<input type="text" name="patronalic3l" maxlength="350" class="dzencf-text" placeholder="Ubicación (lugar)" required="">
+							<input type="text" name="patronalic3l" maxlength="300" class="dzencf-text" placeholder="Ubicación (lugar)" required="">
 
 						</div>
 					</div>
@@ -1656,7 +1676,7 @@ aria-labelledby="ui-accordion-1-header-12" role="tabpane12" aria-expanded="false
 					<div class="dzen_column_DD_span6">
 
 						<div class="margin_bottom">
-							<input type="text" name="patronalic3d" maxlength="350" class="dzencf-text" placeholder="Duración (min)" required="">
+							<input type="text" name="patronalic3d" maxlength="300" class="dzencf-text" placeholder="Duración (min)" required="">
 						</div>
 					</div>
 					
@@ -1671,14 +1691,14 @@ aria-labelledby="ui-accordion-1-header-12" role="tabpane12" aria-expanded="false
 					<div class="dzen_column_DD_span6">
 
 						<div class="margin_bottom">
-							<input type="text" name="patronalic4h" maxlength="350" class="dzencf-text" placeholder="Horario (hrs.min)" required="">
+							<input type="text" name="patronalic4h" maxlength="300" class="dzencf-text" placeholder="Horario (hrs.min)" required="">
 						</div>
 					</div>
 					<div class="dzen_column_DD_span4">
 
 						<div class="margin_bottom">
 
-							<input type="text" name="patronalic4l" maxlength="350" class="dzencf-text" placeholder="Ubicación (lugar)" required="">
+							<input type="text" name="patronalic4l" maxlength="300" class="dzencf-text" placeholder="Ubicación (lugar)" required="">
 
 						</div>
 					</div>
@@ -1686,7 +1706,7 @@ aria-labelledby="ui-accordion-1-header-12" role="tabpane12" aria-expanded="false
 					<div class="dzen_column_DD_span6">
 
 						<div class="margin_bottom">
-							<input type="text" name="patronalic4d" maxlength="350" class="dzencf-text" placeholder="Duración (min)" required="">
+							<input type="text" name="patronalic4d" maxlength="300" class="dzencf-text" placeholder="Duración (min)" required="">
 						</div>
 					</div>
 					
@@ -1701,14 +1721,14 @@ aria-labelledby="ui-accordion-1-header-12" role="tabpane12" aria-expanded="false
 					<div class="dzen_column_DD_span6">
 
 						<div class="margin_bottom">
-							<input type="text" name="patronalic5h" maxlength="350" class="dzencf-text" placeholder="Horario (hrs.min)" required="">
+							<input type="text" name="patronalic5h" maxlength="300" class="dzencf-text" placeholder="Horario (hrs.min)" required="">
 						</div>
 					</div>
 					<div class="dzen_column_DD_span4">
 
 						<div class="margin_bottom">
 
-							<input type="text" name="patronalic5l" maxlength="350" class="dzencf-text" placeholder="Ubicación (lugar)" required="">
+							<input type="text" name="patronalic5l" maxlength="300" class="dzencf-text" placeholder="Ubicación (lugar)" required="">
 
 						</div>
 					</div>
@@ -1716,7 +1736,7 @@ aria-labelledby="ui-accordion-1-header-12" role="tabpane12" aria-expanded="false
 					<div class="dzen_column_DD_span6">
 
 						<div class="margin_bottom">
-							<input type="text" name="patronalic5d" maxlength="350" class="dzencf-text" placeholder="Duración (min)" required="">
+							<input type="text" name="patronalic5d" maxlength="300" class="dzencf-text" placeholder="Duración (min)" required="">
 						</div>
 					</div>
 					
@@ -1731,14 +1751,14 @@ aria-labelledby="ui-accordion-1-header-12" role="tabpane12" aria-expanded="false
 					<div class="dzen_column_DD_span6">
 
 						<div class="margin_bottom">
-							<input type="text" name="patronalic6h" maxlength="350" class="dzencf-text" placeholder="Horario (hrs.min)" required="">
+							<input type="text" name="patronalic6h" maxlength="300" class="dzencf-text" placeholder="Horario (hrs.min)" required="">
 						</div>
 					</div>
 					<div class="dzen_column_DD_span4">
 
 						<div class="margin_bottom">
 
-							<input type="text" name="patronalic6l" maxlength="350" class="dzencf-text" placeholder="Ubicación (lugar)" required="">
+							<input type="text" name="patronalic6l" maxlength="300" class="dzencf-text" placeholder="Ubicación (lugar)" required="">
 
 						</div>
 					</div>
@@ -1746,7 +1766,7 @@ aria-labelledby="ui-accordion-1-header-12" role="tabpane12" aria-expanded="false
 					<div class="dzen_column_DD_span6">
 
 						<div class="margin_bottom">
-							<input type="text" name="patronalic6d" maxlength="350" class="dzencf-text" placeholder="Duración (min)" required="">
+							<input type="text" name="patronalic6d" maxlength="300" class="dzencf-text" placeholder="Duración (min)" required="">
 						</div>
 					</div>
 					
@@ -1771,34 +1791,34 @@ aria-labelledby="ui-accordion-1-header-12" role="tabpane12" aria-expanded="false
 		Tipo de actividad<hr>
 		<h4>Dormido</h4>
 		Actividad : Dormido profundamente
-		<input type="text" name="padDormido" maxlength="350" class="dzencf-text" placeholder="Horas diarias en esas actividades" >
+		<input type="text" name="padDormido" maxlength="300" class="dzencf-text" placeholder="Horas diarias en esas actividades" >
 		<h4>Recostado</h4>
 		Actividad : Despierto, descansando acostado sin hacer nada
-		<input type="text" name="padRecostado" maxlength="350" class="dzencf-text" placeholder="Horas diarias en esas actividades" >
+		<input type="text" name="padRecostado" maxlength="300" class="dzencf-text" placeholder="Horas diarias en esas actividades" >
 		<h4>Muy sedentario</h4>
 		Actividad : Sentado, mirando TV o escuchando música, viajar
-		<input type="text" name="padMuysedentario" maxlength="350" class="dzencf-text" placeholder="Horas diarias en esas actividades" >
+		<input type="text" name="padMuysedentario" maxlength="300" class="dzencf-text" placeholder="Horas diarias en esas actividades" >
 		<h4>Sedentario </h4>
 		Actividad : Trabajo de oficina, conducir, hablar, leer
-		<input type="text" name="padsedentario" maxlength="350" class="dzencf-text" placeholder="Horas diarias en esas actividades" >
+		<input type="text" name="padsedentario" maxlength="300" class="dzencf-text" placeholder="Horas diarias en esas actividades" >
 		<h4>Muy ligeramente activo </h4>
 		Actividad : Caminar ligero, estar de pie, moverse poco
-		<input type="text" name="padmuyligeramenteactivo" maxlength="350" class="dzencf-text" placeholder="Horas diarias en esas actividades" >
+		<input type="text" name="padmuyligeramenteactivo" maxlength="300" class="dzencf-text" placeholder="Horas diarias en esas actividades" >
 		<h4>Ligeramente activo</h4>
 		Actividad : Limpieza doméstica, trabajo de taller, cuidar niños
-		<input type="text" name="padligeramenteactivo" maxlength="350" class="dzencf-text" placeholder="Horas diarias en esas actividades" >
+		<input type="text" name="padligeramenteactivo" maxlength="300" class="dzencf-text" placeholder="Horas diarias en esas actividades" >
 		<h4>Moderadamente activo</h4>
 		Actividad : Trotar, bicicleta suave, limpieza pesada, mesero
-		<input type="text" name="padmoderadamenteactivo" maxlength="350" class="dzencf-text" placeholder="Horas diarias en esas actividades" >
+		<input type="text" name="padmoderadamenteactivo" maxlength="300" class="dzencf-text" placeholder="Horas diarias en esas actividades" >
 		<h4>Activo</h4>
 		Actividad : Correr, bailar, carpintero, jardinero, cargar cosas
-		<input type="text" name="padactivo" maxlength="350" class="dzencf-text" placeholder="Horas diarias en esas actividades" >
+		<input type="text" name="padactivo" maxlength="300" class="dzencf-text" placeholder="Horas diarias en esas actividades" >
 		<h4>Muy activo</h4>
 		Actividad : Albañil, agricultor, ganadero, cargar cosa pesada
-		<input type="text" name="padmuyactivo" maxlength="350" class="dzencf-text" placeholder="Horas diarias en esas actividades" >
+		<input type="text" name="padmuyactivo" maxlength="300" class="dzencf-text" placeholder="Horas diarias en esas actividades" >
 		<h4>Extremadamente activo</h4>
 		Actividad : Deportes y entrenamiento de moderada-alta intensidad
-		<input type="text" name="padExtemadamenteactivo" maxlength="350" class="dzencf-text" placeholder="Horas diarias en esas actividades" >
+		<input type="text" name="padExtemadamenteactivo" maxlength="300" class="dzencf-text" placeholder="Horas diarias en esas actividades" >
 
 		<div>
 			Instrucciones y objetivos específicos: Este apartado nos servirá para saber qué tan activo es su estilo de vida, esto nos servirá para poder calcular de la manera más exacta posible la energía (kcal) que necesita cada día para lograr alcanzar sus metas y objetivos. Esta segunda tabla hace alusión a los días que descansa o no puede hacer ejercicio por cualquier razón. (Deben sumar 24 horas en total).
@@ -1808,34 +1828,34 @@ aria-labelledby="ui-accordion-1-header-12" role="tabpane12" aria-expanded="false
 		Tipo de actividad<hr>
 		<h4>Dormido</h4>
 		Actividad : Dormido profundamente
-		<input type="text" name="padDormidodes" maxlength="350" class="dzencf-text" placeholder="Horas diarias en esas actividades" >
+		<input type="text" name="padDormidodes" maxlength="300" class="dzencf-text" placeholder="Horas diarias en esas actividades" >
 		<h4>Recostado</h4>
 		Actividad : Despierto, descansando acostado sin hacer nada
-		<input type="text" name="padRecostadodes" maxlength="350" class="dzencf-text" placeholder="Horas diarias en esas actividades" >
+		<input type="text" name="padRecostadodes" maxlength="300" class="dzencf-text" placeholder="Horas diarias en esas actividades" >
 		<h4>Muy sedentario</h4>
 		Actividad : Sentado, mirando TV o escuchando música, viajar
-		<input type="text" name="padMuysedentariodes" maxlength="350" class="dzencf-text" placeholder="Horas diarias en esas actividades" >
+		<input type="text" name="padMuysedentariodes" maxlength="300" class="dzencf-text" placeholder="Horas diarias en esas actividades" >
 		<h4>Sedentario </h4>
 		Actividad : Trabajo de oficina, conducir, hablar, leer
-		<input type="text" name="padsedentariodes" maxlength="350" class="dzencf-text" placeholder="Horas diarias en esas actividades" >
+		<input type="text" name="padsedentariodes" maxlength="300" class="dzencf-text" placeholder="Horas diarias en esas actividades" >
 		<h4>Muy ligeramente activo </h4>
 		Actividad : Caminar ligero, estar de pie, moverse poco
-		<input type="text" name="padmuyligeramenteactivodes" maxlength="350" class="dzencf-text" placeholder="Horas diarias en esas actividades" >
+		<input type="text" name="padmuyligeramenteactivodes" maxlength="300" class="dzencf-text" placeholder="Horas diarias en esas actividades" >
 		<h4>Ligeramente activo</h4>
 		Actividad : Limpieza doméstica, trabajo de taller, cuidar niños
-		<input type="text" name="padligeramenteactivodes" maxlength="350" class="dzencf-text" placeholder="Horas diarias en esas actividades" >
+		<input type="text" name="padligeramenteactivodes" maxlength="300" class="dzencf-text" placeholder="Horas diarias en esas actividades" >
 		<h4>Moderadamente activo</h4>
 		Actividad : Trotar, bicicleta suave, limpieza pesada, mesero
-		<input type="text" name="padmoderadamenteactivodes" maxlength="350" class="dzencf-text" placeholder="Horas diarias en esas actividades" >
+		<input type="text" name="padmoderadamenteactivodes" maxlength="300" class="dzencf-text" placeholder="Horas diarias en esas actividades" >
 		<h4>Activo</h4>
 		Actividad : Correr, bailar, carpintero, jardinero, cargar cosas
-		<input type="text" name="padactivodes" maxlength="350" class="dzencf-text" placeholder="Horas diarias en esas actividades" >
+		<input type="text" name="padactivodes" maxlength="300" class="dzencf-text" placeholder="Horas diarias en esas actividades" >
 		<h4>Muy activo</h4>
 		Actividad : Albañil, agricultor, ganadero, cargar cosa pesada
-		<input type="text" name="padmuyactivodes" maxlength="350" class="dzencf-text" placeholder="Horas diarias en esas actividades" >
+		<input type="text" name="padmuyactivodes" maxlength="300" class="dzencf-text" placeholder="Horas diarias en esas actividades" >
 		<h4>Extremadamente activo</h4>
 		Actividad : Deportes y entrenamiento de moderada-alta intensidad
-		<input type="text" name="padExtemadamenteactivodes" maxlength="350" class="dzencf-text" placeholder="Horas diarias en esas actividades" >
+		<input type="text" name="padExtemadamenteactivodes" maxlength="300" class="dzencf-text" placeholder="Horas diarias en esas actividades" >
 
 
 		<div>
@@ -1851,7 +1871,7 @@ aria-labelledby="ui-accordion-1-header-12" role="tabpane12" aria-expanded="false
 				<div class="dzen_column_DD_span6">
 
 					<div class="margin_bottom">
-						<input type="text" name="pEVidaTipo" maxlength="350" class="dzencf-text" placeholder="Tipo de actividad diaria, Ejemplo :Despertarse por la mañana" >
+						<input type="text" name="pEVidaTipo" maxlength="300" class="dzencf-text" placeholder="Tipo de actividad diaria, Ejemplo :Despertarse por la mañana" >
 
 					</div>
 				</div>
@@ -1859,7 +1879,7 @@ aria-labelledby="ui-accordion-1-header-12" role="tabpane12" aria-expanded="false
 
 					<div class="margin_bottom">
 
-						<input type="text" name="pEVidaTipo" maxlength="350" class="dzencf-text" placeholder="Horario" >
+						<input type="text" name="pEVidaTipo" maxlength="300" class="dzencf-text" placeholder="Horario" >
 
 					</div>
 				</div>
@@ -1893,14 +1913,14 @@ aria-labelledby="ui-accordion-1-header-12" role="tabpane12" aria-expanded="false
 						<div class="dzen_column_DD_span6">
 
 							<div class="margin_bottom">
-								<input type="text" name="recordatorioAlimentos24hras1h" maxlength="350" class="dzencf-text" placeholder="¿A qué hora?" >
+								<input type="text" name="recordatorioAlimentos24hras1h" maxlength="300" class="dzencf-text" placeholder="¿A qué hora?" >
 							</div>
 						</div>
 						<div class="dzen_column_DD_span5">
 
 							<div class="margin_bottom">
 
-								<input type="text" name="ecordatorioAlimentos24hras1d" maxlength="350" class="dzencf-text" placeholder="¿En dónde?" >
+								<input type="text" name="ecordatorioAlimentos24hras1d" maxlength="300" class="dzencf-text" placeholder="¿En dónde?" >
 
 							</div>
 						</div>
@@ -1908,13 +1928,13 @@ aria-labelledby="ui-accordion-1-header-12" role="tabpane12" aria-expanded="false
 						<div class="dzen_column_DD_span6">
 
 							<div class="margin_bottom">
-								<input type="text" name="ecordatorioAlimentos24hras1q" maxlength="350" class="dzencf-text" placeholder="¿Qué comió? (tipo de alimento y bebida)" >
+								<input type="text" name="ecordatorioAlimentos24hras1q" maxlength="300" class="dzencf-text" placeholder="¿Qué comió? (tipo de alimento y bebida)" >
 							</div>
 						</div>
 						<div class="dzen_column_DD_span5">
 
 							<div class="margin_bottom">
-								<input type="text" name="ecordatorioAlimentos24hras1c" maxlength="350" class="dzencf-text" placeholder="¿Cuándo comió? (cantidades)" >
+								<input type="text" name="ecordatorioAlimentos24hras1c" maxlength="300" class="dzencf-text" placeholder="¿Cuándo comió? (cantidades)" >
 							</div>
 						</div>
 
@@ -1930,14 +1950,14 @@ aria-labelledby="ui-accordion-1-header-12" role="tabpane12" aria-expanded="false
 						<div class="dzen_column_DD_span6">
 
 							<div class="margin_bottom">
-								<input type="text" name="recordatorioAlimentos24hras2h" maxlength="350" class="dzencf-text" placeholder="¿A qué hora?" >
+								<input type="text" name="recordatorioAlimentos24hras2h" maxlength="300" class="dzencf-text" placeholder="¿A qué hora?" >
 							</div>
 						</div>
 						<div class="dzen_column_DD_span5">
 
 							<div class="margin_bottom">
 
-								<input type="text" name="ecordatorioAlimentos24hras2d" maxlength="350" class="dzencf-text" placeholder="¿En dónde?" >
+								<input type="text" name="ecordatorioAlimentos24hras2d" maxlength="300" class="dzencf-text" placeholder="¿En dónde?" >
 
 							</div>
 						</div>
@@ -1945,13 +1965,13 @@ aria-labelledby="ui-accordion-1-header-12" role="tabpane12" aria-expanded="false
 						<div class="dzen_column_DD_span6">
 
 							<div class="margin_bottom">
-								<input type="text" name="ecordatorioAlimentos24hras2q" maxlength="350" class="dzencf-text" placeholder="¿Qué comió? (tipo de alimento y bebida)" >
+								<input type="text" name="ecordatorioAlimentos24hras2q" maxlength="300" class="dzencf-text" placeholder="¿Qué comió? (tipo de alimento y bebida)" >
 							</div>
 						</div>
 						<div class="dzen_column_DD_span5">
 
 							<div class="margin_bottom">
-								<input type="text" name="ecordatorioAlimentos24hras2c" maxlength="350" class="dzencf-text" placeholder="¿Cuándo comió? (cantidades)" >
+								<input type="text" name="ecordatorioAlimentos24hras2c" maxlength="300" class="dzencf-text" placeholder="¿Cuándo comió? (cantidades)" >
 							</div>
 						</div>
 
@@ -1966,14 +1986,14 @@ aria-labelledby="ui-accordion-1-header-12" role="tabpane12" aria-expanded="false
 						<div class="dzen_column_DD_span6">
 
 							<div class="margin_bottom">
-								<input type="text" name="recordatorioAlimentos24hras3h" maxlength="350" class="dzencf-text" placeholder="¿A qué hora?" >
+								<input type="text" name="recordatorioAlimentos24hras3h" maxlength="300" class="dzencf-text" placeholder="¿A qué hora?" >
 							</div>
 						</div>
 						<div class="dzen_column_DD_span5">
 
 							<div class="margin_bottom">
 
-								<input type="text" name="ecordatorioAlimentos24hras3d" maxlength="350" class="dzencf-text" placeholder="¿En dónde?" >
+								<input type="text" name="ecordatorioAlimentos24hras3d" maxlength="300" class="dzencf-text" placeholder="¿En dónde?" >
 
 							</div>
 						</div>
@@ -1981,13 +2001,13 @@ aria-labelledby="ui-accordion-1-header-12" role="tabpane12" aria-expanded="false
 						<div class="dzen_column_DD_span6">
 
 							<div class="margin_bottom">
-								<input type="text" name="ecordatorioAlimentos24hras3q" maxlength="350" class="dzencf-text" placeholder="¿Qué comió? (tipo de alimento y bebida)" >
+								<input type="text" name="ecordatorioAlimentos24hras3q" maxlength="300" class="dzencf-text" placeholder="¿Qué comió? (tipo de alimento y bebida)" >
 							</div>
 						</div>
 						<div class="dzen_column_DD_span5">
 
 							<div class="margin_bottom">
-								<input type="text" name="ecordatorioAlimentos24hras3c" maxlength="350" class="dzencf-text" placeholder="¿Cuándo comió? (cantidades)" >
+								<input type="text" name="ecordatorioAlimentos24hras3c" maxlength="300" class="dzencf-text" placeholder="¿Cuándo comió? (cantidades)" >
 							</div>
 						</div>
 
@@ -2002,14 +2022,14 @@ aria-labelledby="ui-accordion-1-header-12" role="tabpane12" aria-expanded="false
 						<div class="dzen_column_DD_span6">
 
 							<div class="margin_bottom">
-								<input type="text" name="recordatorioAlimentos24hras4h" maxlength="350" class="dzencf-text" placeholder="¿A qué hora?" >
+								<input type="text" name="recordatorioAlimentos24hras4h" maxlength="300" class="dzencf-text" placeholder="¿A qué hora?" >
 							</div>
 						</div>
 						<div class="dzen_column_DD_span5">
 
 							<div class="margin_bottom">
 
-								<input type="text" name="ecordatorioAlimentos24hras4d" maxlength="350" class="dzencf-text" placeholder="¿En dónde?" >
+								<input type="text" name="ecordatorioAlimentos24hras4d" maxlength="300" class="dzencf-text" placeholder="¿En dónde?" >
 
 							</div>
 						</div>
@@ -2017,13 +2037,13 @@ aria-labelledby="ui-accordion-1-header-12" role="tabpane12" aria-expanded="false
 						<div class="dzen_column_DD_span6">
 
 							<div class="margin_bottom">
-								<input type="text" name="ecordatorioAlimentos24hras4q" maxlength="350" class="dzencf-text" placeholder="¿Qué comió? (tipo de alimento y bebida)" >
+								<input type="text" name="ecordatorioAlimentos24hras4q" maxlength="300" class="dzencf-text" placeholder="¿Qué comió? (tipo de alimento y bebida)" >
 							</div>
 						</div>
 						<div class="dzen_column_DD_span5">
 
 							<div class="margin_bottom">
-								<input type="text" name="ecordatorioAlimentos24hras4c" maxlength="350" class="dzencf-text" placeholder="¿Cuándo comió? (cantidades)" >
+								<input type="text" name="ecordatorioAlimentos24hras4c" maxlength="300" class="dzencf-text" placeholder="¿Cuándo comió? (cantidades)" >
 							</div>
 						</div>
 
@@ -2038,14 +2058,14 @@ aria-labelledby="ui-accordion-1-header-12" role="tabpane12" aria-expanded="false
 						<div class="dzen_column_DD_span6">
 
 							<div class="margin_bottom">
-								<input type="text" name="recordatorioAlimentos24hras5h" maxlength="350" class="dzencf-text" placeholder="¿A qué hora?" >
+								<input type="text" name="recordatorioAlimentos24hras5h" maxlength="300" class="dzencf-text" placeholder="¿A qué hora?" >
 							</div>
 						</div>
 						<div class="dzen_column_DD_span5">
 
 							<div class="margin_bottom">
 
-								<input type="text" name="ecordatorioAlimentos24hras5d" maxlength="350" class="dzencf-text" placeholder="¿En dónde?" >
+								<input type="text" name="ecordatorioAlimentos24hras5d" maxlength="300" class="dzencf-text" placeholder="¿En dónde?" >
 
 							</div>
 						</div>
@@ -2053,13 +2073,13 @@ aria-labelledby="ui-accordion-1-header-12" role="tabpane12" aria-expanded="false
 						<div class="dzen_column_DD_span6">
 
 							<div class="margin_bottom">
-								<input type="text" name="ecordatorioAlimentos24hras5q" maxlength="350" class="dzencf-text" placeholder="¿Qué comió? (tipo de alimento y bebida)" >
+								<input type="text" name="ecordatorioAlimentos24hras5q" maxlength="300" class="dzencf-text" placeholder="¿Qué comió? (tipo de alimento y bebida)" >
 							</div>
 						</div>
 						<div class="dzen_column_DD_span5">
 
 							<div class="margin_bottom">
-								<input type="text" name="ecordatorioAlimentos24hras5c" maxlength="350" class="dzencf-text" placeholder="¿Cuándo comió? (cantidades)" >
+								<input type="text" name="ecordatorioAlimentos24hras5c" maxlength="300" class="dzencf-text" placeholder="¿Cuándo comió? (cantidades)" >
 							</div>
 						</div>
 
@@ -2073,14 +2093,14 @@ aria-labelledby="ui-accordion-1-header-12" role="tabpane12" aria-expanded="false
 						<div class="dzen_column_DD_span6">
 
 							<div class="margin_bottom">
-								<input type="text" name="recordatorioAlimentos24hras6h" maxlength="350" class="dzencf-text" placeholder="¿A qué hora?" >
+								<input type="text" name="recordatorioAlimentos24hras6h" maxlength="300" class="dzencf-text" placeholder="¿A qué hora?" >
 							</div>
 						</div>
 						<div class="dzen_column_DD_span5">
 
 							<div class="margin_bottom">
 
-								<input type="text" name="ecordatorioAlimentos24hras6d" maxlength="350" class="dzencf-text" placeholder="¿En dónde?" >
+								<input type="text" name="ecordatorioAlimentos24hras6d" maxlength="300" class="dzencf-text" placeholder="¿En dónde?" >
 
 							</div>
 						</div>
@@ -2088,13 +2108,13 @@ aria-labelledby="ui-accordion-1-header-12" role="tabpane12" aria-expanded="false
 						<div class="dzen_column_DD_span6">
 
 							<div class="margin_bottom">
-								<input type="text" name="ecordatorioAlimentos24hras6q" maxlength="350" class="dzencf-text" placeholder="¿Qué comió? (tipo de alimento y bebida)" >
+								<input type="text" name="ecordatorioAlimentos24hras6q" maxlength="300" class="dzencf-text" placeholder="¿Qué comió? (tipo de alimento y bebida)" >
 							</div>
 						</div>
 						<div class="dzen_column_DD_span5">
 
 							<div class="margin_bottom">
-								<input type="text" name="ecordatorioAlimentos24hras6c" maxlength="350" class="dzencf-text" placeholder="¿Cuándo comió? (cantidades)" >
+								<input type="text" name="ecordatorioAlimentos24hras6c" maxlength="300" class="dzencf-text" placeholder="¿Cuándo comió? (cantidades)" >
 							</div>
 						</div>
 
@@ -2163,7 +2183,6 @@ Nota aclaratoria: La información obtenida en este cuestionario  para uso profes
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
 	$(document).ready(function(){
-
 		$( '#vefarma' ).on( 'click', function() {
 			if( $(this).is(':checked') ){
 
@@ -2178,12 +2197,63 @@ Nota aclaratoria: La información obtenida en este cuestionario  para uso profes
 
 
 
-
 	});
-</script>
+	$(document).ready(function() {
+
+		var data="<?php echo $verificarPestania?>";
+	
+		if(data!=''){
+			var res = data.split("-");
 
 
-<?php include 'plantilla/js.php'; ?>
 
-</body>
-</html>
+			for (i = res.length+1; i < 11; i++) { 
+				$('#tab'+i).addClass("verdisabled");
+				$('#tab'+i).css("color","#E6E6E6");
+
+			}
+			
+			$('#tab'+res.length).click();
+
+
+
+					//alert("Tamanio de la lista"+res.length);
+				}else{
+					$('#tab2').addClass("verdisabled");
+					$('#tab2').css("color","#E6E6E6");
+					$('#tab3').addClass("verdisabled");
+					$('#tab3').css("color","#E6E6E6");
+					$('#tab4').addClass("verdisabled");
+					$('#tab4').css("color","#E6E6E6");
+					$('#tab5').addClass("verdisabled");
+					$('#tab5').css("color", "#E6E6E6");
+					$('#tab6').addClass("verdisabled");
+					$('#tab6').css("color", "#E6E6E6");
+					$('#tab7').addClass("verdisabled");
+					$('#tab7').css("color", "#E6E6E6");
+					$('#tab8').addClass("verdisabled");
+					$('#tab8').css("color", "#E6E6E6");
+					$('#tab9').addClass("verdisabled");
+					$('#tab9').css("color", "#E6E6E6");
+					$('#tab10').addClass("verdisabled");
+					$('#tab10').css("color", "#E6E6E6");
+				}
+
+
+
+
+
+
+
+			});
+
+
+
+
+		</script>
+
+
+		<?php include 'plantilla/js.php'; ?>
+
+	</body>
+	</html>
