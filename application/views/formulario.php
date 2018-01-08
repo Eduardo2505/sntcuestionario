@@ -1342,14 +1342,14 @@
 										<div class="dzen_column_DD_span5">
 
 											<div class="margin_bottom">
-												<input type="text" value="<?php echo $suple1Nombre; ?>" name="suple1Nombre" maxlength="300" class="dzencf-text" placeholder="Nombre" >
+												<input type="text" value="<?php echo $supleNombre; ?>" name="supleNombre" maxlength="300" class="dzencf-text" placeholder="Nombre" >
 											</div>
 										</div>
 										<div class="dzen_column_DD_span6">
 
 											<div class="margin_bottom">
 
-												<input type="text" value="<?php echo $suple1Caracteristicas; ?>" name="suple1Caracteristicas" maxlength="300" class="dzencf-text" placeholder="Características" >
+												<input type="text" value="<?php echo $supleCaracteristicas; ?>" name="supleCaracteristicas" maxlength="300" class="dzencf-text" placeholder="Características" >
 
 											</div>
 										</div>
@@ -1357,14 +1357,14 @@
 										<div class="dzen_column_DD_span5">
 
 											<div class="margin_bottom">
-												<input type="text" value="<?php echo $suple1Motivo; ?>" name="suple1Motivo" maxlength="300" class="dzencf-text" placeholder="Motivo de uso" >
+												<input type="text" value="<?php echo $supleMotivo; ?>" name="supleMotivo" maxlength="300" class="dzencf-text" placeholder="Motivo de uso" >
 											</div>
 										</div>
 										<div class="dzen_column_DD_span6">
 
 											<div class="margin_bottom">
 
-												<input type="text" value="<?php echo $suple1Tiempo; ?>" name="suple1Tiempo" maxlength="300" class="dzencf-text" placeholder="Tiempo de uso" >
+												<input type="text" value="<?php echo $supleTiempo; ?>" name="supleTiempo" maxlength="300" class="dzencf-text" placeholder="Tiempo de uso" >
 
 											</div>
 										</div>
@@ -1372,7 +1372,7 @@
 										<div class="dzen_column_DD_span5">
 
 											<div class="margin_bottom">
-												<input type="text" value="<?php echo $suple1Cantidad; ?>" name="suple1Cantidad" maxlength="300" class="dzencf-text" placeholder="Cantidad usada" >
+												<input type="text" value="<?php echo $supleCantidad; ?>" name="supleCantidad" maxlength="300" class="dzencf-text" placeholder="Cantidad usada" >
 											</div>
 										</div>
 									</div>
@@ -1381,7 +1381,7 @@
 							</div>
 							
 						</div>
-						<div id="siguiente2">
+						<div id="siguiente1">
 
 						</div>
 						<?php echo $dinamicov ?>
@@ -1436,6 +1436,7 @@
 	function masSuplemntos() {
 
 		var conteo=$('#numSuplemento').val();
+		conteo++;
 		var dataString = 'conteo='+conteo;
 		$.ajax({
 			type: "GET",
@@ -1443,7 +1444,6 @@
 			data: dataString,
 			success: function(data) {
 				$('#siguiente'+conteo).html(data);
-				conteo++;
 				$('#numSuplemento').val(conteo);
 				return false;
 			}

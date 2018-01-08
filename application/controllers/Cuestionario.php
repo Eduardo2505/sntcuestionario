@@ -151,12 +151,12 @@ class Cuestionario extends CI_Controller {
 		$vefarTienePensadousarfarma="";
 		$vefarObjetivostieneeluso="";
 		// dimico 
-		$numSuplemento=2;
-		$suple1Nombre="";
-		$suple1Caracteristicas="";
-		$suple1Motivo="";
-		$suple1Tiempo="";
-		$suple1Cantidad="";
+		$numSuplemento=0;
+		$supleNombre="";
+		$supleCaracteristicas="";
+		$supleMotivo="";
+		$supleTiempo="";
+		$supleCantidad="";
 		$dinamicov="";
 		
 
@@ -322,108 +322,83 @@ class Cuestionario extends CI_Controller {
 				$vefarUsaActualmentefarma=$listav[10];
 				$vefarTienePensadousarfarma=$listav[11];
 				$vefarObjetivostieneeluso=$listav[12];
+				$supleNombre=$listav[13];
+				$supleCaracteristicas=$listav[14];
+				$supleMotivo=$listav[15];
+				$supleTiempo=$listav[16];
+				$supleCantidad=$listav[17];
+				$valorSuplemne=$listav[18];
 
 
-				$valorSuplemne=$listav[13];
-				$numSuplemento=$valorSuplemne;
+				$suplementos = explode("&",$datos1);
+				$verSuplemen=$suplementos[1];
+				$cantidadSuplementosExtra = explode("-",$verSuplemen);
+				$resultado = count($cantidadSuplementosExtra);
+				$numSuplemento=$resultado;
+				$num=1;
+				for($i=0;$i<$resultado;$i++){
 
-				$resultado = count($listav);
-				
-				if($resultado>=16){
-					$s1 = explode("_",$listav[14]);
+					$s1 = explode("_",$cantidadSuplementosExtra[$i]);
+					$dinamicov.= '<div class="dzen_container">
+					<div class="dzen_column_DD_span11">
+					<div class="dzen-accordion" data-expanded="1" role="tablist">
+					<!-- incio -->
+					<h3 class="ui-accordion-header" role="tab" id="ui-accordion-1-header-12" aria-controls="ui-accordion-1-panel-12" aria-selected="false" tabindex="0"><span class="ui-accordion-header-icon"></span>
+					Suplemento</h3>
+					<div class="ui-accordion-content" id="ui-accordion-1-panel-12" aria-labelledby="ui-accordion-1-header-12" role="tabpane12" aria-expanded="false" aria-hidden="true">
 
+					<div class="dzen_column_DD_span13"></div>
+					<div class="dzen_column_DD_span5">
 
-					$suple1Nombre=$s1[0];
-					$suple1Caracteristicas=$s1[1];
-					$suple1Motivo=$s1[2];
-					$suple1Tiempo=$s1[3];
-					$suple1Cantidad=$s1[4];
+					<div class="margin_bottom">
+					<input type="text"  value="'.$s1[0].'" name="suple'.$num.'Nombre" maxlength="300" class="dzencf-text" placeholder="Nombre" >
+					</div>
+					</div>
+					<div class="dzen_column_DD_span6">
 
-                    //echo $resultado;
-					//echo "Entro";
+					<div class="margin_bottom">
 
-					if($valorSuplemne>=3){
-						$conteo=$valorSuplemne-1;
+					<input type="text" value="'.$s1[1].'" name="suple'.$num.'Caracteristicas" maxlength="300" class="dzencf-text" placeholder="Características" >
 
-						for($i=15;$i<$resultado;$i++){
+					</div>
+					</div>
 
-							if(!empty ($listav[$i])){
-								$num=2;
+					<div class="dzen_column_DD_span5">
 
-								$s1 = explode("_",$listav[$i]);
-								/*$suple1Nombre=$s1[0];
-								$suple1Caracteristicas=$s1[1];
-								$suple1Motivo=$s1[2];
-								$suple1Tiempo=$s1[3];
-								$suple1Cantidad=$s1[4];*/
+					<div class="margin_bottom">
+					<input type="text" value="'.$s1[2].'" name="suple'.$num.'Motivo" maxlength="300" class="dzencf-text" placeholder="Motivo de uso" >
+					</div>
+					</div>
+					<div class="dzen_column_DD_span6">
 
-								$dinamicov.= '<div class="dzen_container">
-								<div class="dzen_column_DD_span11">
-								<div class="dzen-accordion" data-expanded="1" role="tablist">
-								<!-- incio -->
-								<h3 class="ui-accordion-header" role="tab" id="ui-accordion-1-header-12" aria-controls="ui-accordion-1-panel-12" aria-selected="false" tabindex="0"><span class="ui-accordion-header-icon"></span>
-								Suplemento</h3>
-								<div class="ui-accordion-content" id="ui-accordion-1-panel-12" aria-labelledby="ui-accordion-1-header-12" role="tabpane12" aria-expanded="false" aria-hidden="true">
+					<div class="margin_bottom">
 
-								<div class="dzen_column_DD_span13"></div>
-								<div class="dzen_column_DD_span5">
+					<input type="text" value="'.$s1[3].'" name="suple'.$num.'Tiempo" maxlength="300" class="dzencf-text" placeholder="Tiempo de uso" >
 
-								<div class="margin_bottom">
-								<input type="text"  value="'.$s1[0].'" name="suple'.$num.'Nombre" maxlength="300" class="dzencf-text" placeholder="Nombre" >
-								</div>
-								</div>
-								<div class="dzen_column_DD_span6">
+					</div>
+					</div>
 
-								<div class="margin_bottom">
+					<div class="dzen_column_DD_span5">
 
-								<input type="text" value="'.$s1[1].'" name="suple'.$num.'Caracteristicas" maxlength="300" class="dzencf-text" placeholder="Características" >
+					<div class="margin_bottom">
+					<input type="text" value="'.$s1[4].'" name="suple'.$num.'Cantidad" maxlength="300" class="dzencf-text" placeholder="Cantidad usada" >
+					</div>
+					</div>
+					</div>
+					<!-- fin -->
+					</div>
+					</div>
 
-								</div>
-								</div>
+					</div>';
+					$num++;
 
-								<div class="dzen_column_DD_span5">
-
-								<div class="margin_bottom">
-								<input type="text" value="'.$s1[2].'" name="suple'.$num.'Motivo" maxlength="300" class="dzencf-text" placeholder="Motivo de uso" >
-								</div>
-								</div>
-								<div class="dzen_column_DD_span6">
-
-								<div class="margin_bottom">
-
-								<input type="text" value="'.$s1[3].'" name="suple'.$num.'Tiempo" maxlength="300" class="dzencf-text" placeholder="Tiempo de uso" >
-
-								</div>
-								</div>
-
-								<div class="dzen_column_DD_span5">
-
-								<div class="margin_bottom">
-								<input type="text" value="'.$s1[4].'" name="suple'.$num.'Cantidad" maxlength="300" class="dzencf-text" placeholder="Cantidad usada" >
-								</div>
-								</div>
-								</div>
-								<!-- fin -->
-								</div>
-								</div>
-
-								</div>';
-								$num++;
-
-
-							}
-
-							
-
-
-						}
-						$dinamicov.= '<div id="siguiente'.($conteo+1).'"></div>';
-					}
-
-
-
-					
 				}
+
+				$dinamicov.= '<div id="siguiente'.($num).'"></div>';
+
+				//echo $dinamicov;
+				
+
 			}
 			
 
@@ -589,11 +564,11 @@ class Cuestionario extends CI_Controller {
 		$data['vefarObjetivostieneeluso']=$vefarObjetivostieneeluso;
 
 		$data['numSuplemento']=$numSuplemento;
-		$data['suple1Nombre']=$suple1Nombre;
-		$data['suple1Caracteristicas']=$suple1Caracteristicas;
-		$data['suple1Motivo']=$suple1Motivo;
-		$data['suple1Tiempo']=$suple1Tiempo;
-		$data['suple1Cantidad']=$suple1Cantidad;
+		$data['supleNombre']=$supleNombre;
+		$data['supleCaracteristicas']=$supleCaracteristicas;
+		$data['supleMotivo']=$supleMotivo;
+		$data['supleTiempo']=$supleTiempo;
+		$data['supleCantidad']=$supleCantidad;
 
 		$data['dinamicov']=$dinamicov;
 
@@ -998,14 +973,28 @@ class Cuestionario extends CI_Controller {
 		"|".$this->input->post('vefarQueObjetivologrouso').
 		"|".$this->input->post('vefarUsaActualmentefarma').
 		"|".$this->input->post('vefarTienePensadousarfarma').
-		"|".$this->input->post('vefarObjetivostieneeluso');
+		"|".$this->input->post('vefarObjetivostieneeluso').
+		"|".$this->input->post('supleNombre').
+		"|".$this->input->post('supleCaracteristicas').
+		"|".$this->input->post('supleMotivo').
+		"|".$this->input->post('supleTiempo').
+		"|".$this->input->post('supleCantidad').
+		"|".$this->input->post('numSuplemento');
 		
 
 		$valorSuplemne=$this->input->post('numSuplemento');
-		$mensajever="";
-		$num=0;
-		for($i=1;$i<$valorSuplemne;$i++){
+		
+		if($valorSuplemne!=0){
+			$mensaje.="&";
 
+
+		}
+
+		
+
+		for($i=1;$i<=$valorSuplemne;$i++){
+			
+			
 			$nuevosu=$this->input->post('suple'.$i.'Nombre').
 			"_".$this->input->post('suple'.$i.'Caracteristicas').
 			"_".$this->input->post('suple'.$i.'Motivo').
@@ -1013,17 +1002,24 @@ class Cuestionario extends CI_Controller {
 			"_".$this->input->post('suple'.$i.'Cantidad');
 			$bodytag = str_replace("_","",$nuevosu);
 			if(trim($bodytag)===""){
-				$num=2;
 			}else{
-				$mensajever.="|".$nuevosu;
+
+				if($i==1){
+
+					$mensaje.=$nuevosu;
+				}else{
+					$mensaje.="-".$nuevosu;
+				}
+				
+				
 			}
 
 			
 
 		}
-		$mensaje.="|".$num;
 
-		$mensaje.=$mensajever."|";
+
+		
 
 		$file = fopen($nombre_archivo, "w");
 		fwrite($file, $mensaje);
@@ -1052,7 +1048,7 @@ class Cuestionario extends CI_Controller {
 		<div class="dzen_column_DD_span5">
 
 		<div class="margin_bottom">
-		<input type="text" name="suple'.$conteo.'Nombre" maxlength="300" class="dzencf-text" placeholder="Nombre" >
+		<input type="text" value="suple'.$conteo.'Nombre" name="suple'.$conteo.'Nombre" maxlength="300" class="dzencf-text" placeholder="Nombre" >
 		</div>
 		</div>
 		<div class="dzen_column_DD_span6">
