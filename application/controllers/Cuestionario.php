@@ -118,6 +118,46 @@ class Cuestionario extends CI_Controller {
 		$cuentosHorasEn="";
 		$utilizasMaPe="";
 		$utilizasClases="";
+		//paso 5
+		$cuantasHorasd="";
+		$utilizasMaPe="";
+		$conqueHorario="";
+		$quediasDispones="";
+		$cuantotiempoAlGym="";
+		$conqueEquipocardioc="";
+		$conqueEquipoPesocuen="";
+		$quetipoClaseGruputilizar="";
+		$objmejorDepoEspecificaresistencia="";
+		$objmejorDepoEspecificaFuerza="";
+		$objmejorDepoEspecificaFlexibilidad="";
+		$objmejorDepoEspecificaBPErdida="";
+		$objmejorDepoEspecificaBGanacia="";
+		$opemsvcro="";
+		$opemsvespe="";
+		$opeSocialSensacion="";
+		$opeSocialExpectativas="";
+		//paso 6
+
+		$usoFarma="";
+		$vefarHacecuanto="";
+		$vefarDuranteCuanto="";
+		$vefarQuienlerecomendo="";
+		$vefarQuelomotivo="";
+		$vefarQuienloasesoro="";
+		$vefarQuefuequelauso="";
+		$vefarQuetipodefarmauso="";
+		$vefarQueObjetivologrouso="";
+		$vefarUsaActualmentefarma="";
+		$vefarTienePensadousarfarma="";
+		$vefarObjetivostieneeluso="";
+		// dimico 
+		$numSuplemento=2;
+		$suple1Nombre="";
+		$suple1Caracteristicas="";
+		$suple1Motivo="";
+		$suple1Tiempo="";
+		$suple1Cantidad="";
+		$dinamicov="";
 		
 
 		if(isset($_SESSION['idcliente'])){
@@ -240,6 +280,150 @@ class Cuestionario extends CI_Controller {
 				$cuentosHorasEn=$listav[14];
 				$utilizasMaPe=$listav[15];
 				$utilizasClases=$listav[16];
+			}
+
+			$cadenapaso4=$rowv->paso4;
+			if(!empty($cadenapaso4)){
+				$datos1=file_get_contents($cadenapaso4);
+				$listav = explode("|",$datos1);
+				
+				$cuantasHorasd=$listav[1];
+				$utilizasMaPe=$listav[2];
+				$conqueHorario=$listav[3];
+				$quediasDispones=$listav[4];
+				$cuantotiempoAlGym=$listav[5];
+				$conqueEquipocardioc=$listav[6];
+				$conqueEquipoPesocuen=$listav[7];
+				$quetipoClaseGruputilizar=$listav[8];
+				$objmejorDepoEspecificaresistencia=$listav[9];
+				$objmejorDepoEspecificaFuerza=$listav[10];
+				$objmejorDepoEspecificaFlexibilidad=$listav[11];
+				$objmejorDepoEspecificaBPErdida=$listav[12];
+				$objmejorDepoEspecificaBGanacia=$listav[13];
+				$opemsvcro=$listav[14];
+				$opemsvespe=$listav[15];
+				$opeSocialSensacion=$listav[16];
+				$opeSocialExpectativas=$listav[17];
+			}
+			$cadenapaso5=$rowv->paso5;
+			if(!empty($cadenapaso5)){
+				$datos1=file_get_contents($cadenapaso5);
+				$listav = explode("|",$datos1);
+				
+				$usoFarma=$listav[1];
+				$vefarHacecuanto=$listav[2];
+				$vefarDuranteCuanto=$listav[3];
+				$vefarQuienlerecomendo=$listav[4];
+				$vefarQuelomotivo=$listav[5];
+				$vefarQuienloasesoro=$listav[6];
+				$vefarQuefuequelauso=$listav[7];
+				$vefarQuetipodefarmauso=$listav[8];
+				$vefarQueObjetivologrouso=$listav[9];
+				$vefarUsaActualmentefarma=$listav[10];
+				$vefarTienePensadousarfarma=$listav[11];
+				$vefarObjetivostieneeluso=$listav[12];
+
+
+				$valorSuplemne=$listav[13];
+				$numSuplemento=$valorSuplemne;
+
+				$resultado = count($listav);
+				
+				if($resultado>=16){
+					$s1 = explode("_",$listav[14]);
+
+
+					$suple1Nombre=$s1[0];
+					$suple1Caracteristicas=$s1[1];
+					$suple1Motivo=$s1[2];
+					$suple1Tiempo=$s1[3];
+					$suple1Cantidad=$s1[4];
+
+                    //echo $resultado;
+					//echo "Entro";
+
+					if($valorSuplemne>=3){
+						$conteo=$valorSuplemne-1;
+
+						for($i=15;$i<$resultado;$i++){
+
+							if(!empty ($listav[$i])){
+								$num=2;
+
+								$s1 = explode("_",$listav[$i]);
+								/*$suple1Nombre=$s1[0];
+								$suple1Caracteristicas=$s1[1];
+								$suple1Motivo=$s1[2];
+								$suple1Tiempo=$s1[3];
+								$suple1Cantidad=$s1[4];*/
+
+								$dinamicov.= '<div class="dzen_container">
+								<div class="dzen_column_DD_span11">
+								<div class="dzen-accordion" data-expanded="1" role="tablist">
+								<!-- incio -->
+								<h3 class="ui-accordion-header" role="tab" id="ui-accordion-1-header-12" aria-controls="ui-accordion-1-panel-12" aria-selected="false" tabindex="0"><span class="ui-accordion-header-icon"></span>
+								Suplemento</h3>
+								<div class="ui-accordion-content" id="ui-accordion-1-panel-12" aria-labelledby="ui-accordion-1-header-12" role="tabpane12" aria-expanded="false" aria-hidden="true">
+
+								<div class="dzen_column_DD_span13"></div>
+								<div class="dzen_column_DD_span5">
+
+								<div class="margin_bottom">
+								<input type="text"  value="'.$s1[0].'" name="suple'.$num.'Nombre" maxlength="300" class="dzencf-text" placeholder="Nombre" >
+								</div>
+								</div>
+								<div class="dzen_column_DD_span6">
+
+								<div class="margin_bottom">
+
+								<input type="text" value="'.$s1[1].'" name="suple'.$num.'Caracteristicas" maxlength="300" class="dzencf-text" placeholder="Características" >
+
+								</div>
+								</div>
+
+								<div class="dzen_column_DD_span5">
+
+								<div class="margin_bottom">
+								<input type="text" value="'.$s1[2].'" name="suple'.$num.'Motivo" maxlength="300" class="dzencf-text" placeholder="Motivo de uso" >
+								</div>
+								</div>
+								<div class="dzen_column_DD_span6">
+
+								<div class="margin_bottom">
+
+								<input type="text" value="'.$s1[3].'" name="suple'.$num.'Tiempo" maxlength="300" class="dzencf-text" placeholder="Tiempo de uso" >
+
+								</div>
+								</div>
+
+								<div class="dzen_column_DD_span5">
+
+								<div class="margin_bottom">
+								<input type="text" value="'.$s1[4].'" name="suple'.$num.'Cantidad" maxlength="300" class="dzencf-text" placeholder="Cantidad usada" >
+								</div>
+								</div>
+								</div>
+								<!-- fin -->
+								</div>
+								</div>
+
+								</div>';
+								$num++;
+
+
+							}
+
+							
+
+
+						}
+						$dinamicov.= '<div id="siguiente'.($conteo+1).'"></div>';
+					}
+
+
+
+					
+				}
 			}
 			
 
@@ -372,8 +556,49 @@ class Cuestionario extends CI_Controller {
 		$data['cuentosHorasEn']=$cuentosHorasEn;
 		$data['utilizasMaPe']=$utilizasMaPe;
 		$data['utilizasClases']=$utilizasClases;
+//paso 5
+		$data['cuantasHorasd']=$cuantasHorasd;
+		$data['utilizasMaPe']=$utilizasMaPe;
+		$data['conqueHorario']=$conqueHorario;
+		$data['quediasDispones']=$quediasDispones;
+		$data['cuantotiempoAlGym']=$cuantotiempoAlGym;
+		$data['conqueEquipocardioc']=$conqueEquipocardioc;
+		$data['conqueEquipoPesocuen']=$conqueEquipoPesocuen;
+		$data['quetipoClaseGruputilizar']=$quetipoClaseGruputilizar;
+		$data['objmejorDepoEspecificaresistencia']=$objmejorDepoEspecificaresistencia;
+		$data['objmejorDepoEspecificaFuerza']=$objmejorDepoEspecificaFuerza;
+		$data['objmejorDepoEspecificaFlexibilidad']=$objmejorDepoEspecificaFlexibilidad;
+		$data['objmejorDepoEspecificaBPErdida']=$objmejorDepoEspecificaBPErdida;
+		$data['objmejorDepoEspecificaBGanacia']=$objmejorDepoEspecificaBGanacia;
+		$data['opemsvcro']=$opemsvcro;
+		$data['opemsvespe']=$opemsvespe;
+		$data['opeSocialSensacion']=$opeSocialSensacion;
+		$data['opeSocialExpectativas']=$opeSocialExpectativas;
+//paso 6
+		$data['usoFarma']=$usoFarma;
+		$data['vefarHacecuanto']=$vefarHacecuanto;
+		$data['vefarDuranteCuanto']=$vefarDuranteCuanto;
+		$data['vefarQuienlerecomendo']=$vefarQuienlerecomendo;
+		$data['vefarQuelomotivo']=$vefarQuelomotivo;
+		$data['vefarQuienloasesoro']=$vefarQuienloasesoro;
+		$data['vefarQuefuequelauso']=$vefarQuefuequelauso;
+		$data['vefarQuetipodefarmauso']=$vefarQuetipodefarmauso;
+		$data['vefarQueObjetivologrouso']=$vefarQueObjetivologrouso;
+		$data['vefarUsaActualmentefarma']=$vefarUsaActualmentefarma;
+		$data['vefarTienePensadousarfarma']=$vefarTienePensadousarfarma;
+		$data['vefarObjetivostieneeluso']=$vefarObjetivostieneeluso;
+
+		$data['numSuplemento']=$numSuplemento;
+		$data['suple1Nombre']=$suple1Nombre;
+		$data['suple1Caracteristicas']=$suple1Caracteristicas;
+		$data['suple1Motivo']=$suple1Motivo;
+		$data['suple1Tiempo']=$suple1Tiempo;
+		$data['suple1Cantidad']=$suple1Cantidad;
+
+		$data['dinamicov']=$dinamicov;
 
 
+		
 
 
 		$data['menu'] = $this->load->view('plantilla/menu', $datam, true);
@@ -709,6 +934,172 @@ class Cuestionario extends CI_Controller {
 		redirect('cuestionario/preguntas', 'refresh');
 
 
+	}
+	public function guardarObjertivos()
+	{
+
+		
+
+		$idclientese = $this->session->idcliente;
+
+
+		$nombre_archivo = "registros/Objetivos-".$idclientese.".txt"; 
+
+		$mensaje=$idclientese.
+		"|".$this->input->post('cuantasHorasd').
+		"|".$this->input->post('utilizasMaPe').
+		"|".$this->input->post('conqueHorario').
+		"|".$this->input->post('quediasDispones').
+		"|".$this->input->post('cuantotiempoAlGym').
+		"|".$this->input->post('conqueEquipocardioc').
+		"|".$this->input->post('conqueEquipoPesocuen').
+		"|".$this->input->post('quetipoClaseGruputilizar').
+		"|".$this->input->post('objmejorDepoEspecificaresistencia').
+		"|".$this->input->post('objmejorDepoEspecificaFuerza').
+		"|".$this->input->post('objmejorDepoEspecificaFlexibilidad').
+		"|".$this->input->post('objmejorDepoEspecificaBPErdida').
+		"|".$this->input->post('objmejorDepoEspecificaBGanacia').
+		"|".$this->input->post('opemsvcro').
+		"|".$this->input->post('opemsvespe').
+		"|".$this->input->post('opeSocialSensacion').
+		"|".$this->input->post('opeSocialExpectativas');
+
+		$file = fopen($nombre_archivo, "w");
+		fwrite($file, $mensaje);
+		fclose($file);
+				//cargados --
+		$infocues = array('paso4' => $nombre_archivo);
+		$idcliente=$this->cuestionario_models->update($idclientese,$infocues);
+
+		redirect('cuestionario/preguntas', 'refresh');
+
+
+	}
+
+	public function guardarSuplementos()
+	{
+
+		
+
+		$idclientese = $this->session->idcliente;
+
+
+		$nombre_archivo = "registros/Suplementos-".$idclientese.".txt"; 
+
+		$mensaje=$idclientese.
+		"|".$this->input->post('usoFarma').
+		"|".$this->input->post('vefarHacecuanto').
+		"|".$this->input->post('vefarDuranteCuanto').
+		"|".$this->input->post('vefarQuienlerecomendo').
+		"|".$this->input->post('vefarQuelomotivo').
+		"|".$this->input->post('vefarQuienloasesoro').
+		"|".$this->input->post('vefarQuefuequelauso').
+		"|".$this->input->post('vefarQuetipodefarmauso').
+		"|".$this->input->post('vefarQueObjetivologrouso').
+		"|".$this->input->post('vefarUsaActualmentefarma').
+		"|".$this->input->post('vefarTienePensadousarfarma').
+		"|".$this->input->post('vefarObjetivostieneeluso');
+		
+
+		$valorSuplemne=$this->input->post('numSuplemento');
+		$mensajever="";
+		$num=0;
+		for($i=1;$i<$valorSuplemne;$i++){
+
+			$nuevosu=$this->input->post('suple'.$i.'Nombre').
+			"_".$this->input->post('suple'.$i.'Caracteristicas').
+			"_".$this->input->post('suple'.$i.'Motivo').
+			"_".$this->input->post('suple'.$i.'Tiempo').
+			"_".$this->input->post('suple'.$i.'Cantidad');
+			$bodytag = str_replace("_","",$nuevosu);
+			if(trim($bodytag)===""){
+				$num=2;
+			}else{
+				$mensajever.="|".$nuevosu;
+			}
+
+			
+
+		}
+		$mensaje.="|".$num;
+
+		$mensaje.=$mensajever."|";
+
+		$file = fopen($nombre_archivo, "w");
+		fwrite($file, $mensaje);
+		fclose($file);
+				//cargados --
+		$infocues = array('paso5' => $nombre_archivo);
+		$idcliente=$this->cuestionario_models->update($idclientese,$infocues);
+
+		redirect('cuestionario/preguntas', 'refresh');
+
+
+	}
+
+	public function nuevoSuplemento()
+	{
+		$conteo=$this->input->get('conteo');
+		echo '<div class="dzen_container">
+		<div class="dzen_column_DD_span11">
+		<div class="dzen-accordion" data-expanded="1" role="tablist">
+		<!-- incio -->
+		<h3 class="ui-accordion-header" role="tab" id="ui-accordion-1-header-12" aria-controls="ui-accordion-1-panel-12" aria-selected="false" tabindex="0"><span class="ui-accordion-header-icon"></span>
+		Suplemento</h3>
+		<div class="ui-accordion-content" id="ui-accordion-1-panel-12" aria-labelledby="ui-accordion-1-header-12" role="tabpane12" aria-expanded="false" aria-hidden="true">
+
+		<div class="dzen_column_DD_span13"></div>
+		<div class="dzen_column_DD_span5">
+
+		<div class="margin_bottom">
+		<input type="text" name="suple'.$conteo.'Nombre" maxlength="300" class="dzencf-text" placeholder="Nombre" >
+		</div>
+		</div>
+		<div class="dzen_column_DD_span6">
+
+		<div class="margin_bottom">
+
+		<input type="text" name="suple'.$conteo.'Caracteristicas" maxlength="300" class="dzencf-text" placeholder="Características" >
+
+		</div>
+		</div>
+
+		<div class="dzen_column_DD_span5">
+
+		<div class="margin_bottom">
+		<input type="text" name="suple'.$conteo.'Motivo" maxlength="300" class="dzencf-text" placeholder="Motivo de uso" >
+		</div>
+		</div>
+		<div class="dzen_column_DD_span6">
+
+		<div class="margin_bottom">
+
+		<input type="text" name="suple'.$conteo.'Tiempo" maxlength="300" class="dzencf-text" placeholder="Tiempo de uso" >
+
+		</div>
+		</div>
+
+		<div class="dzen_column_DD_span5">
+
+		<div class="margin_bottom">
+		<input type="text" name="suple'.$conteo.'Cantidad" maxlength="300" class="dzencf-text" placeholder="Cantidad usada" >
+		</div>
+		</div>
+		</div>
+		<!-- fin -->
+		</div>
+		</div>
+
+		</div>
+		<div id="siguiente'.($conteo+1).'">
+
+
+
+
+
+
+
+		</div>';
 	}
 
 
