@@ -36,6 +36,17 @@ class Cuestionario_models extends CI_Model {
 
 	}
 
+	function update($id, $data) {
+		$this->db->trans_begin();
+		$this->db->where('idcliente', $id);
+		$this->db->update('cuestionario', $data);
+		if ($this->db->trans_status() === FALSE) {
+			$this->db->trans_rollback();
+		} else {
+			$this->db->trans_commit();
+		}
+	}
+
 
 
 }

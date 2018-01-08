@@ -41,5 +41,7 @@ class Cliente_models extends CI_Model {
         
     }
 
+    
+
 
 }
