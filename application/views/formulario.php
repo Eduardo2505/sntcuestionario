@@ -72,7 +72,7 @@
 								<a href="#tab-9" id="tab9">Tipo y estilo de alimentación actual. </a>
 							</li>
 							<li>
-								<a href="#tab-9" id="tab10">Paso 10</a>
+								<a href="#tab-10" id="tab10">Estilo de vida actual </a>
 							</li>
 
 						</ul>
