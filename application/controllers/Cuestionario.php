@@ -246,6 +246,29 @@ class Cuestionario extends CI_Controller {
 		$ecordatorioAlimentos24hras6d="";
 		$ecordatorioAlimentos24hras6q="";
 		$ecordatorioAlimentos24hras6c="";
+		//paso 9
+		$padDormido="";
+		$padRecostado="";
+		$padMuysedentario="";
+		$padsedentario="";
+		$padmuyligeramenteactivo="";
+		$padligeramenteactivo="";
+		$padmoderadamenteactivo="";
+		$padactivo="";
+		$padmuyactivo="";
+		$padExtemadamenteactivo="";
+		$padDormidodes="";
+		$padRecostadodes="";
+		$padMuysedentariodes="";
+		$padsedentariodes="";
+		$padmuyligeramenteactivodes="";
+		$padligeramenteactivodes="";
+		$padmoderadamenteactivodes="";
+		$padactivodes="";
+		$padmuyactivodes="";
+		$padExtemadamenteactivodes="";
+		$pEVidaTipo="";
+		$pEVidaTipo2="";
 
 		
 
@@ -601,6 +624,36 @@ class Cuestionario extends CI_Controller {
 				$ecordatorioAlimentos24hras6q=	$listav[41];
 				$ecordatorioAlimentos24hras6c=	$listav[42];
 			}
+
+			$cadenapaso9=$rowv->paso9;
+			if(!empty($cadenapaso9)){
+				$datos1=file_get_contents($cadenapaso9);
+				$listav = explode("|",$datos1);
+				$padDormido=$listav[1];
+				$padRecostado=$listav[2];
+				$padMuysedentario=$listav[3];
+				$padsedentario=$listav[4];
+				$padmuyligeramenteactivo=$listav[5];
+				$padligeramenteactivo=$listav[6];
+				$padmoderadamenteactivo=$listav[7];
+				$padactivo=$listav[8];
+				$padmuyactivo=$listav[9];
+				$padExtemadamenteactivo=$listav[10];
+				$padDormidodes=$listav[11];
+				$padRecostadodes=$listav[12];
+				$padMuysedentariodes=$listav[13];
+				$padsedentariodes=$listav[14];
+				$padmuyligeramenteactivodes=$listav[15];
+				$padligeramenteactivodes=$listav[16];
+				$padmoderadamenteactivodes=$listav[17];
+				$padactivodes=$listav[18];
+				$padmuyactivodes=$listav[19];
+				$padExtemadamenteactivodes=$listav[20];
+				$pEVidaTipo=$listav[21];
+				$pEVidaTipo2=$listav[22];
+				
+
+			}
 			
 
 		}else{
@@ -869,7 +922,29 @@ class Cuestionario extends CI_Controller {
 		$data['ecordatorioAlimentos24hras6q']=$ecordatorioAlimentos24hras6q;
 		$data['ecordatorioAlimentos24hras6c']=$ecordatorioAlimentos24hras6c;
 
-
+//paso 9
+		$data['padDormido']=$padDormido;
+		$data['padRecostado']=$padRecostado;
+		$data['padMuysedentario']=$padMuysedentario;
+		$data['padsedentario']=$padsedentario;
+		$data['padmuyligeramenteactivo']=$padmuyligeramenteactivo;
+		$data['padligeramenteactivo']=$padligeramenteactivo;
+		$data['padmoderadamenteactivo']=$padmoderadamenteactivo;
+		$data['padactivo']=$padactivo;
+		$data['padmuyactivo']=$padmuyactivo;
+		$data['padExtemadamenteactivo']=$padExtemadamenteactivo;
+		$data['padDormidodes']=$padDormidodes;
+		$data['padRecostadodes']=$padRecostadodes;
+		$data['padMuysedentariodes']=$padMuysedentariodes;
+		$data['padsedentariodes']=$padsedentariodes;
+		$data['padmuyligeramenteactivodes']=$padmuyligeramenteactivodes;
+		$data['padligeramenteactivodes']=$padligeramenteactivodes;
+		$data['padmoderadamenteactivodes']=$padmoderadamenteactivodes;
+		$data['padactivodes']=$padactivodes;
+		$data['padmuyactivodes']=$padmuyactivodes;
+		$data['padExtemadamenteactivodes']=$padExtemadamenteactivodes;
+		$data['pEVidaTipo']=$pEVidaTipo;
+		$data['pEVidaTipo2']=$pEVidaTipo2;
 
 		
 
@@ -1529,6 +1604,58 @@ class Cuestionario extends CI_Controller {
 		fclose($file);
 				//cargados --
 		$infocues = array('paso8' => $nombre_archivo);
+		$idcliente=$this->cuestionario_models->update($idclientese,$infocues);
+
+		redirect('cuestionario/preguntas', 'refresh');
+
+
+	}
+
+
+	public function guardarEstilo()
+	{
+
+		
+
+		$idclientese = $this->session->idcliente;
+
+
+		$nombre_archivo = "registros/EstilovidaActual-".$idclientese.".txt"; 
+
+		$mensaje=$idclientese.
+		"|".$this->input->post('padDormido').
+		"|".$this->input->post('padRecostado').
+		"|".$this->input->post('padMuysedentario').
+		"|".$this->input->post('padsedentario').
+		"|".$this->input->post('padmuyligeramenteactivo').
+		"|".$this->input->post('padligeramenteactivo').
+		"|".$this->input->post('padmoderadamenteactivo').
+		"|".$this->input->post('padactivo').
+		"|".$this->input->post('padmuyactivo').
+		"|".$this->input->post('padExtemadamenteactivo').
+		"|".$this->input->post('padDormidodes').
+		"|".$this->input->post('padRecostadodes').
+		"|".$this->input->post('padMuysedentariodes').
+		"|".$this->input->post('padsedentariodes').
+		"|".$this->input->post('padmuyligeramenteactivodes').
+		"|".$this->input->post('padligeramenteactivodes').
+		"|".$this->input->post('padmoderadamenteactivodes').
+		"|".$this->input->post('padactivodes').
+		"|".$this->input->post('padmuyactivodes').
+		"|".$this->input->post('padExtemadamenteactivodes').
+		"|".$this->input->post('pEVidaTipo').
+		"|".$this->input->post('pEVidaTipo2');
+
+		
+
+
+
+
+		$file = fopen($nombre_archivo, "w");
+		fwrite($file, $mensaje);
+		fclose($file);
+				//cargados --
+		$infocues = array('paso9' => $nombre_archivo);
 		$idcliente=$this->cuestionario_models->update($idclientese,$infocues);
 
 		redirect('cuestionario/preguntas', 'refresh');

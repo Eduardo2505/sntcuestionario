@@ -2201,6 +2201,129 @@
 
 				<!-- fin tab 9 -->
 
+				<!-- inicio tab 10 -->
+				<div id="tab-10">
+					<form action="<?php echo site_url('') ?>cuestionario/guardarEstilo" method="post" >
+						
+
+						<div>
+							Instrucciones y objetivos específicos: Este apartado nos servirá para saber qué tan activo es su estilo de vida, esto nos servirá para poder calcular de la manera más exacta posible la energía (kcal) que necesita cada día para lograr alcanzar sus metas y objetivos. Esta primera tabla hace alusión a los días que entrena y/o hace ejercicio. (Deben sumar 24 horas)
+						</div><br>
+
+						<strong>Patrón de actividades diarias (Días de entrenamiento)</strong><br>
+						Tipo de actividad<hr>
+						<h4>Dormido</h4>
+						Actividad : Dormido profundamente
+						<input type="text" value="<?php echo $padDormido; ?>" name="padDormido" maxlength="300" class="dzencf-text" placeholder="Horas diarias en esas actividades" >
+						<h4>Recostado</h4>
+						Actividad : Despierto, descansando acostado sin hacer nada
+						<input type="text" value="<?php echo $padRecostado; ?>" name="padRecostado" maxlength="300" class="dzencf-text" placeholder="Horas diarias en esas actividades" >
+						<h4>Muy sedentario</h4>
+						Actividad : Sentado, mirando TV o escuchando música, viajar
+						<input type="text" value="<?php echo $padMuysedentario; ?>" name="padMuysedentario" maxlength="300" class="dzencf-text" placeholder="Horas diarias en esas actividades" >
+						<h4>Sedentario </h4>
+						Actividad : Trabajo de oficina, conducir, hablar, leer
+						<input type="text" value="<?php echo $padsedentario; ?>" name="padsedentario" maxlength="300" class="dzencf-text" placeholder="Horas diarias en esas actividades" >
+						<h4>Muy ligeramente activo </h4>
+						Actividad : Caminar ligero, estar de pie, moverse poco
+						<input type="text" value="<?php echo $padmuyligeramenteactivo; ?>" name="padmuyligeramenteactivo" maxlength="300" class="dzencf-text" placeholder="Horas diarias en esas actividades" >
+						<h4>Ligeramente activo</h4>
+						Actividad : Limpieza doméstica, trabajo de taller, cuidar niños
+						<input type="text" value="<?php echo $padligeramenteactivo; ?>" name="padligeramenteactivo" maxlength="300" class="dzencf-text" placeholder="Horas diarias en esas actividades" >
+						<h4>Moderadamente activo</h4>
+						Actividad : Trotar, bicicleta suave, limpieza pesada, mesero
+						<input type="text" value="<?php echo $padmoderadamenteactivo; ?>" name="padmoderadamenteactivo" maxlength="300" class="dzencf-text" placeholder="Horas diarias en esas actividades" >
+						<h4>Activo</h4>
+						Actividad : Correr, bailar, carpintero, jardinero, cargar cosas
+						<input type="text" value="<?php echo $padactivo; ?>" name="padactivo" maxlength="300" class="dzencf-text" placeholder="Horas diarias en esas actividades" >
+						<h4>Muy activo</h4>
+						Actividad : Albañil, agricultor, ganadero, cargar cosa pesada
+						<input type="text" value="<?php echo $padmuyactivo; ?>" name="padmuyactivo" maxlength="300" class="dzencf-text" placeholder="Horas diarias en esas actividades" >
+						<h4>Extremadamente activo</h4>
+						Actividad : Deportes y entrenamiento de moderada-alta intensidad
+						<input type="text" value="<?php echo $padExtemadamenteactivo; ?>" name="padExtemadamenteactivo" maxlength="300" class="dzencf-text" placeholder="Horas diarias en esas actividades" >
+
+						<div>
+							Instrucciones y objetivos específicos: Este apartado nos servirá para saber qué tan activo es su estilo de vida, esto nos servirá para poder calcular de la manera más exacta posible la energía (kcal) que necesita cada día para lograr alcanzar sus metas y objetivos. Esta segunda tabla hace alusión a los días que descansa o no puede hacer ejercicio por cualquier razón. (Deben sumar 24 horas en total).
+						</div><br>
+
+						<strong>Patrón de actividades diarias (Días de descanso)</strong><br>
+						Tipo de actividad<hr>
+						<h4>Dormido</h4>
+						Actividad : Dormido profundamente
+						<input type="text" value="<?php echo $padDormidodes; ?>" name="padDormidodes" maxlength="300" class="dzencf-text" placeholder="Horas diarias en esas actividades" >
+						<h4>Recostado</h4>
+						Actividad : Despierto, descansando acostado sin hacer nada
+						<input type="text" value="<?php echo $padRecostadodes; ?>" name="padRecostadodes" maxlength="300" class="dzencf-text" placeholder="Horas diarias en esas actividades" >
+						<h4>Muy sedentario</h4>
+						Actividad : Sentado, mirando TV o escuchando música, viajar
+						<input type="text" value="<?php echo $padMuysedentariodes; ?>" name="padMuysedentariodes" maxlength="300" class="dzencf-text" placeholder="Horas diarias en esas actividades" >
+						<h4>Sedentario </h4>
+						Actividad : Trabajo de oficina, conducir, hablar, leer
+						<input type="text" value="<?php echo $padsedentariodes; ?>" name="padsedentariodes" maxlength="300" class="dzencf-text" placeholder="Horas diarias en esas actividades" >
+						<h4>Muy ligeramente activo </h4>
+						Actividad : Caminar ligero, estar de pie, moverse poco
+						<input type="text" value="<?php echo $padmuyligeramenteactivodes; ?>" name="padmuyligeramenteactivodes" maxlength="300" class="dzencf-text" placeholder="Horas diarias en esas actividades" >
+						<h4>Ligeramente activo</h4>
+						Actividad : Limpieza doméstica, trabajo de taller, cuidar niños
+						<input type="text" value="<?php echo $padligeramenteactivodes; ?>" name="padligeramenteactivodes" maxlength="300" class="dzencf-text" placeholder="Horas diarias en esas actividades" >
+						<h4>Moderadamente activo</h4>
+						Actividad : Trotar, bicicleta suave, limpieza pesada, mesero
+						<input type="text" value="<?php echo $padmoderadamenteactivodes; ?>" name="padmoderadamenteactivodes" maxlength="300" class="dzencf-text" placeholder="Horas diarias en esas actividades" >
+						<h4>Activo</h4>
+						Actividad : Correr, bailar, carpintero, jardinero, cargar cosas
+						<input type="text" value="<?php echo $padactivodes; ?>" name="padactivodes" maxlength="300" class="dzencf-text" placeholder="Horas diarias en esas actividades" >
+						<h4>Muy activo</h4>
+						Actividad : Albañil, agricultor, ganadero, cargar cosa pesada
+						<input type="text" value="<?php echo $padmuyactivodes; ?>" name="padmuyactivodes" maxlength="300" class="dzencf-text" placeholder="Horas diarias en esas actividades" >
+						<h4>Extremadamente activo</h4>
+						Actividad : Deportes y entrenamiento de moderada-alta intensidad
+						<input type="text" value="<?php echo $padExtemadamenteactivodes; ?>" name="padExtemadamenteactivodes" maxlength="300" class="dzencf-text" placeholder="Horas diarias en esas actividades" >
+						<!-- inici contenido -->
+						<div>
+							Instrucciones y objetivos específicos: Este apartado nos servirá para saber qué tan activo es su estilo de vida, que horarios dispone para comer, para preparar sus comidas, para entrenar y a qué hora duerme y se levanta, todo esto con el fin de personalizar el plan de Alimentación y Entrenamiento a su estilo de vida. 
+						</div><br>
+
+						<strong>Patrón de Estilo de vida</strong><br>
+						Tipo de actividad<hr>
+						<div class="dzen_container">
+							<div class="dzen_column_DD_span11">
+
+								<div class="dzen_column_DD_span11"></div>
+								<div class="dzen_column_DD_span6">
+
+									<div class="margin_bottom">
+										<input type="text" value="Despertarse por la mañana" name="pEVidaTipo" maxlength="300" class="dzencf-text" placeholder="Tipo de actividad diaria, Ejemplo :Despertarse por la mañana" >
+
+									</div>
+								</div>
+								<div class="dzen_column_DD_span4">
+
+									<div class="margin_bottom">
+
+										<input type="text" value="<?php echo $pEVidaTipo2; ?>" name="pEVidaTipo2" maxlength="300" class="dzencf-text" placeholder="Horario" >
+
+									</div>
+								</div>
+
+								<div class="dzen_column_DD_span1">
+
+									<div class="margin_bottom">
+										<a href="#" target="_self" class="dzen-button dzen-button_blue dzen-button_rounded dzen-button_small">+</a>
+									</div>
+								</div>
+
+							</div>
+						</div>
+						<!-- fin del contenido -->
+
+
+						<input type="submit" value="GUARDAR Y SIGUINETE " class="dzencf-submit" />
+					</form>
+				</div>
+
+				<!-- fin tab 10 -->
+
 
 			</div>
 
