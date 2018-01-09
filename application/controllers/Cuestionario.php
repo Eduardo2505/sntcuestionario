@@ -158,6 +158,95 @@ class Cuestionario extends CI_Controller {
 		$supleTiempo="";
 		$supleCantidad="";
 		$dinamicov="";
+		//paso 7
+		
+		$cdipersoAli="";
+		$cdipersoAliporque="";
+		$cdipersoANivel="";
+		$cdipersoANivelCambios="";
+		$cdipersoAlergias="";
+		$cdipersoIntoleranciaalimen="";
+		$cdipersoAlinoconsumir="";
+		$consumoSusAlcolTipo="";
+		$consumoSusAlcolcantidad="";
+		$consumoSusAlcolFrecuencia="";
+		$consumoSusTabacoTipo="";
+		$consumoSusTabacocantidad="";
+		$consumoSusTabacoFrecuencia="";
+		$consumoSusCafeinaTipo="";
+		$consumoSusCafeinacocantidad="";
+		$consumoSusCafeinaFrecuencia="";
+		$consumoSusOtrasTipo="";
+		$consumoSusOtrascocantidad="";
+
+		$consumoSusOtrasFrecuencia="";
+		$edpduraTiempo="";
+		$edpcuantoTiempo="";
+		$edpcResulobtuvo="";
+		$edpcxqAbandono="";
+
+		$noedpduraTiempo="";
+		$noedpcuantoTiempo="";
+		$noedpcResulobtuvo="";
+		$noedpcxqAbandono="";
+		$siedpduraTiempo="";
+		$siedpcuantoTiempo="";
+		$siedpcResulobtuvo="";
+		$siedpcxqAbandono="";
+		//paso 8
+		$dabasiPeso="";
+		$dabasiAltura="";
+		$datosAntroespgrasa="";
+		$datosAntroespgrasaporce="";
+		$datosAntroespmasakg="";
+		$datosAntroespmasaporcen="";
+		$datosAntroespmasapmuskg="";
+		$datosAntroespmasapmusporcentaje="";
+		//paso 8
+		$patronalic1h="";
+		$patronalic1l="";
+		$patronalic1d="";
+		$patronalic2h="";
+		$patronalic2l="";
+		$patronalic2d="";
+		$patronalic3h="";
+		$patronalic3l="";
+		$patronalic3d="";
+		$patronalic4h="";
+		$patronalic4l="";
+		$patronalic4d="";
+		$patronalic5h="";
+		$patronalic5l="";
+		$patronalic5d="";
+		$patronalic6h="";
+		$patronalic6l="";
+		$patronalic6d="";
+
+		$recordatorioAlimentos24hras1h="";
+		$ecordatorioAlimentos24hras1d="";
+		$ecordatorioAlimentos24hras1q="";
+		$ecordatorioAlimentos24hras1c="";
+		$recordatorioAlimentos24hras2h="";
+		$ecordatorioAlimentos24hras2d="";
+		$ecordatorioAlimentos24hras2q="";
+		$ecordatorioAlimentos24hras2c="";
+		$recordatorioAlimentos24hras3h="";
+		$ecordatorioAlimentos24hras3d="";
+		$ecordatorioAlimentos24hras3q="";
+		$ecordatorioAlimentos24hras3c="";
+		$recordatorioAlimentos24hras4h="";
+		$ecordatorioAlimentos24hras4d="";
+		$ecordatorioAlimentos24hras4q="";
+		$ecordatorioAlimentos24hras4c="";
+		$recordatorioAlimentos24hras5h="";
+		$ecordatorioAlimentos24hras5d="";
+		$ecordatorioAlimentos24hras5q="";
+		$ecordatorioAlimentos24hras5c="";
+		$recordatorioAlimentos24hras6h="";
+		$ecordatorioAlimentos24hras6d="";
+		$ecordatorioAlimentos24hras6q="";
+		$ecordatorioAlimentos24hras6c="";
+
 		
 
 		if(isset($_SESSION['idcliente'])){
@@ -331,74 +420,186 @@ class Cuestionario extends CI_Controller {
 
 
 				$suplementos = explode("&",$datos1);
-				$verSuplemen=$suplementos[1];
-				$cantidadSuplementosExtra = explode("-",$verSuplemen);
-				$resultado = count($cantidadSuplementosExtra);
-				$numSuplemento=$resultado;
-				$num=1;
-				for($i=0;$i<$resultado;$i++){
+				$verSuplem = count($suplementos);
+				if($verSuplem!=1){
+					
+					$verSuplemen=$suplementos[1];
+					$cantidadSuplementosExtra = explode("-",$verSuplemen);
+					$resultado = count($cantidadSuplementosExtra);
+					$numSuplemento=$resultado;
+					$num=1;
+					for($i=0;$i<$resultado;$i++){
 
-					$s1 = explode("_",$cantidadSuplementosExtra[$i]);
-					$dinamicov.= '<div class="dzen_container">
-					<div class="dzen_column_DD_span11">
-					<div class="dzen-accordion" data-expanded="1" role="tablist">
-					<!-- incio -->
-					<h3 class="ui-accordion-header" role="tab" id="ui-accordion-1-header-12" aria-controls="ui-accordion-1-panel-12" aria-selected="false" tabindex="0"><span class="ui-accordion-header-icon"></span>
-					Suplemento</h3>
-					<div class="ui-accordion-content" id="ui-accordion-1-panel-12" aria-labelledby="ui-accordion-1-header-12" role="tabpane12" aria-expanded="false" aria-hidden="true">
+						$s1 = explode("_",$cantidadSuplementosExtra[$i]);
+						$dinamicov.= '<div class="dzen_container">
+						<div class="dzen_column_DD_span11">
+						<div class="dzen-accordion" data-expanded="1" role="tablist">
+						<!-- incio -->
+						<h3 class="ui-accordion-header" role="tab" id="ui-accordion-1-header-12" aria-controls="ui-accordion-1-panel-12" aria-selected="false" tabindex="0"><span class="ui-accordion-header-icon"></span>
+						Suplemento</h3>
+						<div class="ui-accordion-content" id="ui-accordion-1-panel-12" aria-labelledby="ui-accordion-1-header-12" role="tabpane12" aria-expanded="false" aria-hidden="true">
 
-					<div class="dzen_column_DD_span13"></div>
-					<div class="dzen_column_DD_span5">
+						<div class="dzen_column_DD_span13"></div>
+						<div class="dzen_column_DD_span5">
 
-					<div class="margin_bottom">
-					<input type="text"  value="'.$s1[0].'" name="suple'.$num.'Nombre" maxlength="300" class="dzencf-text" placeholder="Nombre" >
-					</div>
-					</div>
-					<div class="dzen_column_DD_span6">
+						<div class="margin_bottom">
+						<input type="text"  value="'.$s1[0].'" name="suple'.$num.'Nombre" maxlength="300" class="dzencf-text" placeholder="Nombre" >
+						</div>
+						</div>
+						<div class="dzen_column_DD_span6">
 
-					<div class="margin_bottom">
+						<div class="margin_bottom">
 
-					<input type="text" value="'.$s1[1].'" name="suple'.$num.'Caracteristicas" maxlength="300" class="dzencf-text" placeholder="Características" >
+						<input type="text" value="'.$s1[1].'" name="suple'.$num.'Caracteristicas" maxlength="300" class="dzencf-text" placeholder="Características" >
 
-					</div>
-					</div>
+						</div>
+						</div>
 
-					<div class="dzen_column_DD_span5">
+						<div class="dzen_column_DD_span5">
 
-					<div class="margin_bottom">
-					<input type="text" value="'.$s1[2].'" name="suple'.$num.'Motivo" maxlength="300" class="dzencf-text" placeholder="Motivo de uso" >
-					</div>
-					</div>
-					<div class="dzen_column_DD_span6">
+						<div class="margin_bottom">
+						<input type="text" value="'.$s1[2].'" name="suple'.$num.'Motivo" maxlength="300" class="dzencf-text" placeholder="Motivo de uso" >
+						</div>
+						</div>
+						<div class="dzen_column_DD_span6">
 
-					<div class="margin_bottom">
+						<div class="margin_bottom">
 
-					<input type="text" value="'.$s1[3].'" name="suple'.$num.'Tiempo" maxlength="300" class="dzencf-text" placeholder="Tiempo de uso" >
+						<input type="text" value="'.$s1[3].'" name="suple'.$num.'Tiempo" maxlength="300" class="dzencf-text" placeholder="Tiempo de uso" >
 
-					</div>
-					</div>
+						</div>
+						</div>
 
-					<div class="dzen_column_DD_span5">
+						<div class="dzen_column_DD_span5">
 
-					<div class="margin_bottom">
-					<input type="text" value="'.$s1[4].'" name="suple'.$num.'Cantidad" maxlength="300" class="dzencf-text" placeholder="Cantidad usada" >
-					</div>
-					</div>
-					</div>
-					<!-- fin -->
-					</div>
-					</div>
+						<div class="margin_bottom">
+						<input type="text" value="'.$s1[4].'" name="suple'.$num.'Cantidad" maxlength="300" class="dzencf-text" placeholder="Cantidad usada" >
+						</div>
+						</div>
+						</div>
+						<!-- fin -->
+						</div>
+						</div>
 
-					</div>';
-					$num++;
+						</div>';
+						$num++;
 
+					}
+
+					$dinamicov.= '<div id="siguiente'.($num).'"></div>';
 				}
-
-				$dinamicov.= '<div id="siguiente'.($num).'"></div>';
 
 				//echo $dinamicov;
 				
 
+			}
+
+			$cadenapaso6=$rowv->paso6;
+			if(!empty($cadenapaso6)){
+				$datos1=file_get_contents($cadenapaso6);
+				$listav = explode("|",$datos1);
+				
+				$cdipersoAli=	$listav[1];
+				$cdipersoAliporque=	$listav[2];
+				$cdipersoANivel=	$listav[3];
+				$cdipersoANivelCambios=	$listav[4];
+				$cdipersoAlergias=	$listav[5];
+				$cdipersoIntoleranciaalimen=	$listav[6];
+				$cdipersoAlinoconsumir=	$listav[7];
+				$consumoSusAlcolTipo=	$listav[8];
+				$consumoSusAlcolcantidad=	$listav[9];
+				$consumoSusAlcolFrecuencia=	$listav[10];
+				$consumoSusTabacoTipo=	$listav[11];
+				$consumoSusTabacocantidad=	$listav[12];
+				$consumoSusTabacoFrecuencia=	$listav[13];
+				$consumoSusCafeinaTipo=	$listav[14];
+				$consumoSusCafeinacocantidad=	$listav[15];
+				$consumoSusCafeinaFrecuencia=	$listav[16];
+				$consumoSusOtrasTipo=	$listav[17];
+				$consumoSusOtrascocantidad=	$listav[18];
+				$consumoSusOtrasFrecuencia=	$listav[19];
+				$edpduraTiempo=	$listav[20];
+				$edpcuantoTiempo=	$listav[21];
+				$edpcResulobtuvo=	$listav[22];
+				$edpcxqAbandono=	$listav[23];
+				$noedpduraTiempo=	$listav[24];
+				$noedpcuantoTiempo=	$listav[25];
+				$noedpcResulobtuvo=	$listav[26];
+				$noedpcxqAbandono=	$listav[27];
+				$siedpduraTiempo=	$listav[28];
+				$siedpcuantoTiempo=	$listav[29];
+				$siedpcResulobtuvo=	$listav[30];
+				$siedpcxqAbandono=	$listav[31];
+			}
+
+			$cadenapaso7=$rowv->paso7;
+			if(!empty($cadenapaso7)){
+				$datos1=file_get_contents($cadenapaso7);
+				$listav = explode("|",$datos1);
+				
+				$dabasiPeso=	$listav[1];
+				$dabasiAltura=	$listav[2];
+				$datosAntroespgrasa=	$listav[3];
+				$datosAntroespgrasaporce=	$listav[4];
+				$datosAntroespmasakg=	$listav[5];
+				$datosAntroespmasaporcen=	$listav[6];
+				$datosAntroespmasapmuskg=	$listav[7];
+				$datosAntroespmasapmusporcentaje=	$listav[8];
+			}
+
+			$cadenapaso8=$rowv->paso8;
+			if(!empty($cadenapaso8)){
+				$datos1=file_get_contents($cadenapaso8);
+				$listav = explode("|",$datos1);
+				
+				$patronalic1h=	$listav[1];
+				$patronalic1l=	$listav[2];
+				$patronalic1d=	$listav[3];
+				$patronalic2h=	$listav[4];
+				$patronalic2l=	$listav[5];
+				$patronalic2d=	$listav[6];
+				$patronalic3h=	$listav[7];
+				$patronalic3l=	$listav[8];
+				$patronalic3d=	$listav[9];
+				$patronalic4h=	$listav[10];
+				$patronalic4l=	$listav[11];
+				$patronalic4d=	$listav[12];
+				$patronalic5h=	$listav[13];
+				$patronalic5l=	$listav[14];
+				$patronalic5d=	$listav[15];
+				$patronalic6h=	$listav[16];
+				$patronalic6l=	$listav[17];
+				$patronalic6d=	$listav[18];
+
+				$recordatorioAlimentos24hras1h=	$listav[19];
+				$ecordatorioAlimentos24hras1d=	$listav[20];
+				$ecordatorioAlimentos24hras1q=	$listav[21];
+				$ecordatorioAlimentos24hras1c=	$listav[22];
+
+				$recordatorioAlimentos24hras2h=	$listav[23];
+				$ecordatorioAlimentos24hras2d=	$listav[24];
+				$ecordatorioAlimentos24hras2q=	$listav[25];
+				$ecordatorioAlimentos24hras2c=	$listav[26];
+
+				$recordatorioAlimentos24hras3h=	$listav[27];
+				$ecordatorioAlimentos24hras3d=	$listav[28];
+				$ecordatorioAlimentos24hras3q=	$listav[29];
+				$ecordatorioAlimentos24hras3c=	$listav[30];
+
+				$recordatorioAlimentos24hras4h=	$listav[31];
+				$ecordatorioAlimentos24hras4d=	$listav[32];
+				$ecordatorioAlimentos24hras4q=	$listav[33];
+				$ecordatorioAlimentos24hras4c=	$listav[34];
+
+				$recordatorioAlimentos24hras5h=	$listav[35];
+				$ecordatorioAlimentos24hras5d=	$listav[36];
+				$ecordatorioAlimentos24hras5q=	$listav[37];
+				$ecordatorioAlimentos24hras5c=	$listav[38];
+
+				$recordatorioAlimentos24hras6h=	$listav[39];
+				$ecordatorioAlimentos24hras6d=	$listav[40];
+				$ecordatorioAlimentos24hras6q=	$listav[41];
+				$ecordatorioAlimentos24hras6c=	$listav[42];
 			}
 			
 
@@ -571,6 +772,103 @@ class Cuestionario extends CI_Controller {
 		$data['supleCantidad']=$supleCantidad;
 
 		$data['dinamicov']=$dinamicov;
+		//paso 7
+		$data['cdipersoAli']=$cdipersoAli;
+		$data['cdipersoAliporque']=$cdipersoAliporque;
+		$data['cdipersoANivel']=$cdipersoANivel;
+		$data['cdipersoANivelCambios']=$cdipersoANivelCambios;
+		$data['cdipersoAlergias']=$cdipersoAlergias;
+		$data['cdipersoIntoleranciaalimen']=$cdipersoIntoleranciaalimen;
+		$data['cdipersoAlinoconsumir']=$cdipersoAlinoconsumir;
+		$data['consumoSusAlcolTipo']=$consumoSusAlcolTipo;
+		$data['consumoSusAlcolcantidad']=$consumoSusAlcolcantidad;
+		$data['consumoSusAlcolFrecuencia']=$consumoSusAlcolFrecuencia;
+		$data['consumoSusTabacoTipo']=$consumoSusTabacoTipo;
+		$data['consumoSusTabacocantidad']=$consumoSusTabacocantidad;
+		$data['consumoSusTabacoFrecuencia']=$consumoSusTabacoFrecuencia;
+		$data['consumoSusCafeinaTipo']=$consumoSusCafeinaTipo;
+		$data['consumoSusCafeinacocantidad']=$consumoSusCafeinacocantidad;
+		$data['consumoSusCafeinaFrecuencia']=$consumoSusCafeinaFrecuencia;
+		$data['consumoSusOtrasTipo']=$consumoSusOtrasTipo;
+		$data['consumoSusOtrascocantidad']=$consumoSusOtrascocantidad;
+		$data['consumoSusOtrasFrecuencia']=$consumoSusOtrasFrecuencia;
+		$data['edpduraTiempo']=$edpduraTiempo;
+		$data['edpcuantoTiempo']=$edpcuantoTiempo;
+		$data['edpcResulobtuvo']=$edpcResulobtuvo;
+		$data['edpcxqAbandono']=$edpcxqAbandono;
+		$data['noedpduraTiempo']=$noedpduraTiempo;
+		$data['noedpcuantoTiempo']=$noedpcuantoTiempo;
+		$data['noedpcResulobtuvo']=$noedpcResulobtuvo;
+		$data['noedpcxqAbandono']=$noedpcxqAbandono;
+		$data['siedpduraTiempo']=$siedpduraTiempo;
+		$data['siedpcuantoTiempo']=$siedpcuantoTiempo;
+		$data['siedpcResulobtuvo']=$siedpcResulobtuvo;
+		$data['siedpcxqAbandono']=$siedpcxqAbandono;
+
+		//paso 8
+		//
+		$data['dabasiPeso']=$dabasiPeso;
+		$data['dabasiAltura']=$dabasiAltura;
+		$data['datosAntroespgrasa']=$datosAntroespgrasa;
+		$data['datosAntroespgrasaporce']=$datosAntroespgrasaporce;
+		$data['datosAntroespmasakg']=$datosAntroespmasakg;
+		$data['datosAntroespmasaporcen']=$datosAntroespmasaporcen;
+		$data['datosAntroespmasapmuskg']=$datosAntroespmasapmuskg;
+		$data['datosAntroespmasapmusporcentaje']=$datosAntroespmasapmusporcentaje;
+		//paso 9
+		$data['patronalic1h']=$patronalic1h;
+		$data['patronalic1l']=$patronalic1l;
+		$data['patronalic1d']=$patronalic1d;
+
+		$data['patronalic2h']=$patronalic2h;
+		$data['patronalic2l']=$patronalic2l;
+		$data['patronalic2d']=$patronalic2d;
+
+		$data['patronalic3h']=$patronalic3h;
+		$data['patronalic3l']=$patronalic3l;
+		$data['patronalic3d']=$patronalic3d;
+
+		$data['patronalic4h']=$patronalic4h;
+		$data['patronalic4l']=$patronalic4l;
+		$data['patronalic4d']=$patronalic4d;
+
+		$data['patronalic5h']=$patronalic5h;
+		$data['patronalic5l']=$patronalic5l;
+		$data['patronalic5d']=$patronalic5d;
+
+		$data['patronalic6h']=$patronalic6h;
+		$data['patronalic6l']=$patronalic6l;
+		$data['patronalic6d']=$patronalic6d;
+		$data['recordatorioAlimentos24hras1h']=$recordatorioAlimentos24hras1h;
+		$data['ecordatorioAlimentos24hras1d']=$ecordatorioAlimentos24hras1d;
+		$data['ecordatorioAlimentos24hras1q']=$ecordatorioAlimentos24hras1q;
+		$data['ecordatorioAlimentos24hras1c']=$ecordatorioAlimentos24hras1c;
+
+		$data['recordatorioAlimentos24hras2h']=$recordatorioAlimentos24hras2h;
+		$data['ecordatorioAlimentos24hras2d']=$ecordatorioAlimentos24hras2d;
+		$data['ecordatorioAlimentos24hras2q']=$ecordatorioAlimentos24hras2q;
+		$data['ecordatorioAlimentos24hras2c']=$ecordatorioAlimentos24hras2c;
+
+		$data['recordatorioAlimentos24hras3h']=$recordatorioAlimentos24hras3h;
+		$data['ecordatorioAlimentos24hras3d']=$ecordatorioAlimentos24hras3d;
+		$data['ecordatorioAlimentos24hras3q']=$ecordatorioAlimentos24hras3q;
+		$data['ecordatorioAlimentos24hras3c']=$ecordatorioAlimentos24hras3c;
+
+		$data['recordatorioAlimentos24hras4h']=$recordatorioAlimentos24hras4h;
+		$data['ecordatorioAlimentos24hras4d']=$ecordatorioAlimentos24hras4d;
+		$data['ecordatorioAlimentos24hras4q']=$ecordatorioAlimentos24hras4q;
+		$data['ecordatorioAlimentos24hras4c']=$ecordatorioAlimentos24hras4c;
+
+		$data['recordatorioAlimentos24hras5h']=$recordatorioAlimentos24hras5h;
+		$data['ecordatorioAlimentos24hras5d']=$ecordatorioAlimentos24hras5d;
+		$data['ecordatorioAlimentos24hras5q']=$ecordatorioAlimentos24hras5q;
+		$data['ecordatorioAlimentos24hras5c']=$ecordatorioAlimentos24hras5c;
+
+		$data['recordatorioAlimentos24hras6h']=$recordatorioAlimentos24hras6h;
+		$data['ecordatorioAlimentos24hras6d']=$ecordatorioAlimentos24hras6d;
+		$data['ecordatorioAlimentos24hras6q']=$ecordatorioAlimentos24hras6q;
+		$data['ecordatorioAlimentos24hras6c']=$ecordatorioAlimentos24hras6c;
+
 
 
 		
@@ -1048,7 +1346,7 @@ class Cuestionario extends CI_Controller {
 		<div class="dzen_column_DD_span5">
 
 		<div class="margin_bottom">
-		<input type="text" value="suple'.$conteo.'Nombre" name="suple'.$conteo.'Nombre" maxlength="300" class="dzencf-text" placeholder="Nombre" >
+		<input type="text"  name="suple'.$conteo.'Nombre" maxlength="300" class="dzencf-text" placeholder="Nombre" >
 		</div>
 		</div>
 		<div class="dzen_column_DD_span6">
@@ -1096,6 +1394,146 @@ class Cuestionario extends CI_Controller {
 
 
 		</div>';
+	}
+
+
+	public function guardarExperienciaDiatetica()
+	{
+
+		
+
+		$idclientese = $this->session->idcliente;
+
+
+		$nombre_archivo = "registros/ExperienciaDiatetica-".$idclientese.".txt"; 
+
+		$mensaje=$idclientese.
+		"|".$this->input->post('cdipersoAli').
+		"|".$this->input->post('cdipersoAliporque').
+		"|".$this->input->post('cdipersoANivel').
+		"|".$this->input->post('cdipersoANivelCambios').
+		"|".$this->input->post('cdipersoAlergias').
+		"|".$this->input->post('cdipersoIntoleranciaalimen').
+		"|".$this->input->post('cdipersoAlinoconsumir').
+		"|".$this->input->post('consumoSusAlcolTipo').
+		"|".$this->input->post('consumoSusAlcolcantidad').
+		"|".$this->input->post('consumoSusAlcolFrecuencia').
+		"|".$this->input->post('consumoSusTabacoTipo').
+		"|".$this->input->post('consumoSusTabacocantidad').
+		"|".$this->input->post('consumoSusTabacoFrecuencia').
+		"|".$this->input->post('consumoSusCafeinaTipo').
+		"|".$this->input->post('consumoSusCafeinacocantidad').
+		"|".$this->input->post('consumoSusCafeinaFrecuencia').
+		"|".$this->input->post('consumoSusOtrasTipo').
+		"|".$this->input->post('consumoSusOtrascocantidad').
+		"|".$this->input->post('consumoSusOtrasFrecuencia').
+		"|".$this->input->post('edpduraTiempo').
+		"|".$this->input->post('edpcuantoTiempo').
+		"|".$this->input->post('edpcResulobtuvo').
+		"|".$this->input->post('edpcxqAbandono').
+		"|".$this->input->post('noedpduraTiempo').
+		"|".$this->input->post('noedpcuantoTiempo').
+		"|".$this->input->post('noedpcResulobtuvo').
+		"|".$this->input->post('noedpcxqAbandono').
+		"|".$this->input->post('siedpduraTiempo').
+		"|".$this->input->post('siedpcuantoTiempo').
+		"|".$this->input->post('siedpcResulobtuvo').
+		"|".$this->input->post('siedpcxqAbandono');
+
+
+		
+
+
+
+		$file = fopen($nombre_archivo, "w");
+		fwrite($file, $mensaje);
+		fclose($file);
+				//cargados --
+		$infocues = array('paso6' => $nombre_archivo);
+		$idcliente=$this->cuestionario_models->update($idclientese,$infocues);
+
+		redirect('cuestionario/preguntas', 'refresh');
+
+
+	}
+
+	public function guardarInformacionCorporal()
+	{
+
+		
+
+		$idclientese = $this->session->idcliente;
+
+
+		$nombre_archivo = "registros/InformacionCorporal-".$idclientese.".txt"; 
+
+		$mensaje=$idclientese.
+		"|".$this->input->post('dabasiPeso').
+		"|".$this->input->post('dabasiAltura').
+		"|".$this->input->post('datosAntroespgrasa').
+		"|".$this->input->post('datosAntroespgrasaporce').
+		"|".$this->input->post('datosAntroespmasakg').
+		"|".$this->input->post('datosAntroespmasaporcen').
+		"|".$this->input->post('datosAntroespmasapmuskg').
+		"|".$this->input->post('datosAntroespmasapmusporcentaje');
+
+
+
+		$file = fopen($nombre_archivo, "w");
+		fwrite($file, $mensaje);
+		fclose($file);
+				//cargados --
+		$infocues = array('paso7' => $nombre_archivo);
+		$idcliente=$this->cuestionario_models->update($idclientese,$infocues);
+
+		redirect('cuestionario/preguntas', 'refresh');
+
+
+	}
+
+
+	public function guardarEstiloAlimentacion()
+	{
+
+		
+
+		$idclientese = $this->session->idcliente;
+
+
+		$nombre_archivo = "registros/EstiloaAlimentacion-".$idclientese.".txt"; 
+
+		$mensaje=$idclientese;
+
+
+		for($i=1;$i<7;$i++){
+			
+			$mensaje.="|".$this->input->post('patronalic'.$i.'h').
+			"|".$this->input->post('patronalic'.$i.'l').
+			"|".$this->input->post('patronalic'.$i.'d');
+		}
+
+		for($i=1;$i<7;$i++){
+			
+			$mensaje.="|".$this->input->post('recordatorioAlimentos24hras'.$i.'h').
+			"|".$this->input->post('ecordatorioAlimentos24hras'.$i.'d').
+			"|".$this->input->post('ecordatorioAlimentos24hras'.$i.'q').
+			"|".$this->input->post('ecordatorioAlimentos24hras'.$i.'c');
+		}
+
+
+		
+
+
+		$file = fopen($nombre_archivo, "w");
+		fwrite($file, $mensaje);
+		fclose($file);
+				//cargados --
+		$infocues = array('paso8' => $nombre_archivo);
+		$idcliente=$this->cuestionario_models->update($idclientese,$infocues);
+
+		redirect('cuestionario/preguntas', 'refresh');
+
+
 	}
 
 

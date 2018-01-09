@@ -63,13 +63,13 @@
 								<a href="#tab-6" id="tab6">Experiencia en el uso de Fármacos y Suplementos</a>
 							</li>
 							<li>
-								<a href="#tab-7" id="tab7">Paso 7</a>
+								<a href="#tab-7" id="tab7">Características y Experiencia dietética.</a>
 							</li>
 							<li>
-								<a href="#tab-8" id="tab8">Paso 8</a>
+								<a href="#tab-8" id="tab8">Información de composición corporal</a>
 							</li>
 							<li>
-								<a href="#tab-9" id="tab9">Paso 9</a>
+								<a href="#tab-9" id="tab9">Tipo y estilo de alimentación actual. </a>
 							</li>
 							<li>
 								<a href="#tab-9" id="tab10">Paso 10</a>
@@ -1329,7 +1329,7 @@
 							placeholder="¿Qué objetivos tiene con su uso? " >
 						</div>
 						<a href="#add" onclick="masSuplemntos()" class="dzen-button dzen-button_blue dzen-button_rounded dzen-button_small" >+ Agregar Suplemento</a>
-						<input type="text" name="numSuplemento" id="numSuplemento" value="<?php echo $numSuplemento;?>">
+						<input type="hidden" name="numSuplemento" id="numSuplemento" value="<?php echo $numSuplemento;?>">
 						<div class="dzen_container">
 							<div class="dzen_column_DD_span11">
 								<div class="dzen-accordion" data-expanded="1" role="tablist">
@@ -1390,6 +1390,817 @@
 				</div>
 
 				<!-- fin tab 6 -->
+				<!-- inicio tab  7 -->
+				<div id="tab-7">
+					<form action="<?php echo site_url('') ?>cuestionario/guardarExperienciaDiatetica" method="post" >
+
+						<!-- incio componenete -->
+						<div>
+							Instrucciones y objetivos específicos: Este apartado nos servirá para ubicar sus preferencias alimenticias personales y poder diseñar un plan de Alimentación individualizado, con el cual se sienta lo más cómodo posible y este le ayude al apego del mismo, logrando así sus metas y objetivos. 
+						</div>
+						<strong>Características dietéticas personales</strong>
+						<br></br>
+
+
+
+						<input type="text" value="<?php echo $cdipersoAli; ?>" name="cdipersoAli" maxlength="300" class="dzencf-text" placeholder="¿Alimentos evitados? " >
+
+
+						<input type="text" value="<?php echo $cdipersoAliporque; ?>" name="cdipersoAliporque" maxlength="300" class="dzencf-text" placeholder="¿Por qué? " >
+
+
+
+						<select name="cdipersoANivel" class="dzencf-text" >
+							<option value="">Nivel de apetito </option>
+
+							<?php  
+
+							for($i=1;$i<11;$i++){
+								if($i==$cdipersoANivel){
+
+									echo '<option value="'.$i.'" selected="selected">'.$i.'</option>';
+								}else{
+									echo '<option value="'.$i.'">'.$i.'</option>';
+								}
+							}
+							?>
+							
+						</select>
+
+						<input type="text" value="<?php echo $cdipersoANivelCambios; ?>" name="cdipersoANivelCambios" maxlength="300" class="dzencf-text" placeholder="¿Cambios recientes en el apetito? " >
+
+						<input type="text" value="<?php echo $cdipersoAlergias; ?>" name="cdipersoAlergias" maxlength="300" class="dzencf-text" placeholder="¿Tiene alguna alergia alimentaria? " >
+						<input type="text" value="<?php echo $cdipersoIntoleranciaalimen; ?>" name="cdipersoIntoleranciaalimen" maxlength="300" class="dzencf-text" placeholder="¿Tiene alguna intolerancia alimentaria?" >
+
+						<input type="text" value="<?php echo $cdipersoAlinoconsumir; ?>" name="cdipersoAlinoconsumir" maxlength="300" class="dzencf-text" placeholder="¿Qué alimentos no puede conseguir fácilmente?" >
+
+						<!-- fin componenete -->
+						<!-- inicio componente -->
+						<div>
+							Instrucciones y objetivos específicos: Este apartado nos servirá para ubicar el nivel de consumo de sustancias no nutricionales que pueden afectar la consecución de sus objetivos y poder planificar la modificación de dichos hábitos dañinos, cambiándolos por hábitos responsables en su consumo.
+						</div>
+						<strong>Consumo de sustancias bioactivas</strong>
+						<br></br>
+						<div class="dzen_container">
+							<div class="dzen_column_DD_span11">
+								<div class="dzen-accordion" data-expanded="3" role="tablist">
+									<!-- inicio -->
+									<h3 class="ui-accordion-header" role="tab" id="ui-accordion-1-header-12" aria-controls="ui-accordion-1-panel-12" aria-selected="false" tabindex="0"><span class="ui-accordion-header-icon"></span>
+									Alcohol</h3>
+									<div class="ui-accordion-content" id="ui-accordion-1-panel-12" aria-labelledby="ui-accordion-1-header-12" role="tabpane12" aria-expanded="false" aria-hidden="true">
+
+
+										<div class="dzen_column_DD_span4">
+
+											<div class="margin_bottom">
+												<input type="text" value="<?php echo $consumoSusAlcolTipo; ?>" name="consumoSusAlcolTipo" maxlength="300" class="dzencf-text" placeholder="Tipo" >
+											</div>
+										</div>
+										<div class="dzen_column_DD_span4">
+
+											<div class="margin_bottom">
+
+												<input type="text" value="<?php echo $consumoSusAlcolcantidad; ?>" name="consumoSusAlcolcantidad" maxlength="300" class="dzencf-text" placeholder="Cantidad">
+
+											</div>
+										</div>
+
+										<div class="dzen_column_DD_span3">
+
+											<div class="margin_bottom">
+												<input type="text" value="<?php echo $consumoSusAlcolFrecuencia; ?>" name="consumoSusAlcolFrecuencia" maxlength="300" class="dzencf-text" placeholder="Frecuencia" >
+											</div>
+										</div>
+
+									</div>
+									<!-- fin -->
+
+									<!-- inicio -->
+									<h3 class="ui-accordion-header" role="tab" id="ui-accordion-1-header-12" aria-controls="ui-accordion-1-panel-12" aria-selected="false" tabindex="0"><span class="ui-accordion-header-icon"></span>
+									Tabaco</h3>
+									<div class="ui-accordion-content" id="ui-accordion-1-panel-12" aria-labelledby="ui-accordion-1-header-12" role="tabpane12" aria-expanded="false" aria-hidden="true">
+
+
+										<div class="dzen_column_DD_span4">
+
+											<div class="margin_bottom">
+												<input type="text" value="<?php echo $consumoSusTabacoTipo; ?>" name="consumoSusTabacoTipo" maxlength="300" class="dzencf-text" placeholder="Tipo" >
+											</div>
+										</div>
+										<div class="dzen_column_DD_span4">
+
+											<div class="margin_bottom">
+
+												<input type="text" value="<?php echo $consumoSusTabacocantidad; ?>" name="consumoSusTabacocantidad" maxlength="300" class="dzencf-text" placeholder="Cantidad" >
+
+											</div>
+										</div>
+
+										<div class="dzen_column_DD_span3">
+
+											<div class="margin_bottom">
+												<input type="text" value="<?php echo $consumoSusTabacoFrecuencia; ?>" name="consumoSusTabacoFrecuencia" maxlength="300" class="dzencf-text" placeholder="Frecuencia" >
+											</div>
+										</div>
+
+									</div>
+									<!-- fin -->
+
+									<!-- inicio -->
+									<h3 class="ui-accordion-header" role="tab" id="ui-accordion-1-header-12" aria-controls="ui-accordion-1-panel-12" aria-selected="false" tabindex="0"><span class="ui-accordion-header-icon"></span>
+									Cafeína</h3>
+									<div class="ui-accordion-content" id="ui-accordion-1-panel-12" aria-labelledby="ui-accordion-1-header-12" role="tabpane12" aria-expanded="false" aria-hidden="true">
+
+
+										<div class="dzen_column_DD_span4">
+
+											<div class="margin_bottom">
+												<input type="text" value="<?php echo $consumoSusCafeinaTipo; ?>" name="consumoSusCafeinaTipo" maxlength="300" class="dzencf-text" placeholder="Tipo" >
+											</div>
+										</div>
+										<div class="dzen_column_DD_span4">
+
+											<div class="margin_bottom">
+
+												<input type="text" value="<?php echo $consumoSusCafeinacocantidad; ?>" name="consumoSusCafeinacocantidad" maxlength="300" class="dzencf-text" placeholder="Cantidad" >
+
+											</div>
+										</div>
+
+										<div class="dzen_column_DD_span3">
+
+											<div class="margin_bottom">
+												<input type="text" value="<?php echo $consumoSusCafeinaFrecuencia; ?>" name="consumoSusCafeinaFrecuencia" maxlength="300" class="dzencf-text" placeholder="Frecuencia" >
+											</div>
+										</div>
+
+									</div>
+									<!-- fin -->
+
+									<!-- inicio -->
+									<h3 class="ui-accordion-header" role="tab" id="ui-accordion-1-header-12" aria-controls="ui-accordion-1-panel-12" aria-selected="false" tabindex="0"><span class="ui-accordion-header-icon"></span>
+									Otras drogas</h3>
+									<div class="ui-accordion-content" id="ui-accordion-1-panel-12" aria-labelledby="ui-accordion-1-header-12" role="tabpane12" aria-expanded="false" aria-hidden="true">
+
+
+										<div class="dzen_column_DD_span4">
+
+											<div class="margin_bottom">
+												<input type="text" value="<?php echo $consumoSusOtrasTipo; ?>" name="consumoSusOtrasTipo" maxlength="300" class="dzencf-text" placeholder="Tipo" >
+											</div>
+										</div>
+										<div class="dzen_column_DD_span4">
+
+											<div class="margin_bottom">
+
+												<input type="text" value="<?php echo $consumoSusOtrascocantidad; ?>" name="consumoSusOtrascocantidad" maxlength="300" class="dzencf-text" placeholder="Cantidad" >
+
+											</div>
+										</div>
+
+										<div class="dzen_column_DD_span3">
+
+											<div class="margin_bottom">
+												<input type="text" value="<?php echo $consumoSusOtrasFrecuencia; ?>" name="consumoSusOtrasFrecuencia" maxlength="300" class="dzencf-text" placeholder="Frecuencia" >
+											</div>
+										</div>
+
+									</div>
+									<!-- fin -->
+
+								</div>
+							</div>
+						</div>
+
+						<!-- fin componenete -->
+
+						<div>
+							Instrucciones y objetivos específicos: Este apartado nos servirá para saber qué experiencia tiene al seguir planes de Alimentación, ya sea con profesionales en el área o no, entender que técnicas y estrategias ya conoce y cuáles de ellas funcionan y cuáles no, para así aprovechar el tiempo de la mejor manera posible. 
+						</div></br>
+						<strong>Experiencia dietética previa</strong>
+						<!-- inicio desplegable -->
+						<div class="dzen_container">
+							<div class="dzen_column_DD_span11">
+								<div class="dzen-accordion" data-expanded="1" role="tablist">
+									<!-- nueva entrada -->
+									<h3 class="ui-accordion-header" role="tab" id="ui-accordion-1-header-23" aria-controls="ui-accordion-1-panel-23" aria-selected="false" tabindex="0"><span class="ui-accordion-header-icon"></span>
+									¿Dietas auto-prescritas?</h3>
+									<div class="ui-accordion-content" id="ui-accordion-1-panel-23" aria-labelledby="ui-accordion-1-header-23" role="tabpane23" aria-expanded="false" aria-hidden="true">
+
+										<div class="dzen_column_DD_span11"></div>
+										<div class="dzen_column_DD_span6">
+
+											<div class="margin_bottom">
+												<input type="text" value="<?php echo $edpduraTiempo; ?>" name="edpduraTiempo" maxlength="300" class="dzencf-text" placeholder="¿Durante cuánto tiempo?" >
+											</div>
+										</div>
+										<div class="dzen_column_DD_span4">
+
+											<div class="margin_bottom">
+
+												<input type="text" value="<?php echo $edpcuantoTiempo; ?>" name="edpcuantoTiempo" maxlength="300" class="dzencf-text" placeholder="¿Hace cuánto tiempo?" >
+
+											</div>
+										</div>
+
+
+
+
+										<div class="dzen_column_DD_span6">
+
+											<div class="margin_bottom">
+												<input type="text" value="<?php echo $edpcResulobtuvo; ?>" name="edpcResulobtuvo" maxlength="300" class="dzencf-text" placeholder="¿Qué resultados obtuvo?" >
+											</div>
+										</div>
+										<div class="dzen_column_DD_span4">
+
+											<div class="margin_bottom">
+
+												<input type="text" value="<?php echo $edpcxqAbandono; ?>" name="edpcxqAbandono" maxlength="300" class="dzencf-text" placeholder="¿Por qué abandono?" >
+
+											</div>
+										</div>
+
+
+									</div>
+									<!-- fin entrada -->
+
+
+									<!-- nueva entrada -->
+									<h3 class="ui-accordion-header" role="tab" id="ui-accordion-1-header-23" aria-controls="ui-accordion-1-panel-23" aria-selected="false" tabindex="0"><span class="ui-accordion-header-icon"></span>
+									Dietas con prescripción no profesional</h3>
+									<div class="ui-accordion-content" id="ui-accordion-1-panel-23" aria-labelledby="ui-accordion-1-header-23" role="tabpane23" aria-expanded="false" aria-hidden="true">
+
+										<div class="dzen_column_DD_span11"></div>
+										<div class="dzen_column_DD_span6">
+
+											<div class="margin_bottom">
+												<input type="text" value="<?php echo $noedpduraTiempo; ?>" name="noedpduraTiempo" maxlength="300" class="dzencf-text" placeholder="¿Durante cuánto tiempo?" >
+											</div>
+										</div>
+										<div class="dzen_column_DD_span4">
+
+											<div class="margin_bottom">
+
+												<input type="text" value="<?php echo $noedpcuantoTiempo; ?>" name="noedpcuantoTiempo" maxlength="300" class="dzencf-text" placeholder="¿Hace cuánto tiempo?" >
+
+											</div>
+										</div>
+
+
+
+
+										<div class="dzen_column_DD_span6">
+
+											<div class="margin_bottom">
+												<input type="text" value="<?php echo $noedpcResulobtuvo; ?>" name="noedpcResulobtuvo" maxlength="300" class="dzencf-text" placeholder="¿Qué resultados obtuvo?" >
+											</div>
+										</div>
+										<div class="dzen_column_DD_span4">
+
+											<div class="margin_bottom">
+
+												<input type="text" value="<?php echo $noedpcxqAbandono; ?>" name="noedpcxqAbandono" maxlength="300" class="dzencf-text" placeholder="¿Por qué abandono?" >
+
+											</div>
+										</div>
+
+
+									</div>
+									<!-- fin entrada -->
+
+									<!-- nueva entrada -->
+									<h3 class="ui-accordion-header" role="tab" id="ui-accordion-1-header-23" aria-controls="ui-accordion-1-panel-23" aria-selected="false" tabindex="0"><span class="ui-accordion-header-icon"></span>
+									Dietas con prescripción profesional </h3>
+									<div class="ui-accordion-content" id="ui-accordion-1-panel-23" aria-labelledby="ui-accordion-1-header-23" role="tabpane23" aria-expanded="false" aria-hidden="true">
+
+										<div class="dzen_column_DD_span11"></div>
+										<div class="dzen_column_DD_span6">
+
+											<div class="margin_bottom">
+												<input type="text" value="<?php echo $siedpduraTiempo; ?>" name="siedpduraTiempo" maxlength="300" class="dzencf-text" placeholder="¿Durante cuánto tiempo?" >
+											</div>
+										</div>
+										<div class="dzen_column_DD_span4">
+
+											<div class="margin_bottom">
+
+												<input type="text" value="<?php echo $siedpcuantoTiempo; ?>" name="siedpcuantoTiempo" maxlength="300" class="dzencf-text" placeholder="¿Hace cuánto tiempo?" >
+
+											</div>
+										</div>
+
+
+
+
+										<div class="dzen_column_DD_span6">
+
+											<div class="margin_bottom">
+												<input type="text" value="<?php echo $siedpcResulobtuvo; ?>" name="siedpcResulobtuvo" maxlength="300" class="dzencf-text" placeholder="¿Qué resultados obtuvo?" >
+											</div>
+										</div>
+										<div class="dzen_column_DD_span4">
+
+											<div class="margin_bottom">
+
+												<input type="text" value="<?php echo $siedpcxqAbandono; ?>" name="siedpcxqAbandono" maxlength="300" class="dzencf-text" placeholder="¿Por qué abandono?" >
+
+											</div>
+										</div>
+
+
+									</div>
+									<!-- fin entrada -->
+
+
+								</div>
+							</div>
+						</div>
+						<!-- fin desplegable -->
+						<!-- componente -->
+
+
+						<input type="submit" value="GUARDAR Y SIGUINETE " class="dzencf-submit" />
+					</form>
+				</div>
+
+				<!-- fin tab 7 -->
+				<!-- inicio tab 8 -->
+				<div id="tab-8">
+					<form action="<?php echo site_url('') ?>cuestionario/guardarInformacionCorporal" method="post" >
+
+						<!-- incio componenete -->
+						<div>
+							Instrucciones y objetivos específicos: Este apartado nos servirá para obtener los datos corporales básicos necesarios para el cálculo de sus requerimientos diarios de energía (kcal). Para obtener esta información se necesita una únicamente una báscula y un estadimetro (instrumento para medir la talla total de la persona). 
+						</div>
+						<strong>Datos antropométricos básicos</strong>
+						<br></br>
+						<input type="text" value="<?php echo $dabasiPeso; ?>" name="dabasiPeso" maxlength="300" class="dzencf-text" placeholder="Peso total (kg.g)" r>
+						<input type="text" value="<?php echo $dabasiAltura; ?>" name="dabasiAltura" maxlength="300" class="dzencf-text" placeholder="Estatura total (cm)" >
+						<div>
+							Instrucciones y objetivos específicos: Este apartado nos servirá para hacer comparaciones de su progreso a través del tiempo, pudiendo así modificar los planes de Alimentación y Entrenamiento. Para obtener esta información se necesita una báscula de Bioimpedancia o con un profesional capacitado para la realización de las mediciones antropométricas (ISAK 1)
+						</div></br>
+						<strong>Datos antropométricos especializados</strong><br>
+						<input type="text" value="<?php echo $datosAntroespgrasa; ?>" name="datosAntroespgrasa" maxlength="300" class="dzencf-text" placeholder="Grasa corporal (kg)" >
+						<input type="text" value="<?php echo $datosAntroespgrasaporce; ?>" name="datosAntroespgrasaporce" maxlength="300" class="dzencf-text" placeholder="Grasa corporal (%)" >
+						<input type="text" value="<?php echo $datosAntroespmasakg; ?>" name="datosAntroespmasakg" maxlength="300" class="dzencf-text" placeholder="Masa magra (kg)" >
+						<input type="text" value="<?php echo $datosAntroespmasaporcen; ?>" name="datosAntroespmasaporcen" maxlength="300" class="dzencf-text" placeholder="Masa magra (%)" >
+						<input type="text" value="<?php echo $datosAntroespmasapmuskg; ?>" name="datosAntroespmasapmuskg" maxlength="300" class="dzencf-text" placeholder="Masa muscular (kg)" >
+						<input type="text" value="<?php echo $datosAntroespmasapmusporcentaje; ?>" name="datosAntroespmasapmusporcentaje" maxlength="300" class="dzencf-text" placeholder="Masa muscular (%)" >
+
+						<div>
+							Instrucciones y objetivos específicos: Este apartado nos servirá para reconocer el estado actual de su condición, son fotografías de expediente, sin que se mire su rostro, de cuerpo completo, con la menor cantidad de ropa posible, para apreciar los cambios a través del tiempo inducidos por los planes de Alimentación y Entrenamiento. 
+						</div></br>
+						<strong>Fotografías de cuerpo completo</strong><br>
+
+
+						<input type="submit" value="GUARDAR Y SIGUINETE " class="dzencf-submit" />
+					</form>
+				</div>
+				<!-- fin tab 8 -->
+				<!-- inicio tab 9 -->
+				<div id="tab-9">
+					<form action="<?php echo site_url('') ?>cuestionario/guardarEstiloAlimentacion" method="post"  novalidate>
+
+						<!-- incio componenete -->
+						<div>
+							Instrucciones y objetivos específicos: Este apartado nos servirá para obtener los datos corporales básicos necesarios para el cálculo de sus requerimientos diarios de energía (kcal). Para obtener esta información se necesita una únicamente una báscula y un estadimetro (instrumento para medir la talla total de la persona). 
+						</div>
+						<strong>Datos antropométricos básicos</strong>
+						<br></br>
+
+						<!-- inicio componente -->
+						<div>
+							Instrucciones y objetivos específicos: Este apartado nos servirá para conocer actualmente cuál es su manera general de comer y así poder definir los aspectos generales de su plan de Alimentación. 
+						</div></br>
+						<strong>Patrón de alimentación</strong><br>
+						Tiempo de comida<br>
+						<!-- inicio desplegable -->
+						<div class="dzen_container">
+							<div class="dzen_column_DD_span11">
+								<div class="dzen-accordion" data-expanded="1" role="tablist">
+									<!-- nueva entrada -->
+									<h3 class="ui-accordion-header" role="tab" id="ui-accordion-1-header-23" aria-controls="ui-accordion-1-panel-23" aria-selected="false" tabindex="0"><span class="ui-accordion-header-icon"></span>
+									1° Comida</h3>
+									<div class="ui-accordion-content" id="ui-accordion-1-panel-23" aria-labelledby="ui-accordion-1-header-23" role="tabpane23" aria-expanded="false" aria-hidden="true">
+
+										<div class="dzen_column_DD_span11"></div>
+										<div class="dzen_column_DD_span6">
+
+											<div class="margin_bottom">
+												<input type="text" value="<?php echo $patronalic1h; ?>" name="patronalic1h" maxlength="300" class="dzencf-text" placeholder="Horario (hrs.min)" >
+											</div>
+										</div>
+										<div class="dzen_column_DD_span4">
+
+											<div class="margin_bottom">
+
+												<input type="text" value="<?php echo $patronalic1l; ?>" name="patronalic1l" maxlength="300" class="dzencf-text" placeholder="Ubicación (lugar)" >
+
+											</div>
+										</div>
+
+										<div class="dzen_column_DD_span6">
+
+											<div class="margin_bottom">
+												<input type="text" value="<?php echo $patronalic1d; ?>" name="patronalic1d" maxlength="300" class="dzencf-text" placeholder="Duración (min)" >
+											</div>
+										</div>
+
+									</div>
+									<!-- fin entrada -->
+									<!-- nueva entrada -->
+									<h3 class="ui-accordion-header" role="tab" id="ui-accordion-1-header-24" aria-controls="ui-accordion-1-panel-24" aria-selected="false" tabindex="0"><span class="ui-accordion-header-icon"></span>
+									2° Comida</h3>
+									<div class="ui-accordion-content" id="ui-accordion-1-panel-24" aria-labelledby="ui-accordion-1-header-24" role="tabpane24" aria-expanded="false" aria-hidden="true">
+
+										<div class="dzen_column_DD_span11"></div>
+										<div class="dzen_column_DD_span6">
+
+											<div class="margin_bottom">
+												<input type="text" value="<?php echo $patronalic2h; ?>" name="patronalic2h" maxlength="300" class="dzencf-text" placeholder="Horario (hrs.min)" >
+											</div>
+										</div>
+										<div class="dzen_column_DD_span4">
+
+											<div class="margin_bottom">
+
+												<input type="text" value="<?php echo $patronalic2l; ?>" name="patronalic2l" maxlength="300" class="dzencf-text" placeholder="Ubicación (lugar)" >
+
+											</div>
+										</div>
+
+										<div class="dzen_column_DD_span6">
+
+											<div class="margin_bottom">
+												<input type="text" value="<?php echo $patronalic2d; ?>" name="patronalic2d" maxlength="300" class="dzencf-text" placeholder="Duración (min)" >
+											</div>
+										</div>
+
+									</div>
+									<!-- fin entrada -->
+									<!-- nueva entrada -->
+									<h3 class="ui-accordion-header" role="tab" id="ui-accordion-1-header-25" aria-controls="ui-accordion-1-panel-25" aria-selected="false" tabindex="0"><span class="ui-accordion-header-icon"></span>
+									3° Comida</h3>
+									<div class="ui-accordion-content" id="ui-accordion-1-panel-25" aria-labelledby="ui-accordion-1-header-25" role="tabpane25" aria-expanded="false" aria-hidden="true">
+
+										<div class="dzen_column_DD_span11"></div>
+										<div class="dzen_column_DD_span6">
+
+											<div class="margin_bottom">
+												<input type="text" value="<?php echo $patronalic3h; ?>" name="patronalic3h" maxlength="300" class="dzencf-text" placeholder="Horario (hrs.min)" >
+											</div>
+										</div>
+										<div class="dzen_column_DD_span4">
+
+											<div class="margin_bottom">
+
+												<input type="text" value="<?php echo $patronalic3l; ?>" name="patronalic3l" maxlength="300" class="dzencf-text" placeholder="Ubicación (lugar)" >
+
+											</div>
+										</div>
+
+										<div class="dzen_column_DD_span6">
+
+											<div class="margin_bottom">
+												<input type="text" value="<?php echo $patronalic3d; ?>" name="patronalic3d" maxlength="300" class="dzencf-text" placeholder="Duración (min)" >
+											</div>
+										</div>
+
+									</div>
+									<!-- fin entrada -->
+									<!-- nueva entrada -->
+									<h3 class="ui-accordion-header" role="tab" id="ui-accordion-1-header-26" aria-controls="ui-accordion-1-panel-26" aria-selected="false" tabindex="0"><span class="ui-accordion-header-icon"></span>
+									4° Comida</h3>
+									<div class="ui-accordion-content" id="ui-accordion-1-panel-26" aria-labelledby="ui-accordion-1-header-26" role="tabpane26" aria-expanded="false" aria-hidden="true">
+
+										<div class="dzen_column_DD_span11"></div>
+										<div class="dzen_column_DD_span6">
+
+											<div class="margin_bottom">
+												<input type="text" value="<?php echo $patronalic4h; ?>" name="patronalic4h" maxlength="300" class="dzencf-text" placeholder="Horario (hrs.min)" >
+											</div>
+										</div>
+										<div class="dzen_column_DD_span4">
+
+											<div class="margin_bottom">
+
+												<input type="text" value="<?php echo $patronalic4l; ?>" name="patronalic4l" maxlength="300" class="dzencf-text" placeholder="Ubicación (lugar)" >
+
+											</div>
+										</div>
+
+										<div class="dzen_column_DD_span6">
+
+											<div class="margin_bottom">
+												<input type="text" value="<?php echo $patronalic4d; ?>" name="patronalic4d" maxlength="300" class="dzencf-text" placeholder="Duración (min)" >
+											</div>
+										</div>
+
+									</div>
+									<!-- fin entrada -->
+									<!-- nueva entrada -->
+									<h3 class="ui-accordion-header" role="tab" id="ui-accordion-1-header-27" aria-controls="ui-accordion-1-panel-27" aria-selected="false" tabindex="0"><span class="ui-accordion-header-icon"></span>
+									5° Comida</h3>
+									<div class="ui-accordion-content" id="ui-accordion-1-panel-27" aria-labelledby="ui-accordion-1-header-27" role="tabpane27" aria-expanded="false" aria-hidden="true">
+
+										<div class="dzen_column_DD_span11"></div>
+										<div class="dzen_column_DD_span6">
+
+											<div class="margin_bottom">
+												<input type="text" value="<?php echo $patronalic5h; ?>" name="patronalic5h" maxlength="300" class="dzencf-text" placeholder="Horario (hrs.min)" required="">
+											</div>
+										</div>
+										<div class="dzen_column_DD_span4">
+
+											<div class="margin_bottom">
+
+												<input type="text" value="<?php echo $patronalic5l; ?>" name="patronalic5l" maxlength="300" class="dzencf-text" placeholder="Ubicación (lugar)" required="">
+
+											</div>
+										</div>
+
+										<div class="dzen_column_DD_span6">
+
+											<div class="margin_bottom">
+												<input type="text" value="<?php echo $patronalic5d; ?>" name="patronalic5d" maxlength="300" class="dzencf-text" placeholder="Duración (min)" required="">
+											</div>
+										</div>
+
+									</div>
+									<!-- fin entrada -->
+									<!-- nueva entrada -->
+									<h3 class="ui-accordion-header" role="tab" id="ui-accordion-1-header-28" aria-controls="ui-accordion-1-panel-28" aria-selected="false" tabindex="0"><span class="ui-accordion-header-icon"></span>
+									6° Comida</h3>
+									<div class="ui-accordion-content" id="ui-accordion-1-panel-28" aria-labelledby="ui-accordion-1-header-28" role="tabpane28" aria-expanded="false" aria-hidden="true">
+
+										<div class="dzen_column_DD_span11"></div>
+										<div class="dzen_column_DD_span6">
+
+											<div class="margin_bottom">
+												<input type="text" value="<?php echo $patronalic6h; ?>" name="patronalic6h" maxlength="300" class="dzencf-text" placeholder="Horario (hrs.min)" required="">
+											</div>
+										</div>
+										<div class="dzen_column_DD_span4">
+
+											<div class="margin_bottom">
+
+												<input type="text" value="<?php echo $patronalic6l; ?>" name="patronalic6l" maxlength="300" class="dzencf-text" placeholder="Ubicación (lugar)" required="">
+
+											</div>
+										</div>
+
+										<div class="dzen_column_DD_span6">
+
+											<div class="margin_bottom">
+												<input type="text" value="<?php echo $patronalic6d; ?>" name="patronalic6d" maxlength="300" class="dzencf-text" placeholder="Duración (min)" required="">
+											</div>
+										</div>
+
+									</div>
+									<!-- fin entrada -->
+								</div>
+							</div>
+						</div>
+						<!-- fin desplegable -->
+						<!-- fin componenete -->
+						<!-- inicia contenido -->
+						<div>
+							Instrucciones y objetivos específicos: Este apartado nos servirá para conocer actualmente cuál es su manera de comer día a día y así poder definir los aspectos específicos de su plan de Alimentación. 
+						</div></br>
+						<strong>Recordatorio de alimentos de 24 horas</strong><br>
+						Tiempo de comida<br>
+						<!-- inicio desplegable -->
+						<div class="dzen_container">
+							<div class="dzen_column_DD_span11">
+								<div class="dzen-accordion" data-expanded="1" role="tablist">
+									<!-- nueva entrada -->
+									<h3 class="ui-accordion-header" role="tab" id="ui-accordion-1-header-40" aria-controls="ui-accordion-1-panel-40" aria-selected="false" tabindex="0"><span class="ui-accordion-header-icon"></span>
+									1° Comida</h3>
+									<div class="ui-accordion-content" id="ui-accordion-1-panel-40" aria-labelledby="ui-accordion-1-header-40" role="tabpane40" aria-expanded="false" aria-hidden="true">
+
+										<div class="dzen_column_DD_span11"></div>
+										<div class="dzen_column_DD_span6">
+
+											<div class="margin_bottom">
+												<input type="text" value="<?php echo $recordatorioAlimentos24hras1h; ?>" name="recordatorioAlimentos24hras1h" maxlength="300" class="dzencf-text" placeholder="¿A qué hora?" >
+											</div>
+										</div>
+										<div class="dzen_column_DD_span5">
+
+											<div class="margin_bottom">
+
+												<input type="text" value="<?php echo $ecordatorioAlimentos24hras1d; ?>" name="ecordatorioAlimentos24hras1d" maxlength="300" class="dzencf-text" placeholder="¿En dónde?" >
+
+											</div>
+										</div>
+
+										<div class="dzen_column_DD_span6">
+
+											<div class="margin_bottom">
+												<input type="text" value="<?php echo $ecordatorioAlimentos24hras1q; ?>" name="ecordatorioAlimentos24hras1q" maxlength="300" class="dzencf-text" placeholder="¿Qué comió? (tipo de alimento y bebida)" >
+											</div>
+										</div>
+										<div class="dzen_column_DD_span5">
+
+											<div class="margin_bottom">
+												<input type="text" value="<?php echo $ecordatorioAlimentos24hras1c; ?>" name="ecordatorioAlimentos24hras1c" maxlength="300" class="dzencf-text" placeholder="¿Cuándo comió? (cantidades)" >
+											</div>
+										</div>
+
+
+									</div>
+									<!-- fin entrada -->
+									<!-- nueva entrada -->
+									<h3 class="ui-accordion-header" role="tab" id="ui-accordion-1-header-41" aria-controls="ui-accordion-1-panel-41" aria-selected="false" tabindex="0"><span class="ui-accordion-header-icon"></span>
+									2° Comida</h3>
+									<div class="ui-accordion-content" id="ui-accordion-1-panel-41" aria-labelledby="ui-accordion-1-header-41" role="tabpane41" aria-expanded="false" aria-hidden="true">
+
+										<div class="dzen_column_DD_span11"></div>
+										<div class="dzen_column_DD_span6">
+
+											<div class="margin_bottom">
+												<input type="text" value="<?php echo $recordatorioAlimentos24hras2h; ?>" name="recordatorioAlimentos24hras2h" maxlength="300" class="dzencf-text" placeholder="¿A qué hora?" >
+											</div>
+										</div>
+										<div class="dzen_column_DD_span5">
+
+											<div class="margin_bottom">
+
+												<input type="text" value="<?php echo $ecordatorioAlimentos24hras2d; ?>" name="ecordatorioAlimentos24hras2d" maxlength="300" class="dzencf-text" placeholder="¿En dónde?" >
+
+											</div>
+										</div>
+
+										<div class="dzen_column_DD_span6">
+
+											<div class="margin_bottom">
+												<input type="text" value="<?php echo $ecordatorioAlimentos24hras2q; ?>" name="ecordatorioAlimentos24hras2q" maxlength="300" class="dzencf-text" placeholder="¿Qué comió? (tipo de alimento y bebida)" >
+											</div>
+										</div>
+										<div class="dzen_column_DD_span5">
+
+											<div class="margin_bottom">
+												<input type="text" value="<?php echo $ecordatorioAlimentos24hras2c; ?>" name="ecordatorioAlimentos24hras2c" maxlength="300" class="dzencf-text" placeholder="¿Cuándo comió? (cantidades)" >
+											</div>
+										</div>
+
+									</div>
+									<!-- fin entrada -->
+									<!-- nueva entrada -->
+									<h3 class="ui-accordion-header" role="tab" id="ui-accordion-1-header-42" aria-controls="ui-accordion-1-panel-42" aria-selected="false" tabindex="0"><span class="ui-accordion-header-icon"></span>
+									3° Comida</h3>
+									<div class="ui-accordion-content" id="ui-accordion-1-panel-42" aria-labelledby="ui-accordion-1-header-42" role="tabpane42" aria-expanded="false" aria-hidden="true">
+
+										<div class="dzen_column_DD_span11"></div>
+										<div class="dzen_column_DD_span6">
+
+											<div class="margin_bottom">
+												<input type="text" value="<?php echo $recordatorioAlimentos24hras3h; ?>" name="recordatorioAlimentos24hras3h" maxlength="300" class="dzencf-text" placeholder="¿A qué hora?" >
+											</div>
+										</div>
+										<div class="dzen_column_DD_span5">
+
+											<div class="margin_bottom">
+
+												<input type="text" value="<?php echo $ecordatorioAlimentos24hras3d; ?>" name="ecordatorioAlimentos24hras3d" maxlength="300" class="dzencf-text" placeholder="¿En dónde?" >
+
+											</div>
+										</div>
+
+										<div class="dzen_column_DD_span6">
+
+											<div class="margin_bottom">
+												<input type="text" value="<?php echo $ecordatorioAlimentos24hras3q; ?>" name="ecordatorioAlimentos24hras3q" maxlength="300" class="dzencf-text" placeholder="¿Qué comió? (tipo de alimento y bebida)" >
+											</div>
+										</div>
+										<div class="dzen_column_DD_span5">
+
+											<div class="margin_bottom">
+												<input type="text" value="<?php echo $ecordatorioAlimentos24hras3c; ?>" name="ecordatorioAlimentos24hras3c" maxlength="300" class="dzencf-text" placeholder="¿Cuándo comió? (cantidades)" >
+											</div>
+										</div>
+
+									</div>
+									<!-- fin entrada -->
+									<!-- nueva entrada -->
+									<h3 class="ui-accordion-header" role="tab" id="ui-accordion-1-header-43" aria-controls="ui-accordion-1-panel-43" aria-selected="false" tabindex="0"><span class="ui-accordion-header-icon"></span>
+									4° Comida</h3>
+									<div class="ui-accordion-content" id="ui-accordion-1-panel-43" aria-labelledby="ui-accordion-1-header-43" role="tabpane43" aria-expanded="false" aria-hidden="true">
+
+										<div class="dzen_column_DD_span11"></div>
+										<div class="dzen_column_DD_span6">
+
+											<div class="margin_bottom">
+												<input type="text" value="<?php echo $recordatorioAlimentos24hras4h; ?>" name="recordatorioAlimentos24hras4h" maxlength="300" class="dzencf-text" placeholder="¿A qué hora?" >
+											</div>
+										</div>
+										<div class="dzen_column_DD_span5">
+
+											<div class="margin_bottom">
+
+												<input type="text" value="<?php echo $ecordatorioAlimentos24hras4d; ?>" name="ecordatorioAlimentos24hras4d" maxlength="300" class="dzencf-text" placeholder="¿En dónde?" >
+
+											</div>
+										</div>
+
+										<div class="dzen_column_DD_span6">
+
+											<div class="margin_bottom">
+												<input type="text" value="<?php echo $ecordatorioAlimentos24hras4q; ?>" name="ecordatorioAlimentos24hras4q" maxlength="300" class="dzencf-text" placeholder="¿Qué comió? (tipo de alimento y bebida)" >
+											</div>
+										</div>
+										<div class="dzen_column_DD_span5">
+
+											<div class="margin_bottom">
+												<input type="text" value="<?php echo $ecordatorioAlimentos24hras4c; ?>" name="ecordatorioAlimentos24hras4c" maxlength="300" class="dzencf-text" placeholder="¿Cuándo comió? (cantidades)" >
+											</div>
+										</div>
+
+									</div>
+									<!-- fin entrada -->
+									<!-- nueva entrada -->
+									<h3 class="ui-accordion-header" role="tab" id="ui-accordion-1-header-44" aria-controls="ui-accordion-1-panel-44" aria-selected="false" tabindex="0"><span class="ui-accordion-header-icon"></span>
+									5° Comida</h3>
+									<div class="ui-accordion-content" id="ui-accordion-1-panel-44" aria-labelledby="ui-accordion-1-header-44" role="tabpane44" aria-expanded="false" aria-hidden="true">
+
+										<div class="dzen_column_DD_span11"></div>
+										<div class="dzen_column_DD_span6">
+
+											<div class="margin_bottom">
+												<input type="text" value="<?php echo $recordatorioAlimentos24hras5h; ?>" name="recordatorioAlimentos24hras5h" maxlength="300" class="dzencf-text" placeholder="¿A qué hora?" >
+											</div>
+										</div>
+										<div class="dzen_column_DD_span5">
+
+											<div class="margin_bottom">
+
+												<input type="text" value="<?php echo $ecordatorioAlimentos24hras5d; ?>" name="ecordatorioAlimentos24hras5d" maxlength="300" class="dzencf-text" placeholder="¿En dónde?" >
+
+											</div>
+										</div>
+
+										<div class="dzen_column_DD_span6">
+
+											<div class="margin_bottom">
+												<input type="text" value="<?php echo $ecordatorioAlimentos24hras5q; ?>" name="ecordatorioAlimentos24hras5q" maxlength="300" class="dzencf-text" placeholder="¿Qué comió? (tipo de alimento y bebida)" >
+											</div>
+										</div>
+										<div class="dzen_column_DD_span5">
+
+											<div class="margin_bottom">
+												<input type="text" value="<?php echo $ecordatorioAlimentos24hras5c; ?>" name="ecordatorioAlimentos24hras5c" maxlength="300" class="dzencf-text" placeholder="¿Cuándo comió? (cantidades)" >
+											</div>
+										</div>
+
+									</div>
+									<!-- fin entrada -->
+									<!-- nueva entrada -->
+									<h3 class="ui-accordion-header" role="tab" id="ui-accordion-1-header-45" aria-controls="ui-accordion-1-panel-45" aria-selected="false" tabindex="0"><span class="ui-accordion-header-icon"></span>
+									6° Comida</h3>
+									<div class="ui-accordion-content" id="ui-accordion-1-panel-45" aria-labelledby="ui-accordion-1-header-45" role="tabpane45" aria-expanded="false" aria-hidden="true">
+										<div class="dzen_column_DD_span11"></div>
+										<div class="dzen_column_DD_span6">
+
+											<div class="margin_bottom">
+												<input type="text" value="<?php echo $recordatorioAlimentos24hras6h; ?>" name="recordatorioAlimentos24hras6h" maxlength="300" class="dzencf-text" placeholder="¿A qué hora?" >
+											</div>
+										</div>
+										<div class="dzen_column_DD_span5">
+
+											<div class="margin_bottom">
+
+												<input type="text" value="<?php echo $ecordatorioAlimentos24hras6d; ?>" name="ecordatorioAlimentos24hras6d" maxlength="300" class="dzencf-text" placeholder="¿En dónde?" >
+
+											</div>
+										</div>
+
+										<div class="dzen_column_DD_span6">
+
+											<div class="margin_bottom">
+												<input type="text" value="<?php echo $ecordatorioAlimentos24hras6q; ?>" name="ecordatorioAlimentos24hras6q" maxlength="300" class="dzencf-text" placeholder="¿Qué comió? (tipo de alimento y bebida)" >
+											</div>
+										</div>
+										<div class="dzen_column_DD_span5">
+
+											<div class="margin_bottom">
+												<input type="text" value="<?php echo $ecordatorioAlimentos24hras6c; ?>" name="ecordatorioAlimentos24hras6c" maxlength="300" class="dzencf-text" placeholder="¿Cuándo comió? (cantidades)" >
+											</div>
+										</div>
+
+									</div>
+									<!-- fin entrada -->
+								</div>
+							</div>
+						</div>
+						<!-- fin desplegable -->
+						<!-- fin del contenido -->
+						<input type="submit" value="GUARDAR Y SIGUINETE " class="dzencf-submit" />
+					</form>
+				</div>
+
+				<!-- fin tab 9 -->
+
 
 			</div>
 
