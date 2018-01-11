@@ -12,13 +12,13 @@
 		<div class="container">
 			<div class="row">
 				<div class="span8">
-					<h1>Mensaje enviado</h1>
+					<h1>Pre-Regitro</h1>
 				</div>
 				<div class="span4 right_aligned">
 					<div class="breadcrumbs">
-						<a href="index.html">Inicios</a> 
+						<a href="#">Inicios</a> 
 						<i class="ABdev_icon-chevron-right"></i> 
-						<span class="current">Mensaje enviado
+						<span class="current">Pre-Regitro
 						</span>
 					</div>									
 				</div>
@@ -36,7 +36,9 @@
 		<header>
 			<div class="dzen_container" >
 				<br><br>
-				<h3><?php echo $mensaje?></h3>
+				<h3>¡Felicidades!,a iniciado un cambio de vida.</h3><br>
+				Nos estaremos comunicando en un momento para iniciar su plan Integral<br>
+
 					<br><br>
 
 			</div>

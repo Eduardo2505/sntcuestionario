@@ -270,6 +270,9 @@ class Cuestionario extends CI_Controller {
 		$pEVidaTipo="";
 		$pEVidaTipo2="";
 
+		$numActividad=0;
+		$dinamicoactividad="";
+
 		
 
 		if(isset($_SESSION['idcliente'])){
@@ -651,7 +654,59 @@ class Cuestionario extends CI_Controller {
 				$padExtemadamenteactivodes=$listav[20];
 				$pEVidaTipo=$listav[21];
 				$pEVidaTipo2=$listav[22];
+				$numActividad=$listav[23];
+
+
+				$activiadees= explode("&",$datos1);
+				$verSuplem1 = count($activiadees);
+				if($verSuplem1!=1){
+					
+					$verSuplemen1=$activiadees[1];
+					$cantidadSuplementosExtra1 = explode("-",$verSuplemen1);
+					$resultado1 = count($cantidadSuplementosExtra1);				
+					$numActividad=$resultado1;
+					$num=1;
+					for($i=0;$i<$resultado1;$i++){
+
+						$s1 = explode("_",$cantidadSuplementosExtra1[$i]);
+
+
+
+						$dinamicoactividad.='<div class="dzen_container">
+						<div class="dzen_column_DD_span11">
+
+						<div class="dzen_column_DD_span11"></div>
+						<div class="dzen_column_DD_span6">
+
+						<div class="margin_bottom">
+						<input type="text"  value="'.$s1[0].'" name="pEVidaTipoa'.$num.'" maxlength="300" class="dzencf-text" placeholder="Tipo de actividad diaria, Ejemplo :Despertarse por la mañana" >
+
+						</div>
+						</div>
+						<div class="dzen_column_DD_span4">
+
+						<div class="margin_bottom">
+
+						<input type="text"  value="'.$s1[1].'" name="pEVidaTipoh'.$num.'" maxlength="300" class="dzencf-text" placeholder="Horario" >
+
+						</div>
+						</div>
+
+
+
+						</div>
+						</div>';
+
+						
+
+
+						$num++;
+
+					}
+					$dinamicoactividad.= '<div id="actividad'.($num).'"></div>';
+				}
 				
+
 
 			}
 			
@@ -945,8 +1000,8 @@ class Cuestionario extends CI_Controller {
 		$data['padExtemadamenteactivodes']=$padExtemadamenteactivodes;
 		$data['pEVidaTipo']=$pEVidaTipo;
 		$data['pEVidaTipo2']=$pEVidaTipo2;
-
-		
+		$data['numActividad']=$numActividad;
+		$data['dinamicoactividad']=$dinamicoactividad;
 
 
 		$data['menu'] = $this->load->view('plantilla/menu', $datam, true);
@@ -1644,7 +1699,42 @@ class Cuestionario extends CI_Controller {
 		"|".$this->input->post('padmuyactivodes').
 		"|".$this->input->post('padExtemadamenteactivodes').
 		"|".$this->input->post('pEVidaTipo').
-		"|".$this->input->post('pEVidaTipo2');
+		"|".$this->input->post('pEVidaTipo2').
+		"|".$this->input->post('numActividad');
+
+
+		$numActividad=$this->input->post('numActividad');
+		
+		if($numActividad!=0){
+			$mensaje.="&";
+
+
+		}
+
+		
+
+		for($i=1;$i<=$numActividad;$i++){
+			
+			
+			$nuevosu=$this->input->post('pEVidaTipoa'.$i).
+			"_".$this->input->post('pEVidaTipoh'.$i);
+			$bodytag = str_replace("_","",$nuevosu);
+			if(trim($bodytag)===""){
+			}else{
+
+				if($i==1){
+
+					$mensaje.=$nuevosu;
+				}else{
+					$mensaje.="-".$nuevosu;
+				}
+				
+				
+			}
+
+			
+
+		}
 
 		
 
@@ -1658,9 +1748,51 @@ class Cuestionario extends CI_Controller {
 		$infocues = array('paso9' => $nombre_archivo);
 		$idcliente=$this->cuestionario_models->update($idclientese,$infocues);
 
-		redirect('cuestionario/preguntas', 'refresh');
+		session_destroy();
+		redirect('cuestionario/fianalizacion', 'refresh');
+		
 
 
+	}
+	public function fianalizacion()
+	{
+		$datam['activar'] ='index';
+		$data['menu'] = $this->load->view('plantilla/menu', $datam, true);
+		$this->load->view('msn',$data);
+	}
+
+	public function nuevaActividad()
+	{
+
+		$conteo = $this->input->get('conteo');
+
+		$nuevo='<div class="dzen_container">
+		<div class="dzen_column_DD_span11">
+
+		<div class="dzen_column_DD_span11"></div>
+		<div class="dzen_column_DD_span6">
+
+		<div class="margin_bottom">
+		<input type="text"  name="pEVidaTipoa'.$conteo.'" maxlength="300" class="dzencf-text" placeholder="Tipo de actividad diaria, Ejemplo :Despertarse por la mañana" >
+
+		</div>
+		</div>
+		<div class="dzen_column_DD_span4">
+
+		<div class="margin_bottom">
+
+		<input type="text"  name="pEVidaTipoh'.$conteo.'" maxlength="300" class="dzencf-text" placeholder="Horario" >
+
+		</div>
+		</div>
+
+
+
+		</div>
+		</div>
+		<div id="actividad'.($conteo+1).'">
+		</div>';
+		echo $nuevo;
 	}
 
 

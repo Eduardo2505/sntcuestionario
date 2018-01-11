@@ -2286,6 +2286,13 @@
 
 						<strong>Patrón de Estilo de vida</strong><br>
 						Tipo de actividad<hr>
+
+						<div style="text-align: right;">
+							<br>
+							<a href="#add" onclick="masActividades()" class="dzen-button dzen-button_blue dzen-button_rounded dzen-button_small" >+ Nueva Actividad</a>
+						</div>
+						<input type="hidden" name="numActividad" id="numActividad" value="<?php echo $numActividad;?>">
+						
 						<div class="dzen_container">
 							<div class="dzen_column_DD_span11">
 
@@ -2306,19 +2313,17 @@
 									</div>
 								</div>
 
-								<div class="dzen_column_DD_span1">
-
-									<div class="margin_bottom">
-										<a href="#" target="_self" class="dzen-button dzen-button_blue dzen-button_rounded dzen-button_small">+</a>
-									</div>
-								</div>
+								
 
 							</div>
 						</div>
 						<!-- fin del contenido -->
+						<div id="actividad1">
+						</div>
+						<?php echo $dinamicoactividad;?>
 
 
-						<input type="submit" value="GUARDAR Y SIGUINETE " class="dzencf-submit" />
+						<input type="submit" value="FINALIZAR " style="background-color: #25bf80" class="dzen-button  dzen-button_xlarge" />
 					</form>
 				</div>
 
@@ -2367,6 +2372,28 @@
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
+
+
+
+	function masActividades() {
+
+		var conteo=$('#numActividad').val();
+		conteo++;
+		var dataString = 'conteo='+conteo;
+
+		$.ajax({
+			type: "GET",
+			url: "<?php echo site_url('') ?>cuestionario/nuevaActividad",
+			data: dataString,
+			success: function(data) {
+				$('#actividad'+conteo).html(data);
+				$('#numActividad').val(conteo);
+				return false;
+			}
+
+		});
+	}
+
 	function masSuplemntos() {
 
 		var conteo=$('#numSuplemento').val();
@@ -2384,15 +2411,6 @@
 
 		});
 	}
-
-	
-
-
-
-
-
-	
-	
 
 	$(document).ready(function(){
 		$( '#vefarma' ).on( 'click', function() {
