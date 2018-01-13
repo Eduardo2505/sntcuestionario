@@ -1,18 +1,18 @@
 <div class="container">
 	<div id="logo">
-		<a href="https://sntcenter.com.mx/"><img src="<?php echo site_url('') ?>images/logo.png" alt="Dzen"></a>
+		<a href="<?php echo $this->config->item('url');?>"><img src="<?php echo site_url('') ?>images/logo.png" alt="Dzen"></a>
 	</div>
 	<nav>
 		<ul id="main_menu">
 
 			<li class="<?php  if($activar==="index") {echo "current-menu-item"; }?>">
-				<a href="https://sntcenter.com.mx/">Inicio</a>
+				<a href="<?php echo $this->config->item('url');?>">Inicio</a>
 			</li>
 			<li class="<?php  if($activar==="yo") {echo "current-menu-item"; }?>">
-				<a href="https://sntcenter.com.mx/quien-soy-yo">¿Quién soy ?</a>
+				<a href="<?php echo $this->config->item('url');?>quien-soy-yo">¿Quién soy ?</a>
 			</li>
 			<li class="<?php  if($activar==="planes") {echo "current-menu-item"; }?>">
-				<a href="https://sntcenter.com.mx/planes-integrales">Planes integrales</a>
+				<a href="<?php echo $this->config->item('url');?>planes-integrales">Planes integrales</a>
 				<!-- <ul>
 					<li><a href="#">Programa 1</a></li>
 					<li><a href="#">Programa 2</a></li>
@@ -20,14 +20,14 @@
 				</ul> -->
 			</li>
 			<li class="<?php  if($activar==="blog") {echo "current-menu-item"; }?>">
-			<a href="https://sntcenter.com.mx/blog/">Blog</a></li>
+			<a href="<?php echo $this->config->item('url');?>blog/">Blog</a></li>
 
 		<!-- 	<li class="<?php  if($activar==="historias") {echo "current-menu-item"; }?>">
 				<a href="#">Historias de Éxito</a>
 			</li> -->
 			
 			<li class="<?php  if($activar==="contacto") {echo "current-menu-item"; }?>">
-				<a href="https://sntcenter.com.mx/contacto">Contacto</a>
+				<a href="<?php echo $this->config->item('url');?>contacto">Contacto</a>
 			</li>
 		</ul>	
 	</nav>

@@ -1053,6 +1053,7 @@ class Cuestionario extends CI_Controller {
 			'estado' => $estado,
 			'pais' => $Pais,
 			'cp' => $cp,
+			'idsucursal'=>$this->config->item('idSucursal'),
 			'nivel_motivacion' => $nivel_motivacion,
 			'objetivo_principal' => $objetivo_principal,
 			'pedidoInicial' => $pedidoInicial
