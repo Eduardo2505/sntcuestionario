@@ -63,8 +63,8 @@ class Cuestionario extends CI_Controller {
 				$nombre=$user->nombre." ".$user->apellido;
 				$sexo="";
 				//1990-05-25
-				$ajustar = explode("-",$user->cumpleanios);
-				$fecha=$ajustar[2]."/".$ajustar[1]."/".$ajustar[0];
+				
+				$fecha=$user->cumpleanios;
 
 
 				$telefono=$user->telefono;

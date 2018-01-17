@@ -104,9 +104,8 @@
 											<?php }?>
 											
 										</select>
-										<input type="text" name="fecha"  
-										required=""  class="dzencf-text"  value="<?php echo $fecha ?>"
-										placeholder="Fecha exacta de nacimiento (día-mes-año)">
+										<input type="date" name="fecha"  
+										required=""  class="dzencf-text"  value="<?php echo $fecha ?>">
 										<input type="text" value="<?php echo $telefono ?>" name="telefono" maxlength="300" class="dzencf-text" placeholder="Télefono" required="">
 										<input type="text" value="<?php echo $WhatsApp ?>" name="WhatsApp" maxlength="300" class="dzencf-text" placeholder="WhatsApp" >
 										<input type="text" value="<?php echo $email ?>" name="email" maxlength="300" class="dzencf-text" placeholder="Correo Electrónico" required="">
