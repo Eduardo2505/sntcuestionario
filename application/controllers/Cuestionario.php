@@ -13,6 +13,15 @@ class Cuestionario extends CI_Controller {
 		$this->load->model('cuestionario_models');
 		$this->load->library('session');
 	}
+
+	public function webservice()
+	{
+		
+		$this->load->model('webservice_models');
+	    $query=$this->webservice_models->buscar(1);
+	    echo $query;
+
+	}
 	public function preguntas()
 	{
 		$datam['activar'] ='index';
