@@ -23,7 +23,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'https://sntcenter.pvessy.com/sntcuestionario';
+$config['base_url'] = 'http://sntcenter.pvessy.com/sntcuestionario';
 //$config['base_url'] = 'http://localhost/sntcuestionario/';
 
 /*
