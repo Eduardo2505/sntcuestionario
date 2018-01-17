@@ -25,6 +25,7 @@ class Webservice_models extends CI_Model {
             $webService = new PrestaShopWebservice(PS_SHOP_PATH, PS_WS_AUTH_KEY, DEBUG);
 
             $opt['resource'] = 'orders';
+            echo "Este es el id ".$id."<br>";
             $opt['id'] = $id; 
 
 
@@ -32,13 +33,13 @@ class Webservice_models extends CI_Model {
 
 
             $resources = $xml->children()->children();
-            $mensaje="";
+           
 
             if (isset($resources))
             {
 
 
-                //$user = new User();
+               echo "Entr aqui"."<br>";
 
               
 
@@ -48,12 +49,11 @@ class Webservice_models extends CI_Model {
 
                     if($key==='id_currency'){
 
-                       // $user->firstname = $resource;
-                       // 
-                       echo $key;
-                       echo $resource;
+                       // array_push($a,"id_currency",$resource);
+                       echo $key."<br>";;
+                       echo $resource."<br>";;
 
-                       $mensaje.="id_currency>>>>>>><".$resource;
+                       
                 //buscar cliente 
                         $opt['resource'] = 'customers';
                         $opt['id'] = (int)$resource;
@@ -62,7 +62,7 @@ class Webservice_models extends CI_Model {
                         foreach ($resources as $key => $resource)
                         {
                             if($key==='lastname'){
-                                $mensaje.="lastname>>>>>>><".$resource;
+                              
                                     ////array_push($a,"lastname",$resource);
 
 
@@ -174,7 +174,7 @@ class Webservice_models extends CI_Model {
 
 }
 
-return $mensaje;
+return "";
 
 }
 catch (PrestaShopWebserviceException $e)
