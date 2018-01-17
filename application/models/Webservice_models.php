@@ -32,6 +32,7 @@ class Webservice_models extends CI_Model {
 
 
             $resources = $xml->children()->children();
+            $mensaje="";
 
             if (isset($resources))
             {
@@ -39,7 +40,7 @@ class Webservice_models extends CI_Model {
 
                 //$user = new User();
 
-$mensaje="";
+              
 
                 foreach ($resources as $key => $resource)
                 {
@@ -48,8 +49,11 @@ $mensaje="";
                     if($key==='id_currency'){
 
                        // $user->firstname = $resource;
+                       // 
+                       echo $key;
+                       echo $resource;
 
-
+                       $mensaje.="id_currency>>>>>>><".$resource;
                 //buscar cliente 
                         $opt['resource'] = 'customers';
                         $opt['id'] = (int)$resource;
