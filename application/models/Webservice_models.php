@@ -10,6 +10,13 @@ class User {
     public $apellido  = "";
     public $email = "";
     public $cumpleanios = "";
+    public $pais = "";
+    public $direccion = "";
+    public $cp = "";
+    public $ciudad = "";
+    public $telefono = "";
+    public $movil = "";
+    public $referencia = "";
 }
 
 class Webservice_models extends CI_Model {
@@ -61,12 +68,12 @@ class Webservice_models extends CI_Model {
                         foreach ($resources as $key => $resource)
                         {
                             if($key==='lastname'){
-                                $user->nombre = $resource;
+                                $user->apellido = $resource;
 
                             }
                             if($key==='firstname'){
 
-                                 $user->apellido = $resource;
+                                 $user->nombre = $resource;
 
                             }
                             if($key==='email'){
@@ -87,7 +94,6 @@ class Webservice_models extends CI_Model {
                     }
 
                     if($key==='id_address_delivery'){
-                 //array_push($a,"id_address_delivery",$resource);
                 //buscar direccion
                        $opt['resource'] = 'addresses';
                        $opt['id'] = (int)$resource;
@@ -96,10 +102,6 @@ class Webservice_models extends CI_Model {
                        foreach ($resources as $key => $resource)
                        {
                         if($key==='id_country'){
-                                    //pais
-                                    //array_push($a,"id_country",$resource);
-
-
 
                            $opt['resource'] = 'countries';
                            $opt['id'] = (int)$resource;
@@ -109,7 +111,9 @@ class Webservice_models extends CI_Model {
                            {
 
                             if($key==='name'){
-                                                        //array_push($a,"name",$resource);
+
+                                 $user->pais = $resource;
+                                                        
                             }
 
 
@@ -117,9 +121,6 @@ class Webservice_models extends CI_Model {
                         }
                     }
                     if($key==='id_state'){
-                                    //municipio
-                                    //array_push($a,"id_state",$resource);
-
                        $opt['resource'] = 'states';
                        $opt['id'] = (int)$resource;
                        $xml = $webService->get($opt);
@@ -128,7 +129,7 @@ class Webservice_models extends CI_Model {
                        {
 
                         if($key==='name'){
-                                                     //array_push($a,"name",$resource);
+                          $user->municipio = $resource;
                         }
 
 
@@ -137,23 +138,23 @@ class Webservice_models extends CI_Model {
                 }
                 if($key==='address1'){
 
-                                     //array_push($a,"address1",$resource);
+                                    $user->direccion = $resource;
                 }
                 if($key==='postcode'){
 
-                                     //array_push($a,"postcode",$resource);
+                                     $user->cp = $resource;
                 }
                 if($key==='city'){
 
-                                     //array_push($a,"city",$resource);
+                                     $user->ciudad = $resource;
                 }
                 if($key==='phone'){
 
-                                     //array_push($a,"phone",$resource);
+                                      $user->telefono = $resource;
                 }
                 if($key==='phone_mobile'){
 
-                                     //array_push($a,"phone_mobile",$resource);
+                                     $user->movil = $resource;
                 }
 
 
@@ -161,6 +162,7 @@ class Webservice_models extends CI_Model {
 // fin buscar direccion 
         }
         if($key==='reference'){
+            $user->referencia = $resource;
 
                 //array_push($a,"reference",$resource);
         }
