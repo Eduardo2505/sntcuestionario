@@ -17,6 +17,8 @@ class User {
     public $telefono = "";
     public $movil = "";
     public $referencia = "";
+    public $municipio = "";
+    
 }
 
 class Webservice_models extends CI_Model {

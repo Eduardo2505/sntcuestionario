@@ -41,6 +41,14 @@ class Cliente_models extends CI_Model {
         
     }
 
+
+    function buscarEmail($email) {
+        $this->db->where('email',$email);
+        $query = $this->db->get('cliente');
+        return $query->num_rows();
+        
+    }
+
     
 
 

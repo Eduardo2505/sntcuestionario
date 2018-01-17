@@ -36,8 +36,8 @@
 		<header>
 			<div class="dzen_container" >
 				<br><br>
-				<h3>¡Felicidades! , estas  iniciado un cambio de vida.</h3><br>
-				Nos estaremos comunicando en un momento para iniciar tú plan Integral<br>
+				<h3>Ya te encuentras registrado</h3><br>
+				   Si tienes alguna duda comunícate al 378 113 0544<br>
 
 					<br><br>
 

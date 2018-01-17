@@ -14,16 +14,21 @@ class Cuestionario extends CI_Controller {
 		$this->load->library('session');
 	}
 
-	public function webservice()
-	{
-		
-		$this->load->model('webservice_models');
-	    $user=$this->webservice_models->buscar(1);
-	    echo "Este es su apellido".$user->apellido;
 
+	public function registrado()
+	{
+		$datam['activar'] ='index';
+		$data['menu'] = $this->load->view('plantilla/menu', $datam, true);
+		$this->load->view('msnRegistrado',$data);
 	}
+	
 	public function preguntas()
 	{
+
+
+
+
+
 		$datam['activar'] ='index';
 		//session_destroy();
 		// se iniciaron 
@@ -42,6 +47,40 @@ class Cuestionario extends CI_Controller {
 		$estado="";
 		$Pais="";
 		$cp="";
+
+		if(!empty($this->input->get('id'))){
+
+			$id = $this->input->get('id');
+			$this->load->model('webservice_models');
+			$user=$this->webservice_models->buscar($id);
+
+	         //verificar usuario existente
+			$count=$this->cliente_models->buscarEmail($user->email);
+
+			if($count!=0){
+
+				$pedidoInicial=$user->referencia;
+				$nombre=$user->nombre." ".$user->apellido;
+				$sexo="";
+				$fecha=date('d/m/Y',strtotime($user->cumpleanios));
+				$telefono=$user->telefono;
+				$WhatsApp=$user->movil;
+				$email=$user->email;
+				$domicio=$user->direccion;
+				//$colonia=$user->ciudad;
+				$ciudad=$user->ciudad;
+				$estado=$user->municipio;
+				$Pais=$user->pais;
+				$cp=$user->cp;
+
+			}else{
+
+				redirect('cuestionario/registrado', 'refresh');
+			}
+
+		}
+
+
 		$objetivo_principal="";
 		$nivel_motivacion="";
 		$pedidoInicial="";
@@ -168,7 +207,7 @@ class Cuestionario extends CI_Controller {
 		$supleCantidad="";
 		$dinamicov="";
 		//paso 7
-		
+
 		$cdipersoAli="";
 		$cdipersoAliporque="";
 		$cdipersoANivel="";
@@ -282,7 +321,7 @@ class Cuestionario extends CI_Controller {
 		$numActividad=0;
 		$dinamicoactividad="";
 
-		
+
 
 		if(isset($_SESSION['idcliente'])){
 
@@ -380,14 +419,14 @@ class Cuestionario extends CI_Controller {
 				$padecesprobelmas=$listav[48];
 				$dfFcar=$listav[49];
 				$dfFcarres=$listav[50];
-				
+
 			}
 
 			$cadenapaso3=$rowv->paso3;
 			if(!empty($cadenapaso3)){
 				$datos1=file_get_contents($cadenapaso3);
 				$listav = explode("|",$datos1);
-				
+
 				$pFnctipo=$listav[1];
 				$pFnchace=$listav[2];
 				$pFncCuantos=$listav[3];
@@ -410,7 +449,7 @@ class Cuestionario extends CI_Controller {
 			if(!empty($cadenapaso4)){
 				$datos1=file_get_contents($cadenapaso4);
 				$listav = explode("|",$datos1);
-				
+
 				$cuantasHorasd=$listav[1];
 				$utilizasMaPe=$listav[2];
 				$conqueHorario=$listav[3];
@@ -433,7 +472,7 @@ class Cuestionario extends CI_Controller {
 			if(!empty($cadenapaso5)){
 				$datos1=file_get_contents($cadenapaso5);
 				$listav = explode("|",$datos1);
-				
+
 				$usoFarma=$listav[1];
 				$vefarHacecuanto=$listav[2];
 				$vefarDuranteCuanto=$listav[3];
@@ -457,7 +496,7 @@ class Cuestionario extends CI_Controller {
 				$suplementos = explode("&",$datos1);
 				$verSuplem = count($suplementos);
 				if($verSuplem!=1){
-					
+
 					$verSuplemen=$suplementos[1];
 					$cantidadSuplementosExtra = explode("-",$verSuplemen);
 					$resultado = count($cantidadSuplementosExtra);
@@ -525,7 +564,7 @@ class Cuestionario extends CI_Controller {
 				}
 
 				//echo $dinamicov;
-				
+
 
 			}
 
@@ -533,7 +572,7 @@ class Cuestionario extends CI_Controller {
 			if(!empty($cadenapaso6)){
 				$datos1=file_get_contents($cadenapaso6);
 				$listav = explode("|",$datos1);
-				
+
 				$cdipersoAli=	$listav[1];
 				$cdipersoAliporque=	$listav[2];
 				$cdipersoANivel=	$listav[3];
@@ -571,7 +610,7 @@ class Cuestionario extends CI_Controller {
 			if(!empty($cadenapaso7)){
 				$datos1=file_get_contents($cadenapaso7);
 				$listav = explode("|",$datos1);
-				
+
 				$dabasiPeso=	$listav[1];
 				$dabasiAltura=	$listav[2];
 				$datosAntroespgrasa=	$listav[3];
@@ -586,7 +625,7 @@ class Cuestionario extends CI_Controller {
 			if(!empty($cadenapaso8)){
 				$datos1=file_get_contents($cadenapaso8);
 				$listav = explode("|",$datos1);
-				
+
 				$patronalic1h=	$listav[1];
 				$patronalic1l=	$listav[2];
 				$patronalic1d=	$listav[3];
@@ -669,7 +708,7 @@ class Cuestionario extends CI_Controller {
 				$activiadees= explode("&",$datos1);
 				$verSuplem1 = count($activiadees);
 				if($verSuplem1!=1){
-					
+
 					$verSuplemen1=$activiadees[1];
 					$cantidadSuplementosExtra1 = explode("-",$verSuplemen1);
 					$resultado1 = count($cantidadSuplementosExtra1);				
@@ -706,7 +745,7 @@ class Cuestionario extends CI_Controller {
 						</div>
 						</div>';
 
-						
+
 
 
 						$num++;
@@ -714,15 +753,15 @@ class Cuestionario extends CI_Controller {
 					}
 					$dinamicoactividad.= '<div id="actividad'.($num).'"></div>';
 				}
-				
+
 
 
 			}
-			
+
 
 		}else{
 			if (!empty($this->input->get('pedidoInicial'))) {
-				
+
 				$pedidoInicial=$this->input->get('pedidoInicial');
 				$query=$this->cliente_models->buscar($pedidoInicial);
 				$row = $query->row();
@@ -743,7 +782,7 @@ class Cuestionario extends CI_Controller {
 				$nivel_motivacion=$row->nivel_motivacion;
 				$objetivo_principal=$row->objetivo_principal;
 
-				
+
 
 
 			}
@@ -768,7 +807,7 @@ class Cuestionario extends CI_Controller {
 		$data['pedidoInicial']=$pedidoInicial;
 // paso 2 
 
-		
+
 		$data['nivelEducativo']=$nivelEducativo;
 		$data['actividadLaboral']=$actividadLaboral;
 		$data['nivelSocioeconomico']=$nivelSocioeconomico;
@@ -1021,7 +1060,7 @@ class Cuestionario extends CI_Controller {
 		$resultado = count($varv);
 		$data['seleccionPestalla']=$resultado;
 //echo $resultado;
-		$this->load->view('formulario',$data);
+		//$this->load->view('formulario',$data);
 	}
 
 
@@ -1123,7 +1162,7 @@ class Cuestionario extends CI_Controller {
 		redirect('cuestionario/preguntas', 'refresh');
 
 
-		
+
 
 	}
 
@@ -1206,7 +1245,7 @@ class Cuestionario extends CI_Controller {
 	public function guardarHistorias()
 	{
 
-		
+
 
 		$idclientese = $this->session->idcliente;
 		$vertebraCuantotiempo = $this->input->post('vertebraCuantotiempo');
@@ -1286,9 +1325,9 @@ class Cuestionario extends CI_Controller {
 		"|".$this->input->post('dfFcar').
 		"|".$this->input->post('dfFcarres');
 
-		
 
-		
+
+
 
 
 
@@ -1307,7 +1346,7 @@ class Cuestionario extends CI_Controller {
 	public function guardarExperiencia()
 	{
 
-		
+
 
 		$idclientese = $this->session->idcliente;
 
@@ -1332,7 +1371,7 @@ class Cuestionario extends CI_Controller {
 		"|".$this->input->post('utilizasMaPe').
 		"|".$this->input->post('utilizasClases');
 
-		
+
 
 
 
@@ -1351,7 +1390,7 @@ class Cuestionario extends CI_Controller {
 	public function guardarObjertivos()
 	{
 
-		
+
 
 		$idclientese = $this->session->idcliente;
 
@@ -1392,7 +1431,7 @@ class Cuestionario extends CI_Controller {
 	public function guardarSuplementos()
 	{
 
-		
+
 
 		$idclientese = $this->session->idcliente;
 
@@ -1418,21 +1457,21 @@ class Cuestionario extends CI_Controller {
 		"|".$this->input->post('supleTiempo').
 		"|".$this->input->post('supleCantidad').
 		"|".$this->input->post('numSuplemento');
-		
+
 
 		$valorSuplemne=$this->input->post('numSuplemento');
-		
+
 		if($valorSuplemne!=0){
 			$mensaje.="&";
 
 
 		}
 
-		
+
 
 		for($i=1;$i<=$valorSuplemne;$i++){
-			
-			
+
+
 			$nuevosu=$this->input->post('suple'.$i.'Nombre').
 			"_".$this->input->post('suple'.$i.'Caracteristicas').
 			"_".$this->input->post('suple'.$i.'Motivo').
@@ -1448,16 +1487,16 @@ class Cuestionario extends CI_Controller {
 				}else{
 					$mensaje.="-".$nuevosu;
 				}
-				
-				
+
+
 			}
 
-			
+
 
 		}
 
 
-		
+
 
 		$file = fopen($nombre_archivo, "w");
 		fwrite($file, $mensaje);
@@ -1540,7 +1579,7 @@ class Cuestionario extends CI_Controller {
 	public function guardarExperienciaDiatetica()
 	{
 
-		
+
 
 		$idclientese = $this->session->idcliente;
 
@@ -1581,7 +1620,7 @@ class Cuestionario extends CI_Controller {
 		"|".$this->input->post('siedpcxqAbandono');
 
 
-		
+
 
 
 
@@ -1600,7 +1639,7 @@ class Cuestionario extends CI_Controller {
 	public function guardarInformacionCorporal()
 	{
 
-		
+
 
 		$idclientese = $this->session->idcliente;
 
@@ -1635,7 +1674,7 @@ class Cuestionario extends CI_Controller {
 	public function guardarEstiloAlimentacion()
 	{
 
-		
+
 
 		$idclientese = $this->session->idcliente;
 
@@ -1646,14 +1685,14 @@ class Cuestionario extends CI_Controller {
 
 
 		for($i=1;$i<7;$i++){
-			
+
 			$mensaje.="|".$this->input->post('patronalic'.$i.'h').
 			"|".$this->input->post('patronalic'.$i.'l').
 			"|".$this->input->post('patronalic'.$i.'d');
 		}
 
 		for($i=1;$i<7;$i++){
-			
+
 			$mensaje.="|".$this->input->post('recordatorioAlimentos24hras'.$i.'h').
 			"|".$this->input->post('ecordatorioAlimentos24hras'.$i.'d').
 			"|".$this->input->post('ecordatorioAlimentos24hras'.$i.'q').
@@ -1661,7 +1700,7 @@ class Cuestionario extends CI_Controller {
 		}
 
 
-		
+
 
 
 		$file = fopen($nombre_archivo, "w");
@@ -1680,7 +1719,7 @@ class Cuestionario extends CI_Controller {
 	public function guardarEstilo()
 	{
 
-		
+
 
 		$idclientese = $this->session->idcliente;
 
@@ -1714,18 +1753,18 @@ class Cuestionario extends CI_Controller {
 
 
 		$numActividad=$this->input->post('numActividad');
-		
+
 		if($numActividad!=0){
 			$mensaje.="&";
 
 
 		}
 
-		
+
 
 		for($i=1;$i<=$numActividad;$i++){
-			
-			
+
+
 			$nuevosu=$this->input->post('pEVidaTipoa'.$i).
 			"_".$this->input->post('pEVidaTipoh'.$i);
 			$bodytag = str_replace("_","",$nuevosu);
@@ -1738,15 +1777,15 @@ class Cuestionario extends CI_Controller {
 				}else{
 					$mensaje.="-".$nuevosu;
 				}
-				
-				
+
+
 			}
 
-			
+
 
 		}
 
-		
+
 
 
 
@@ -1760,7 +1799,7 @@ class Cuestionario extends CI_Controller {
 
 		session_destroy();
 		redirect('cuestionario/fianalizacion', 'refresh');
-		
+
 
 
 	}
