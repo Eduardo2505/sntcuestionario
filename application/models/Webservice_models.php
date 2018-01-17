@@ -37,9 +37,9 @@ class Webservice_models extends CI_Model {
             {
 
 
-                $user = new User();
+                //$user = new User();
 
-
+$mensaje="";
 
                 foreach ($resources as $key => $resource)
                 {
@@ -47,7 +47,7 @@ class Webservice_models extends CI_Model {
 
                     if($key==='id_currency'){
 
-                        $user->firstname = $resource;
+                       // $user->firstname = $resource;
 
 
                 //buscar cliente 
@@ -58,6 +58,7 @@ class Webservice_models extends CI_Model {
                         foreach ($resources as $key => $resource)
                         {
                             if($key==='lastname'){
+                                $mensaje.="lastname>>>>>>><".$resource;
                                     ////array_push($a,"lastname",$resource);
 
 
@@ -169,13 +170,15 @@ class Webservice_models extends CI_Model {
 
 }
 
+return $mensaje;
+
 }
 catch (PrestaShopWebserviceException $e)
 {
  return $e->getMessage();
 }
 
-return "Hola";
+
 
 }
 
