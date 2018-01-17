@@ -1060,7 +1060,7 @@ class Cuestionario extends CI_Controller {
 		$resultado = count($varv);
 		$data['seleccionPestalla']=$resultado;
 //echo $resultado;
-		//$this->load->view('formulario',$data);
+		$this->load->view('formulario',$data);
 	}
 
 
