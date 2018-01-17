@@ -65,6 +65,8 @@ class Cuestionario extends CI_Controller {
 				//1990-05-25
 				$ajustar = explode("-",$user->cumpleanios);
 				$fecha=$ajustar[2]."/".$ajustar[1]."/".$ajustar[0];
+
+				echo $fecha;
 				$telefono=$user->telefono;
 				$WhatsApp=$user->movil;
 				$email=$user->email;
@@ -1062,7 +1064,7 @@ class Cuestionario extends CI_Controller {
 		$resultado = count($varv);
 		$data['seleccionPestalla']=$resultado;
 //echo $resultado;
-	   $this->load->view('formulario',$data);
+	   //$this->load->view('formulario',$data);
 	}
 
 
