@@ -1,1 +1,1 @@
-1|1|1|1|1|2|2|2|2|SI|SI|Intructor de piso|1|1|1|Máquina|1
+1|||||||||SI|SI||||||
