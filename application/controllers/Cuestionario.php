@@ -66,7 +66,7 @@ class Cuestionario extends CI_Controller {
 				$ajustar = explode("-",$user->cumpleanios);
 				$fecha=$ajustar[2]."/".$ajustar[1]."/".$ajustar[0];
 
-				echo $fecha;
+
 				$telefono=$user->telefono;
 				$WhatsApp=$user->movil;
 				$email=$user->email;
@@ -794,7 +794,9 @@ class Cuestionario extends CI_Controller {
 		}
 		$data['nombre']=$nombre;
 		$data['sexo']=$sexo;
+
 		$data['fecha']=$fecha;
+		echo ">>>>>><".$fecha;
 		$data['telefono']=$telefono;
 		$data['WhatsApp']=$WhatsApp;
 		$data['email']=$email;
