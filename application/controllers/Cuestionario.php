@@ -18,8 +18,8 @@ class Cuestionario extends CI_Controller {
 	{
 		
 		$this->load->model('webservice_models');
-	    $query=$this->webservice_models->buscar(1);
-	    echo $query;
+	    $user=$this->webservice_models->buscar(1);
+	    echo "Este es su apellido".$user->apellido;
 
 	}
 	public function preguntas()

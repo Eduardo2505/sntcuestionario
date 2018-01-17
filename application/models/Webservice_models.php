@@ -5,6 +5,13 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
+class User {
+    public $nombre = "";
+    public $apellido  = "";
+    public $email = "";
+    public $cumpleanios = "";
+}
+
 class Webservice_models extends CI_Model {
 
     function __construct() {
@@ -19,13 +26,10 @@ class Webservice_models extends CI_Model {
         define('PS_WS_AUTH_KEY', 'ILTWHBCKAQUNZT4SD76R6PRB2UAWHS6M');   
         define('_PS_MODE_DEV_', true);
         require_once(APPPATH.'libraries/PSWebServiceLibrary.php');
-
         try
         {
             $webService = new PrestaShopWebservice(PS_SHOP_PATH, PS_WS_AUTH_KEY, DEBUG);
-
             $opt['resource'] = 'orders';
-            echo "Este es el id ".$id."<br>";
             $opt['id'] = $id; 
 
 
@@ -37,10 +41,10 @@ class Webservice_models extends CI_Model {
 
             if (isset($resources))
             {
+              $user = new User();
 
 
-               echo "Entr aqui"."<br>";
-
+              
               
 
                 foreach ($resources as $key => $resource)
@@ -48,11 +52,6 @@ class Webservice_models extends CI_Model {
             // Iterates on customer's properties
 
                     if($key==='id_currency'){
-
-                       // array_push($a,"id_currency",$resource);
-                       echo $key.">>>>>>>>>>><";;
-                       echo $resource."<br>";
-
                        
                 //buscar cliente 
                         $opt['resource'] = 'customers';
@@ -62,26 +61,21 @@ class Webservice_models extends CI_Model {
                         foreach ($resources as $key => $resource)
                         {
                             if($key==='lastname'){
-
-                                echo $key.">>>>>>>>>";;
-                                echo $resource."<br>";
-                              
-                                    ////array_push($a,"lastname",$resource);
-
+                                $user->nombre = $resource;
 
                             }
                             if($key==='firstname'){
 
-                                    //array_push($a,"firstname",$resource);
+                                 $user->apellido = $resource;
 
                             }
                             if($key==='email'){
 
-                                    //array_push($a,"email",$resource);
+                                   $user->email = $resource;
 
                             }
                             if($key==='birthday'){
-                                    //array_push($a,"birthday",$resource);
+                                    $user->cumpleanios = $resource;
 
                             }
 
@@ -177,7 +171,7 @@ class Webservice_models extends CI_Model {
 
 }
 
-return "";
+return $user;
 
 }
 catch (PrestaShopWebserviceException $e)
