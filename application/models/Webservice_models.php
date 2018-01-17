@@ -50,8 +50,8 @@ class Webservice_models extends CI_Model {
                     if($key==='id_currency'){
 
                        // array_push($a,"id_currency",$resource);
-                       echo $key."<br>";;
-                       echo $resource."<br>";;
+                       echo $key.">>>>>>>>>>><";;
+                       echo $resource."<br>";
 
                        
                 //buscar cliente 
@@ -62,6 +62,9 @@ class Webservice_models extends CI_Model {
                         foreach ($resources as $key => $resource)
                         {
                             if($key==='lastname'){
+
+                                echo $key.">>>>>>>>>";;
+                                echo $resource."<br>";
                               
                                     ////array_push($a,"lastname",$resource);
 
