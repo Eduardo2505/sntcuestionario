@@ -114,6 +114,8 @@ class Webservice_models extends CI_Model {
 
                             if($key==='name'){
 
+                                echo "Pais".$resource;
+
                                  $user->pais = $resource;
                                                         
                             }
