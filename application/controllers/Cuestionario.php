@@ -55,7 +55,11 @@ class Cuestionario extends CI_Controller {
 			$user=$this->webservice_models->buscar($id);
 
 	         //verificar usuario existente
-			$count=$this->cliente_models->buscarEmail($user->email);
+	        $emailbuscar=$user->email;
+	        echo $emailbuscar."<br>";
+			$count=$this->cliente_models->buscarEmail($emailbuscar);
+
+			  echo $count."<br>";
 
 			if($count!=0){
 
@@ -1067,7 +1071,7 @@ class Cuestionario extends CI_Controller {
 		$varv=explode('-',$var);
 		$resultado = count($varv);
 		$data['seleccionPestalla']=$resultado;
-	    $this->load->view('formulario',$data);
+	    //$this->load->view('formulario',$data);
 	}
 
 
