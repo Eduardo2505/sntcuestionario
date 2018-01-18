@@ -56,12 +56,12 @@ class Cuestionario extends CI_Controller {
 
 	         //verificar usuario existente
 	        $emailbuscar=$user->email;
-	        echo $emailbuscar."<br>";
+	     
 			$count=$this->cliente_models->buscarEmail($emailbuscar);
 
-			  echo $count."<br>";
+			 
 
-			if($count!=0){
+			if($count==0){
 
 				$pedidoInicial=$user->referencia;
 
@@ -85,7 +85,7 @@ class Cuestionario extends CI_Controller {
 
 			}else{
 
-				//redirect('cuestionario/registrado', 'refresh');
+				redirect('cuestionario/registrado', 'refresh');
 			}
 
 		}
@@ -1071,7 +1071,7 @@ class Cuestionario extends CI_Controller {
 		$varv=explode('-',$var);
 		$resultado = count($varv);
 		$data['seleccionPestalla']=$resultado;
-	    //$this->load->view('formulario',$data);
+	    $this->load->view('formulario',$data);
 	}
 
 
