@@ -106,8 +106,6 @@ class Webservice_models extends CI_Model {
                         if($key==='id_country'){
 
                            $opt['resource'] = 'countries';
-                           echo "$key".$key;
-                           echo "idPais".$resource;
                            $opt['id'] = (int)$resource;
                            $xml = $webService->get($opt);
                            $resources = $xml->children()->children();
@@ -115,12 +113,10 @@ class Webservice_models extends CI_Model {
                            {
 
                             if($key==='name'){
-                                 echo "$key".$key;
-                                 echo "name".$resource;
 
-                                echo "Pais".$resource;
+                                $resourcessx = $resource->children();
 
-                                 $user->pais = $resource;
+                                 $user->pais = $resourcessx;
                                                         
                             }
 
