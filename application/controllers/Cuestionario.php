@@ -62,6 +62,8 @@ class Cuestionario extends CI_Controller {
 				$pedidoInicial=$user->referencia;
 				$nombre=$user->nombre." ".$user->apellido;
 				$sexo=$user->genero;
+
+				echo $sexo;
 				//1990-05-25
 				
 				$fecha=$user->cumpleanios;
@@ -1428,7 +1430,7 @@ class Cuestionario extends CI_Controller {
 		$infocues = array('paso4' => $nombre_archivo);
 		$idcliente=$this->cuestionario_models->update($idclientese,$infocues);
 
-		redirect('cuestionario/preguntas', 'refresh');
+		//redirect('cuestionario/preguntas', 'refresh');
 
 
 	}
