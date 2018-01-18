@@ -62,10 +62,8 @@ class Cuestionario extends CI_Controller {
 				$pedidoInicial=$user->referencia;
 				$nombre=$user->nombre." ".$user->apellido;
 				$sexo=$user->genero;
-
-				echo $sexo;
 				//1990-05-25
-				
+				echo "Sexo>>>>>>>>><".$sexo."Controller <br>"
 				$fecha=$user->cumpleanios;
 
 
@@ -1067,7 +1065,7 @@ class Cuestionario extends CI_Controller {
 		$varv=explode('-',$var);
 		$resultado = count($varv);
 		$data['seleccionPestalla']=$resultado;
-	    $this->load->view('formulario',$data);
+	    //$this->load->view('formulario',$data);
 	}
 
 
@@ -1430,7 +1428,7 @@ class Cuestionario extends CI_Controller {
 		$infocues = array('paso4' => $nombre_archivo);
 		$idcliente=$this->cuestionario_models->update($idclientese,$infocues);
 
-		//redirect('cuestionario/preguntas', 'refresh');
+		redirect('cuestionario/preguntas', 'refresh');
 
 
 	}
