@@ -61,7 +61,7 @@ class Cuestionario extends CI_Controller {
 
 				$pedidoInicial=$user->referencia;
 				$nombre=$user->nombre." ".$user->apellido;
-				$sexo="";
+				$sexo=$user->genero;
 				//1990-05-25
 				
 				$fecha=$user->cumpleanios;

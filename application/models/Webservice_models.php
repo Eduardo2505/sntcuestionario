@@ -18,6 +18,7 @@ class User {
     public $movil = "";
     public $referencia = "";
     public $municipio = "";
+    public $genero = "";
     
 }
 
@@ -87,6 +88,16 @@ class Webservice_models extends CI_Model {
                                     $user->cumpleanios = $resource;
 
                             }
+                            if($key==='optin'){
+                                if($resource==0){
+                                     $user->genero='Mujer';
+                                }else{
+                                    $user->genero='Hombre';
+                                }
+                                
+
+                            }
+                            
 
 
                         }
