@@ -75,8 +75,6 @@ class Cuestionario extends CI_Controller {
 				$ciudad=$user->ciudad;
 				$estado=$user->municipio;
 				$Pais=$user->pais;
-
-				echo $Pais;
 				$cp=$user->cp;
 
 			}else{
@@ -1067,7 +1065,7 @@ class Cuestionario extends CI_Controller {
 		$varv=explode('-',$var);
 		$resultado = count($varv);
 		$data['seleccionPestalla']=$resultado;
-	   //$this->load->view('formulario',$data);
+	    $this->load->view('formulario',$data);
 	}
 
 
