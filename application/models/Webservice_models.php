@@ -61,7 +61,7 @@ class Webservice_models extends CI_Model {
                 {
             // Iterates on customer's properties
 
-                    if($key==='id_currency'){
+                    if($key==='id_customer'){
                        
                 //buscar cliente 
                         $opt['resource'] = 'customers';
