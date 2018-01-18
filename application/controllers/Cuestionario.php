@@ -60,11 +60,12 @@ class Cuestionario extends CI_Controller {
 			if($count!=0){
 
 				$pedidoInicial=$user->referencia;
-				echo "retorno>>>>>>>>><".$user->nombre." ".$user->apellido."Controller <br>";
+
 				$nombre=$user->nombre." ".$user->apellido;
+				echo "Nombre>>>".$nombre."<br>";
 				$sexo=$user->generov;
 				
-				echo "retorno>>>>>>>>><".$user->generov."Controller <br>";
+				echo "sexo>>>".$sexo."<br>";
 				$fecha=$user->cumpleanios;
 
 

@@ -92,10 +92,10 @@ class Webservice_models extends CI_Model {
 
                                 if($resource==0){
                                      $user->generov="Mujer";
-                                      echo "Entro a Mujer <br>";
+                                     
                                 }else{
                                      $user->generov="Hombre";
-                                      echo "Entro a Hombre <br>";
+                                    
                                 }
                                 
 
@@ -192,7 +192,7 @@ class Webservice_models extends CI_Model {
 
 }
 
- echo "deberia de rede .".$user->generov;
+
 
 return $user;
 
