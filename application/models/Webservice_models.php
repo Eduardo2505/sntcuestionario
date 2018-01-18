@@ -18,7 +18,7 @@ class User {
     public $movil = "";
     public $referencia = "";
     public $municipio = "";
-    public $genero = "";
+    public $generov = "";
     
 }
 
@@ -91,10 +91,10 @@ class Webservice_models extends CI_Model {
                             if($key==='optin'){
 
                                 if($resource==0){
-                                     $user->genero="Mujer";
+                                     $user->generov="Mujer";
                                       echo "Entro a Mujer <br>";
                                 }else{
-                                     $user->genero="Hombre";
+                                     $user->generov="Hombre";
                                       echo "Entro a Hombre <br>";
                                 }
                                 
@@ -192,7 +192,7 @@ class Webservice_models extends CI_Model {
 
 }
 
- echo "deberia de rede .".$user->genero;
+ echo "deberia de rede .".$user->generov;
 
 return $user;
 
