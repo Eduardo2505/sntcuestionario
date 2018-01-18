@@ -89,11 +89,13 @@ class Webservice_models extends CI_Model {
 
                             }
                             if($key==='optin'){
-                                echo $resource."<br>";
+
                                 if($resource==0){
                                      $user->genero='Mujer';
+                                      echo "Entro a Mujer <br>";
                                 }else{
-                                    $user->genero='Hombre';
+                                     $user->genero='Hombre';
+                                      echo "Entro a Hombre <br>";
                                 }
                                 
 
