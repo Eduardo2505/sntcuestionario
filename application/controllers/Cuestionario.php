@@ -85,7 +85,7 @@ class Cuestionario extends CI_Controller {
 
 			}else{
 
-				redirect('cuestionario/registrado', 'refresh');
+				//redirect('cuestionario/registrado', 'refresh');
 			}
 
 		}
