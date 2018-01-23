@@ -70,12 +70,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | The $query_builder variables lets you determine whether or not to load
 | the query builder class.
 */
+//IP SERvidor 35.192.234.255
 $active_group = 'default';
 $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost',
+	'hostname' => '35.192.234.255',
 	'username' => 'root',
 	'password' => 'seiter',
 	'database' => 'sntcenter_db',
