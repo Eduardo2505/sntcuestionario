@@ -93,14 +93,14 @@
 
 										<select name="sexo" class="dzencf-text" required="">
 											<option value="">Seleccione Género</option>
-											<?php  if($sexo==='Mujer') {?>
-											<option value="Mujer" selected="selected">Mujer</option>
+											<?php  if($sexo===0) {?>
+											<option value="0" selected="selected">Mujer</option>
 											<?php }else{?>
-											<option value="Mujer" >Mujer</option>
-											<?php } if($sexo==='Hombre') { ?>
-											<option value="Hombre" selected="selected">Hombre</option>
+											<option value="0" >Mujer</option>
+											<?php } if($sexo===1) { ?>
+											<option value="1" selected="selected">Hombre</option>
 											<?php }else{?>
-											<option value="Hombre" >Hombre</option>
+											<option value="1" >Hombre</option>
 											<?php }?>
 											
 										</select>
