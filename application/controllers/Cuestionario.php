@@ -93,7 +93,7 @@ class Cuestionario extends CI_Controller {
 
 				$pedidoInicial=$user->referencia;
 				$nombre=$user->nombre." ".$user->apellido;
-				$sexo=$user->generov;
+				//$sexo=$user->generov;
 				$fecha=$user->cumpleanios;
 				$telefono=$user->telefono;
 				$WhatsApp=$user->movil;
@@ -1093,7 +1093,7 @@ class Cuestionario extends CI_Controller {
 		$varv=explode('-',$var);
 		$resultado = count($varv);
 		$data['seleccionPestalla']=$resultado;
-	   // $this->load->view('formulario',$data);
+	    $this->load->view('formulario',$data);
 	}
 
 
