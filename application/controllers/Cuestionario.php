@@ -1192,7 +1192,7 @@ class Cuestionario extends CI_Controller {
 		$infocues = array('paso1' => $nombre_archivo);
 		$idcliente=$this->cuestionario_models->update($idclientese,$infocues);
 
-		//redirect('cuestionario/preguntas', 'refresh');
+		redirect('cuestionario/preguntas', 'refresh');
 
 
 
