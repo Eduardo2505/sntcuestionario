@@ -21,7 +21,35 @@ class Cuestionario extends CI_Controller {
 		$data['menu'] = $this->load->view('plantilla/menu', $datam, true);
 		$this->load->view('msnRegistrado',$data);
 	}
-	
+	public function preguntasDemo()
+	{
+
+            $id = $this->input->get('id');
+			$this->load->model('webservice_models');
+			$user=$this->webservice_models->buscar($id);
+			print_r ($user);
+			$pedidoInicial=$user->referencia;
+
+				$nombre=$user->nombre." ".$user->apellido;
+				
+				$sexo=$user->generov;
+
+				echo $sexo;
+				
+				
+				$fecha=$user->cumpleanios;
+
+
+				$telefono=$user->telefono;
+				$WhatsApp=$user->movil;
+				$email=$user->email;
+				$domicio=$user->direccion;
+				//$colonia=$user->ciudad;
+				$ciudad=$user->ciudad;
+				$estado=$user->municipio;
+				$Pais=$user->pais;
+				$cp=$user->cp;
+	}
 	public function preguntas()
 	{
 
@@ -64,17 +92,9 @@ class Cuestionario extends CI_Controller {
 			if($count==0){
 
 				$pedidoInicial=$user->referencia;
-
 				$nombre=$user->nombre." ".$user->apellido;
-				
 				$sexo=$user->generov;
-
-				echo $sexo;
-				
-				
 				$fecha=$user->cumpleanios;
-
-
 				$telefono=$user->telefono;
 				$WhatsApp=$user->movil;
 				$email=$user->email;
