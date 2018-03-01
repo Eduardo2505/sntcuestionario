@@ -30,8 +30,9 @@ class Cuestionario extends CI_Controller {
 		foreach ($resources as $resource)
 		{
 
-			//echo 'IDPEDIDOS: '.$resource->attributes().'<br>';
-			$cantidad=$this->webservice_models->detalleCompra($resource->attributes());
+			echo 'IDPEDIDOS: '.$resource->attributes().'';
+			$idCliente=$this->webservice_models->detalleCompra($resource->attributes());
+			echo 'IDcliente '.$idCliente.'<br>';
 		}
         //echo '<br>Busqueda mediente idPedido<br>';
 		//$cantidad=$this->webservice_models->detalleCompra($id);

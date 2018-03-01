@@ -65,6 +65,7 @@ class Webservice_models extends CI_Model {
 			$opt['id'] = $idCompra; 
 			$xml = $this->webService->get($opt);
 			$resources = $xml->children()->children();
+			$idCliente=0;
 			if (isset($resources))
 			{
 				foreach ($resources as $key => $resource)
@@ -72,10 +73,12 @@ class Webservice_models extends CI_Model {
 
 					if($key==='id_customer'){
 						$idCliente=(int)$resource;
-						echo 'idCompra: '.$idCompra.' Este es el idCLiente : '.$idCliente.'<br>';
+						//echo 'idCompra: '.$idCompra.' Este es el idCLiente : '.$idCliente.'<br>';
 
 					}
 				}
+
+				return $idCliente;
 
 			}
 
