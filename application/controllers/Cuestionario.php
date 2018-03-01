@@ -25,7 +25,7 @@ class Cuestionario extends CI_Controller {
 	public function historialCompras()
 	{
 
-		$id = $this->input->get('id');
+		$id = $this->input->get('id');//ID CLiente
 		$this->load->model('webservice_models');
 		$resources=$this->webservice_models->buscarCompras();
 		$cantidaCompras=0;
@@ -36,9 +36,6 @@ class Cuestionario extends CI_Controller {
 			$validarPedidos=$this->webservice_models->detalleCompra($resource->attributes());
 			$idCliente=$validarPedidos->idCliente;
 			$valido=$validarPedidos->valido;
-			echo 'idCliente '.$idCliente;
-			echo '     =*valido '.$valido.'<br>';
-
 			if($idCliente==$id and $valido==1){
 				$cantidaCompras++;
 
