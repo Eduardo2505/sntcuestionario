@@ -27,15 +27,16 @@ class Webservice_models extends CI_Model {
 
 	function __construct() {
 		parent::__construct();
-
-	}
-
-	function buscarCompras() {
 		define('DEBUG', false);                                         
 		define('PS_SHOP_PATH', 'https://sntcenter.com.mx/planes/');     
 		define('PS_WS_AUTH_KEY', 'ILTWHBCKAQUNZT4SD76R6PRB2UAWHS6M');   
 		define('_PS_MODE_DEV_', true);
 		require_once(APPPATH.'libraries/PSWebServiceLibrary.php');
+
+	}
+
+	function buscarCompras() {
+		
 		try
 		{
 			$webService = new PrestaShopWebservice(PS_SHOP_PATH, PS_WS_AUTH_KEY, DEBUG);
@@ -56,11 +57,6 @@ class Webservice_models extends CI_Model {
 	}
 
 	function detalleCompra($idCompra) {
-		define('DEBUG', false);                                         
-		define('PS_SHOP_PATH', 'https://sntcenter.com.mx/planes/');     
-		define('PS_WS_AUTH_KEY', 'ILTWHBCKAQUNZT4SD76R6PRB2UAWHS6M');   
-		define('_PS_MODE_DEV_', true);
-		require_once(APPPATH.'libraries/PSWebServiceLibrary.php');
 		try
 		{
 			$webService = new PrestaShopWebservice(PS_SHOP_PATH, PS_WS_AUTH_KEY, DEBUG);
