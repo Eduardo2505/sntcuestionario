@@ -21,7 +21,8 @@ class Cuestionario extends CI_Controller {
 		$data['menu'] = $this->load->view('plantilla/menu', $datam, true);
 		$this->load->view('msnRegistrado',$data);
 	}
-	public function preguntasDemo()
+
+	public function historialCompras()
 	{
 
 		$id = $this->input->get('id');
@@ -36,18 +37,18 @@ class Cuestionario extends CI_Controller {
 			$idCliente=$validarPedidos->idCliente;
 			$valido=$validarPedidos->valido;
 			echo 'idCliente '.$idCliente;
-			echo 'valido '.$valido.'<br>';
+			echo '     =*valido '.$valido.'<br>';
 
-			if($idCliente==$id){
-               $cantidaCompras++;
+			if($idCliente==$id and $valido==1){
+				$cantidaCompras++;
 
 			}
-		
-		}
-        echo '<br><br>Numero de compras  '.$cantidaCompras.'<br>';
 
+		}
+		echo '<br><br>Numero de compras Validadas  '.$cantidaCompras.'<br>';
 
 	}
+
 	public function preguntas()
 	{
 
