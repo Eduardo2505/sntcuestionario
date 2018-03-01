@@ -25,6 +25,8 @@ class User {
 
 class Webservice_models extends CI_Model {
 
+	$webService=NULL;
+
 	function __construct() {
 		parent::__construct();
 		define('DEBUG', false);                                         
@@ -32,7 +34,7 @@ class Webservice_models extends CI_Model {
 		define('PS_WS_AUTH_KEY', 'ILTWHBCKAQUNZT4SD76R6PRB2UAWHS6M');   
 		define('_PS_MODE_DEV_', true);
 		require_once(APPPATH.'libraries/PSWebServiceLibrary.php');
-		$webService = new PrestaShopWebservice(PS_SHOP_PATH, PS_WS_AUTH_KEY, DEBUG);
+		$this->webService = new PrestaShopWebservice(PS_SHOP_PATH, PS_WS_AUTH_KEY, DEBUG);
 	}
 
 	function buscarCompras() {
@@ -40,7 +42,7 @@ class Webservice_models extends CI_Model {
 		try
 		{
 			$opt['resource'] = 'orders';
-			$xml = $webService->get($opt);
+			$xml = $this->webService->get($opt);
 			$resources = $xml->children()->children();
 			return $resources;
 
@@ -59,7 +61,7 @@ class Webservice_models extends CI_Model {
 			
 			$opt['resource'] = 'orders';
 			$opt['id'] = $idCompra; 
-			$xml = $webService->get($opt);
+			$xml = $this->webService->get($opt);
 			$resources = $xml->children()->children();
 			if (isset($resources))
 			{
