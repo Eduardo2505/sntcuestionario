@@ -6,6 +6,7 @@ if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
 class User {
+    public $idCliente = "";
     public $nombre = "";
     public $apellido  = "";
     public $email = "";
@@ -66,6 +67,7 @@ class Webservice_models extends CI_Model {
                 //buscar cliente 
                         $opt['resource'] = 'customers';
                         $opt['id'] = (int)$resource;
+                        $user->idCliente=(int)$resource;
                         $xml = $webService->get($opt);
                         $resources = $xml->children()->children();
                         foreach ($resources as $key => $resource)

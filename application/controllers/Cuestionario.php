@@ -24,31 +24,31 @@ class Cuestionario extends CI_Controller {
 	public function preguntasDemo()
 	{
 
-            $id = $this->input->get('id');
-			$this->load->model('webservice_models');
-			$user=$this->webservice_models->buscar($id);
-			print_r ($user);
-			$pedidoInicial=$user->referencia;
+		$id = $this->input->get('id');
+		$this->load->model('webservice_models');
+		$user=$this->webservice_models->buscar($id);
+		print_r ($user);
+		$pedidoInicial=$user->referencia;
 
-				$nombre=$user->nombre." ".$user->apellido;
-				
-				$sexo=$user->generov;
+		$nombre=$user->nombre." ".$user->apellido;
 
-				echo $sexo;
-				
-				
-				$fecha=$user->cumpleanios;
+		$sexo=$user->generov;
+
+		echo $sexo;
 
 
-				$telefono=$user->telefono;
-				$WhatsApp=$user->movil;
-				$email=$user->email;
-				$domicio=$user->direccion;
+		$fecha=$user->cumpleanios;
+
+
+		$telefono=$user->telefono;
+		$WhatsApp=$user->movil;
+		$email=$user->email;
+		$domicio=$user->direccion;
 				//$colonia=$user->ciudad;
-				$ciudad=$user->ciudad;
-				$estado=$user->municipio;
-				$Pais=$user->pais;
-				$cp=$user->cp;
+		$ciudad=$user->ciudad;
+		$estado=$user->municipio;
+		$Pais=$user->pais;
+		$cp=$user->cp;
 	}
 	public function preguntas()
 	{
@@ -62,6 +62,7 @@ class Cuestionario extends CI_Controller {
 		// se iniciaron 
 		$pedidoInicial='envioManual';
 		$nombre="";
+		$idClientePrestashop="";
 		$sexo="";
 		$fecha="";
 		$telefono="";
@@ -83,16 +84,15 @@ class Cuestionario extends CI_Controller {
 			$user=$this->webservice_models->buscar($id);
 
 	         //verificar usuario existente
-	        $emailbuscar=$user->email;
-	     
+			$emailbuscar=$user->email;
+
 			$count=$this->cliente_models->buscarEmail($emailbuscar);
-
-			 
-
-			if($count==0){
+			$contador=$query->num_rows();
+			if($contador==0){
 
 				$pedidoInicial=$user->referencia;
 				$nombre=$user->nombre." ".$user->apellido;
+				$idClientePrestashop=$user->idCliente;
 				//$sexo=$user->generov;
 				$fecha=$user->cumpleanios;
 				$telefono=$user->telefono;
@@ -107,7 +107,15 @@ class Cuestionario extends CI_Controller {
 
 			}else{
 
-				redirect('cuestionario/registrado', 'refresh');
+				$row = $count->row();
+				$idCliente=$row->idCliente;
+				$estatusCuestionario=$row->estatusCuestionario;
+				if($estatusCuestionario==0){
+					$newdata = array('idcliente'  => $idCliente);
+					$this->session->set_userdata($newdata);
+				}else{
+					redirect('cuestionario/registrado', 'refresh');
+				}
 			}
 
 		}
@@ -820,7 +828,9 @@ class Cuestionario extends CI_Controller {
 			}
 
 		}
+		
 		$data['nombre']=$nombre;
+		$data['idClientePrestashop']=$idClientePrestashop;
 		$data['sexo']=$sexo;
 
 		$data['fecha']=$fecha;
@@ -1093,7 +1103,7 @@ class Cuestionario extends CI_Controller {
 		$varv=explode('-',$var);
 		$resultado = count($varv);
 		$data['seleccionPestalla']=$resultado;
-	    $this->load->view('formulario',$data);
+		$this->load->view('formulario',$data);
 	}
 
 
@@ -1102,6 +1112,7 @@ class Cuestionario extends CI_Controller {
 
 
 		$nombreCompleto = $this->input->post('nombreCompleto');
+		$idClientePrestashop = $this->input->post('idClientePrestashop');
 		$sexo = $this->input->post('sexo');
 		$fecha = $this->input->post('fecha');
 		$telefono = $this->input->post('telefono');
@@ -1121,6 +1132,7 @@ class Cuestionario extends CI_Controller {
 
 		$info = array(
 			'nombre' => $nombreCompleto,
+			'idClientePrestashop' => $idClientePrestashop,
 			'genero' => $sexo,
 			'fecha_nacimento' => $fecha,
 			'telefono' => $telefono,
@@ -1829,6 +1841,9 @@ class Cuestionario extends CI_Controller {
 				//cargados --
 		$infocues = array('paso9' => $nombre_archivo);
 		$idcliente=$this->cuestionario_models->update($idclientese,$infocues);
+
+		$updateFinali = array('estatusCuestionario' => 1);
+		$idcliente=$this->cliente_models->update($idclientese,$updateFinali);
 
 		session_destroy();
 		redirect('cuestionario/fianalizacion', 'refresh');

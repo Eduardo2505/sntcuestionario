@@ -26,6 +26,17 @@ class Cliente_models extends CI_Model {
         }
     }
 
+    function update($id, $data) {
+		$this->db->trans_begin();
+		$this->db->where('idcliente', $id);
+		$this->db->update('cliente', $data);
+		if ($this->db->trans_status() === FALSE) {
+			$this->db->trans_rollback();
+		} else {
+			$this->db->trans_commit();
+		}
+	}
+
     
 
     function buscar($pedidoInicial) {
@@ -45,7 +56,7 @@ class Cliente_models extends CI_Model {
     function buscarEmail($email) {
         $this->db->where('email',$email);
         $query = $this->db->get('cliente');
-        return $query->num_rows();
+        return $query;
         
     }
 
