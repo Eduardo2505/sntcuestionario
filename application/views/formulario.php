@@ -91,15 +91,15 @@
 										<input type="hidden" value="<?php echo $idClientePrestashop ?>" name="idClientePrestashop">
 
 										<input type="text" value="<?php echo $nombre ?>" name="nombreCompleto" maxlength="300" class="dzencf-text" placeholder="Nombre completo" required="">
-<input type="text" value="<?php echo $sexo ?>" >
+
 
 										<select name="sexo" class="dzencf-text" required="">
 											<option value="">Seleccione Género</option>
-											<?php  if($sexo===2) {?>
+											<?php  if($sexo==2) {?>
 											<option value="2" selected="selected">Mujer</option>
 											<?php }else{?>
 											<option value="2" >Mujer</option>
-											<?php } if($sexo===1) { ?>
+											<?php } if($sexo==1) { ?>
 											<option value="1" selected="selected">Hombre</option>
 											<?php }else{?>
 											<option value="1" >Hombre</option>
