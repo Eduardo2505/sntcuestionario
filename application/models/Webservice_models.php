@@ -23,6 +23,12 @@ class User {
 
 }
 
+class validarPedidos {
+	public $idCliente = 0;
+	public $valido = 0;
+
+}
+
 class Webservice_models extends CI_Model {
 
 	
@@ -65,30 +71,31 @@ class Webservice_models extends CI_Model {
 			$opt['id'] = $idCompra; 
 			$xml = $this->webService->get($opt);
 			$resources = $xml->children()->children();
-			$idCliente=0;
-			$valido=0;
 			if (isset($resources))
 			{
+
+				$pedidoValidado = new validarPedidos();
 				foreach ($resources as $key => $resource)
 				{
 
 					
 
 					if($key==='valid'){
-						$valido=(int)$resource;
+					
+						$pedidoValidado->valido=(int)$resource;
 					}
 
-					if($valido==1){
 
-						if($key==='id_customer'){
-							$idCliente=(int)$resource;
 
-						}
+					if($key==='id_customer'){
+						$pedidoValidado->idCliente=(int)$resource;
+
 					}
+					
 
 				}
 
-				return $idCliente;
+				return $pedidoValidado;
 
 			}
 
