@@ -87,7 +87,7 @@ class Cuestionario extends CI_Controller {
 			$emailbuscar=$user->email;
 
 			$count=$this->cliente_models->buscarEmail($emailbuscar);
-			$contador=$query->num_rows();
+			$contador=$count->num_rows();
 			if($contador==0){
 
 				$pedidoInicial=$user->referencia;
