@@ -42,40 +42,52 @@ class Webservice_models extends CI_Model {
 
 
 			$opt['resource'] = 'orders';
-			//$opt['id'] = $id; 
+			$numeroPedidos=0;
 			$xml = $webService->get($opt);
 			$resources = $xml->children()->children();
-			/*if (isset($resources))
+			if (isset($resources))
 			{
 
-				foreach ($resources as $key => $resource)
+
+				foreach ($resources as $resource)
 				{
+
+					$optc['resource'] = 'orders';
+					$optc['id'] = $resource->attributes(); 
+					$xmlc = $webService->get($optc);
+					$resourcesc = $xmlc->children()->children();
+					if (isset($resourcesc))
+					{
+						foreach ($resources as $key => $resource)
+						{
             // Iterates on customer's properties
 
-					if($key==='id_customer'){
+							if($key==='id_customer'){
 
-                
-					 $id_customer=(int)$resource;
-						
+
+								$id_customer=(int)$resource;
+								if($id_customer==$id){
+                                     $numeroPedidos++;
+
+								}
+
+
+							}
+
+
+						}
 
 					}
 
-
-					if($key==='reference'){
-						$referencia = $resource;
-
-
-					}
 
 
 				}
 
-
-			}*/
-
+			}
 
 
-			return $resources;
+
+			return $numeroPedidos;
 
 		}
 		catch (PrestaShopWebserviceException $e)

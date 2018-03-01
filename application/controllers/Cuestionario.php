@@ -24,17 +24,10 @@ class Cuestionario extends CI_Controller {
 	public function preguntasDemo()
 	{
 
-		//$id = $this->input->get('id');
+		$id = $this->input->get('id');
 		$this->load->model('webservice_models');
-		$resources=$this->webservice_models->buscarCompras(12);
-		echo '<tr><th>Id</th><th>More</th></tr>';
-		foreach ($resources as $resource)
-		{
-			// Iterates on the found IDs
-			echo '<tr><td>'.$resource->attributes().'</td><td>'.
-			'<a href="?id='.$resource->attributes().'">Retrieve</a>'.
-			'</td></tr>';
-		}
+		$numeroPedidos=$this->webservice_models->buscarCompras($id);
+		echo 'este el numero de pedidos: '.$numeroPedidos;
 
 
 	}
