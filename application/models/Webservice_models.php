@@ -40,7 +40,7 @@ class Webservice_models extends CI_Model {
 		{
 			$webService = new PrestaShopWebservice(PS_SHOP_PATH, PS_WS_AUTH_KEY, DEBUG);
 
-
+            echo 'buscar ordenes';
 			$opt['resource'] = 'orders';
 			$numeroPedidos=0;
 			$xml = $webService->get($opt);
@@ -48,11 +48,11 @@ class Webservice_models extends CI_Model {
 			if (isset($resources))
 			{
 
-
+               echo 'entro ordenes';
 				foreach ($resources as $resource)
 				{
 
-					echo "IDPEDIDOS: ".$resource->attributes();
+					echo 'IDPEDIDOS: '.$resource->attributes();
 
 					$optc['resource'] = 'orders';
 					$optc['id'] = $resource->attributes(); 
@@ -66,13 +66,13 @@ class Webservice_models extends CI_Model {
 
 							if($key==='id_customer'){
 								$id_customer=(int)$resource;
-                                echo "idcliENTEpEDIDO: ".$id_customer;
+                                echo 'idcliENTEpEDIDO: '.$id_customer;
 
 								
 								if($id_customer==$id){
 
                                      $numeroPedidos++;
-                                     echo "ES IGUAL: ".$numeroPedidos;
+                                     echo 'ES IGUAL: '.$numeroPedidos;
 
 								}
 
