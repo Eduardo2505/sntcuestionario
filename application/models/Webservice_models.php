@@ -66,16 +66,26 @@ class Webservice_models extends CI_Model {
 			$xml = $this->webService->get($opt);
 			$resources = $xml->children()->children();
 			$idCliente=0;
+			$valido=0;
 			if (isset($resources))
 			{
 				foreach ($resources as $key => $resource)
 				{
 
-					if($key==='id_customer'){
-						$idCliente=(int)$resource;
-						//echo 'idCompra: '.$idCompra.' Este es el idCLiente : '.$idCliente.'<br>';
+					
 
+					if($key==='valid'){
+						$valido=(int)$resource;
 					}
+
+					if($valido==1){
+
+						if($key==='id_customer'){
+							$idCliente=(int)$resource;
+
+						}
+					}
+
 				}
 
 				return $idCliente;
@@ -93,19 +103,13 @@ class Webservice_models extends CI_Model {
 
 
 	function buscar($id) {
-		define('DEBUG', false);                                         
-		define('PS_SHOP_PATH', 'https://sntcenter.com.mx/planes/');     
-		define('PS_WS_AUTH_KEY', 'ILTWHBCKAQUNZT4SD76R6PRB2UAWHS6M');   
-		define('_PS_MODE_DEV_', true);
-		require_once(APPPATH.'libraries/PSWebServiceLibrary.php');
+		
 		try
 		{
-			$webService = new PrestaShopWebservice(PS_SHOP_PATH, PS_WS_AUTH_KEY, DEBUG);
+			
 			$opt['resource'] = 'orders';
 			$opt['id'] = $id; 
-
-
-			$xml = $webService->get($opt);
+			$xml = $this->webService->get($opt);
 
 
 			$resources = $xml->children()->children();
