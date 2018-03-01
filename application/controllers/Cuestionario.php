@@ -26,9 +26,14 @@ class Cuestionario extends CI_Controller {
 
 		$id = $this->input->get('id');
 		$this->load->model('webservice_models');
-	    //echo 'Idcliente>>>>< '.$id;
-		$numeroPedidos=$this->webservice_models->buscarCompras($id);
-		//echo 'este el numero de pedidos: '.$numeroPedidos;
+		$resources=$this->webservice_models->buscarCompras();
+		foreach ($resources as $resource)
+		{
+
+			echo 'IDPEDIDOS: '.$resource->attributes().'<br>';
+		}
+        echo '<br>Busqueda mediente idPedido<br>'
+		$cantidad=$this->webservice_models->detalleCompra($id);
 
 
 	}
@@ -1159,16 +1164,16 @@ class Cuestionario extends CI_Controller {
 		}else{
 
 			$idcliente=$this->cliente_models->insertar($info);
-		
 
 
-		$newdata = array('idcliente'  => $idcliente);
-		$this->session->set_userdata($newdata);
-		$idclientese = $this->session->idcliente;
 
-		$infocues = array('idCliente' => $idclientese);
-		$idcliente=$this->cuestionario_models->insertar($infocues);
-	}
+			$newdata = array('idcliente'  => $idcliente);
+			$this->session->set_userdata($newdata);
+			$idclientese = $this->session->idcliente;
+
+			$infocues = array('idCliente' => $idclientese);
+			$idcliente=$this->cuestionario_models->insertar($infocues);
+		}
 
 		redirect('cuestionario/preguntas', 'refresh');
 

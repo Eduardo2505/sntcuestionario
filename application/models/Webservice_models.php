@@ -30,7 +30,7 @@ class Webservice_models extends CI_Model {
 
 	}
 
-	function buscarCompras($id) {
+	function buscarCompras() {
 		define('DEBUG', false);                                         
 		define('PS_SHOP_PATH', 'https://sntcenter.com.mx/planes/');     
 		define('PS_WS_AUTH_KEY', 'ILTWHBCKAQUNZT4SD76R6PRB2UAWHS6M');   
@@ -40,60 +40,49 @@ class Webservice_models extends CI_Model {
 		{
 			$webService = new PrestaShopWebservice(PS_SHOP_PATH, PS_WS_AUTH_KEY, DEBUG);
 
-            
+
 			$opt['resource'] = 'orders';
-			$numeroPedidos=0;
+			$xml = $webService->get($opt);
+			$resources = $xml->children()->children();
+			return $numeroPedidos;
+
+		}
+		catch (PrestaShopWebserviceException $e)
+		{
+			return $e->getMessage();
+		}
+
+
+	}
+
+	function detalleCompra($idCompra) {
+		define('DEBUG', false);                                         
+		define('PS_SHOP_PATH', 'https://sntcenter.com.mx/planes/');     
+		define('PS_WS_AUTH_KEY', 'ILTWHBCKAQUNZT4SD76R6PRB2UAWHS6M');   
+		define('_PS_MODE_DEV_', true);
+		require_once(APPPATH.'libraries/PSWebServiceLibrary.php');
+		try
+		{
+			$webService = new PrestaShopWebservice(PS_SHOP_PATH, PS_WS_AUTH_KEY, DEBUG);
+
+
+			$opt['resource'] = 'orders';
+			$opt['id'] = $idCompra; 
 			$xml = $webService->get($opt);
 			$resources = $xml->children()->children();
 			if (isset($resources))
 			{
-
-              
-				foreach ($resources as $resource)
+				foreach ($resources as $key => $resource)
 				{
 
-					echo 'IDPEDIDOS: '.$resource->attributes().'<br>';
-
-					$optc['resource'] = 'orders';
-					$optc['id'] = $resource->attributes(); 
-					$xmlc = $webService->get($optc);
-					$resourcesc = $xmlc->children()->children();
-					
-					if (isset($resourcesc))
-					{
-						foreach ($resources as $key => $resource)
-						{
-            // Iterates on customer's properties
-
-							if($key==='id_customer'){
-								$idCliente=(int)$resource;
-                                echo 'idCliente: '.$idCliente.'<br>';
-
-								
-								/*if($id_customer==$id){
-
-                                     $numeroPedidos++;
-                                     echo 'ES IGUAL: '.$numeroPedidos;
-
-								}*/
-
-
-							}
-
-
-						}
+					if($key==='id_customer'){
+						$idCliente=(int)$resource;
+						echo 'Este es el idCLiente : '.$idCliente.'<br>';
 
 					}
-
-
-
 				}
 
 			}
-
-
-
-			return $numeroPedidos;
 
 		}
 		catch (PrestaShopWebserviceException $e)
