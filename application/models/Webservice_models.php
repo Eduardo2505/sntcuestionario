@@ -40,7 +40,7 @@ class Webservice_models extends CI_Model {
 		{
 			$webService = new PrestaShopWebservice(PS_SHOP_PATH, PS_WS_AUTH_KEY, DEBUG);
 
-            echo 'buscar ordenes';
+            
 			$opt['resource'] = 'orders';
 			$numeroPedidos=0;
 			$xml = $webService->get($opt);
@@ -48,7 +48,7 @@ class Webservice_models extends CI_Model {
 			if (isset($resources))
 			{
 
-               echo 'entro ordenes';
+              
 				foreach ($resources as $resource)
 				{
 
@@ -58,6 +58,7 @@ class Webservice_models extends CI_Model {
 					$optc['id'] = $resource->attributes(); 
 					$xmlc = $webService->get($optc);
 					$resourcesc = $xmlc->children()->children();
+					
 					if (isset($resourcesc))
 					{
 						foreach ($resources as $key => $resource)

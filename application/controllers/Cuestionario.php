@@ -26,9 +26,9 @@ class Cuestionario extends CI_Controller {
 
 		$id = $this->input->get('id');
 		$this->load->model('webservice_models');
-	    echo 'Idcliente>>>>< '.$id;
+	    //echo 'Idcliente>>>>< '.$id;
 		$numeroPedidos=$this->webservice_models->buscarCompras($id);
-		echo 'este el numero de pedidos: '.$numeroPedidos;
+		//echo 'este el numero de pedidos: '.$numeroPedidos;
 
 
 	}
