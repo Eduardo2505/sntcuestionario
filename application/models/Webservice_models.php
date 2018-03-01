@@ -44,7 +44,7 @@ class Webservice_models extends CI_Model {
 			$opt['resource'] = 'orders';
 			$xml = $webService->get($opt);
 			$resources = $xml->children()->children();
-			return $numeroPedidos;
+			return $resources;
 
 		}
 		catch (PrestaShopWebserviceException $e)
