@@ -111,6 +111,24 @@ class Cuestionario extends CI_Controller {
 				$idCliente=$row->idCliente;
 				$estatusCuestionario=$row->estatusCuestionario;
 				if($estatusCuestionario==0){
+
+
+					$pedidoInicial=$row->pedidoInicial;
+					$nombre=$row->nombre;
+					$idClientePrestashop=$row->idClientePrestashop;
+					$sexo=$row->genero;
+					$fecha=$row->fecha_nacimento;
+					$telefono=$row->telefono;
+					$WhatsApp=$row->movil;
+					$email=$row->email;
+					$domicio=$row->domicilio;
+					$colonia=$row->colonia;
+					$ciudad=$row->ciudad;
+					$estado=$row->estado;
+					$Pais=$row->pais;
+					$cp=$row->cp;
+					$objetivo_principal=$row->objetivo_principal;
+					$nivel_motivacion=$row->nivel_motivacion;
 					$newdata = array('idcliente'  => $idCliente);
 					$this->session->set_userdata($newdata);
 				}else{
@@ -1145,14 +1163,23 @@ class Cuestionario extends CI_Controller {
 			'ciudad' => $ciudad,
 			'estado' => $estado,
 			'pais' => $Pais,
+			'tipoRegistro' => 1,
 			'cp' => $cp,
 			'idsucursal'=>$this->config->item('idSucursal'),
 			'nivel_motivacion' => $nivel_motivacion,
 			'objetivo_principal' => $objetivo_principal,
 			'pedidoInicial' => $pedidoInicial
 		);
+		if(isset($_SESSION['idcliente'])){
+			$idclientese = $this->session->idcliente;
+			$idcliente=$this->cliente_models->update($idclientese,$info);
 
-		$idcliente=$this->cliente_models->insertar($info);
+		}else{
+
+			$idcliente=$this->cliente_models->insertar($info);
+		}
+
+
 		$newdata = array('idcliente'  => $idcliente);
 		$this->session->set_userdata($newdata);
 		$idclientese = $this->session->idcliente;
