@@ -26,29 +26,17 @@ class Cuestionario extends CI_Controller {
 
 		$id = $this->input->get('id');
 		$this->load->model('webservice_models');
-		$user=$this->webservice_models->buscar($id);
-		print_r ($user);
-		$pedidoInicial=$user->referencia;
-
-		$nombre=$user->nombre." ".$user->apellido;
-
-		$sexo=$user->generov;
-
-		echo $sexo;
-
-
-		$fecha=$user->cumpleanios;
+		$resources=$this->webservice_models->buscarCompras($id);
+		echo '<tr><th>Id</th><th>More</th></tr>';
+		foreach ($resources as $resource)
+		{
+			// Iterates on the found IDs
+			echo '<tr><td>'.$resource->attributes().'</td><td>'.
+			'<a href="?id='.$resource->attributes().'">Retrieve</a>'.
+			'</td></tr>';
+		}
 
 
-		$telefono=$user->telefono;
-		$WhatsApp=$user->movil;
-		$email=$user->email;
-		$domicio=$user->direccion;
-				//$colonia=$user->ciudad;
-		$ciudad=$user->ciudad;
-		$estado=$user->municipio;
-		$Pais=$user->pais;
-		$cp=$user->cp;
 	}
 	public function preguntas()
 	{
