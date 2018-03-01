@@ -72,7 +72,7 @@ class Webservice_models extends CI_Model {
 
 					if($key==='id_customer'){
 						$idCliente=(int)$resource;
-						echo 'Este es el idCLiente : '.$idCliente.'<br>';
+						echo 'idCompra: '.$idCompra.' Este es el idCLiente : '.$idCliente.'<br>';
 
 					}
 				}
