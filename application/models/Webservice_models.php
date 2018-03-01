@@ -52,9 +52,9 @@ class Webservice_models extends CI_Model {
 				foreach ($resources as $resource)
 				{
 
-					echo 'IDPEDIDOS: '.$resource->attributes();
+					echo 'IDPEDIDOS: '.$resource->attributes().'<br>';
 
-					$optc['resource'] = 'orders';
+					/*$optc['resource'] = 'orders';
 					$optc['id'] = $resource->attributes(); 
 					$xmlc = $webService->get($optc);
 					$resourcesc = $xmlc->children()->children();
@@ -82,7 +82,7 @@ class Webservice_models extends CI_Model {
 
 						}
 
-					}
+					}*/
 
 
 
