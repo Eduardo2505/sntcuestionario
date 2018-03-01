@@ -25,7 +25,9 @@ class User {
 
 class Webservice_models extends CI_Model {
 
-	global  $webService;
+	
+	private $webService;
+
 
 	function __construct() {
 		parent::__construct();
