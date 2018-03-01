@@ -1177,7 +1177,7 @@ class Cuestionario extends CI_Controller {
 		}else{
 
 			$idcliente=$this->cliente_models->insertar($info);
-		}
+		
 
 
 		$newdata = array('idcliente'  => $idcliente);
@@ -1186,6 +1186,7 @@ class Cuestionario extends CI_Controller {
 
 		$infocues = array('idCliente' => $idclientese);
 		$idcliente=$this->cuestionario_models->insertar($infocues);
+	}
 
 		redirect('cuestionario/preguntas', 'refresh');
 

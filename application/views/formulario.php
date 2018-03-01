@@ -91,6 +91,7 @@
 										<input type="hidden" value="<?php echo $idClientePrestashop ?>" name="idClientePrestashop">
 
 										<input type="text" value="<?php echo $nombre ?>" name="nombreCompleto" maxlength="300" class="dzencf-text" placeholder="Nombre completo" required="">
+<input type="text" value="<?php echo $sexo ?>" >
 
 										<select name="sexo" class="dzencf-text" required="">
 											<option value="">Seleccione Género</option>
