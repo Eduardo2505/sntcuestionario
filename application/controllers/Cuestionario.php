@@ -32,7 +32,7 @@ class Cuestionario extends CI_Controller {
 
 			echo 'IDPEDIDOS: '.$resource->attributes().'<br>';
 		}
-        echo '<br>Busqueda mediente idPedido<br>'
+        echo '<br>Busqueda mediente idPedido<br>';
 		$cantidad=$this->webservice_models->detalleCompra($id);
 
 
