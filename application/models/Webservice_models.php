@@ -52,6 +52,8 @@ class Webservice_models extends CI_Model {
 				foreach ($resources as $resource)
 				{
 
+					echo "IDPEDIDOS: ".$resource->attributes();
+
 					$optc['resource'] = 'orders';
 					$optc['id'] = $resource->attributes(); 
 					$xmlc = $webService->get($optc);
@@ -63,11 +65,14 @@ class Webservice_models extends CI_Model {
             // Iterates on customer's properties
 
 							if($key==='id_customer'){
-
-
 								$id_customer=(int)$resource;
+                                echo "idcliENTEpEDIDO: ".$id_customer;
+
+								
 								if($id_customer==$id){
+
                                      $numeroPedidos++;
+                                     echo "ES IGUAL: ".$numeroPedidos;
 
 								}
 
