@@ -185,7 +185,7 @@ class Webservice_models extends CI_Model {
                 //buscar direccion
 						$opt['resource'] = 'addresses';
 						$opt['id'] = (int)$resource;
-						$xml = $webService->get($opt);
+						$xml = $this->webService->get($opt);
 						$resources = $xml->children()->children();
 						foreach ($resources as $key => $resource)
 						{
@@ -193,7 +193,7 @@ class Webservice_models extends CI_Model {
 
 								$opt['resource'] = 'countries';
 								$opt['id'] = (int)$resource;
-								$xml = $webService->get($opt);
+								$xml =$this->webService->get($opt);
 								$resources = $xml->children()->children();
 								foreach ($resources as $key => $resource)
 								{
@@ -213,7 +213,7 @@ class Webservice_models extends CI_Model {
 							if($key==='id_state'){
 								$opt['resource'] = 'states';
 								$opt['id'] = (int)$resource;
-								$xml = $webService->get($opt);
+								$xml = $this->webService->get($opt);
 								$resources = $xml->children()->children();
 								foreach ($resources as $key => $resource)
 								{
