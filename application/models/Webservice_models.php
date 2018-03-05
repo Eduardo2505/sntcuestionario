@@ -140,7 +140,7 @@ class Webservice_models extends CI_Model {
 						$opt['resource'] = 'customers';
 						$opt['id'] = (int)$resource;
 						$user->idCliente=(int)$resource;
-						$xml = $webService->get($opt);
+						$xml = $this->webService->get($opt);
 						$resources = $xml->children()->children();
 						foreach ($resources as $key => $resource)
 						{
