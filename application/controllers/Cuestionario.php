@@ -1191,6 +1191,7 @@ class Cuestionario extends CI_Controller {
 
 	public function guardarEstilodeVida()
 	{
+		$vowels = array("&", "-", "_", "|");
 		$idclientese = $this->session->idcliente;
 		$nivelEducativo = $this->input->post('nivelEducativo');
 		$actividadLaboral = $this->input->post('actividadLaboral');
@@ -1208,18 +1209,18 @@ class Cuestionario extends CI_Controller {
 		$nombre_archivo = "registros/EstilodeVida-".$idclientese.".txt"; 
 
 		$mensaje=$idclientese.
-		"|".$nivelEducativo.
-		"|".$actividadLaboral.
-		"|".$nivelSocioeconomico.
-		"|".$actividadocio.
-		"|".$estadocivil.
-		"|".$cuantosHijos.
-		"|".$conquienvives.
-		"|".$quienpreparaTucomida.
-		"|".$niveldeEstres.
-		"|".$horasdeTiempo.
-		"|".$cuantasvecesdefecta.
-		"|".$cuantasVecesOrina;
+		"|".str_replace($vowels," ",$nivelEducativo).
+		"|".str_replace($vowels," ",$actividadLaboral).
+		"|".str_replace($vowels," ",$nivelSocioeconomico).
+		"|".str_replace($vowels," ",$actividadocio).
+		"|".str_replace($vowels," ",$estadocivil).
+		"|".str_replace($vowels," ",$cuantosHijos).
+		"|".str_replace($vowels," ",$conquienvives).
+		"|".str_replace($vowels," ",$quienpreparaTucomida).
+		"|".str_replace($vowels," ",$niveldeEstres).
+		"|".str_replace($vowels," ",$horasdeTiempo).
+		"|".str_replace($vowels," ",$cuantasvecesdefecta).
+		"|".str_replace($vowels," ",$cuantasVecesOrina);
 
 		$file = fopen($nombre_archivo, "w");
 		fwrite($file, $mensaje);
@@ -1341,58 +1342,59 @@ class Cuestionario extends CI_Controller {
 
 
 		$nombre_archivo = "registros/Historiamedica-".$idclientese.".txt"; 
+		$vowels = array("&", "-", "_", "|");
 
 		$mensaje=$idclientese.
-		"|".$vertebraCuantotiempo.
-		"|".$vertebraComosetrato.
-		"|".$vdorsalesCuantotiempo.
-		"|".$vdorsalesComosetrato.
-		"|".$vdLumbaresCuantotiempo.
-		"|".$vdLumbaresComosetrato.
-		"|".$aHombroCuantotiempo.
-		"|".$aHombroComosetrato.
-		"|".$aCodoCuantotiempo.
-		"|".$aCodoComosetrato.
-		"|".$aMunecaCuantotiempo.
-		"|".$aMunecaComosetrato.
-		"|".$adedosCuantotiempo.
-		"|".$adedosComosetrato.
-		"|".$aCaderaCuantotiempo.
-		"|".$aCaderaComosetrato.
-		"|".$aRodillaCuantotiempo.
-		"|".$aRodillaComosetrato.
-		"|".$aTobilloCuantotiempo.
-		"|".$aTobilloComosetrato.
-		"|".$humeroCuantotiempo.
-		"|".$this->input->post('humeroComosetrato').
-		"|".$this->input->post('radioCuantotiempo').
-		"|".$this->input->post('radioComosetrato').
-		"|".$this->input->post('cubitoCuantotiempo').
-		"|".$this->input->post('cubitoComosetrato').
-		"|".$this->input->post('carpianosCuantotiempo').
-		"|".$this->input->post('carpianosComosetrato').
-		"|".$this->input->post('falangesCuantotiempo').
-		"|".$this->input->post('falangesComosetrato').
-		"|".$this->input->post('claviculasCuantotiempo').
-		"|".$this->input->post('claviculasComosetrato').
-		"|".$this->input->post('costillasCuantotiempo').
-		"|".$this->input->post('costillasComosetrato').
-		"|".$this->input->post('craneoCuantotiempo').
-		"|".$this->input->post('craneoComosetrato').
-		"|".$this->input->post('caderaCuantotiempo').
-		"|".$this->input->post('caderaComosetrato').
-		"|".$this->input->post('femurCuantotiempo').
-		"|".$this->input->post('femurComosetrato').
-		"|".$this->input->post('tibiaCuantotiempo').
-		"|".$this->input->post('tibiaComosetrato').
-		"|".$this->input->post('peroneCuantotiempo').
-		"|".$this->input->post('peroneComosetrato').
-		"|".$this->input->post('tarsianosCuantotiempo').
-		"|".$this->input->post('tarsianosComosetrato').
-		"|".$this->input->post('padeces').
-		"|".$this->input->post('padecesprobelmas').
-		"|".$this->input->post('dfFcar').
-		"|".$this->input->post('dfFcarres');
+		"|".str_replace($vowels," ",$vertebraCuantotiempo).
+		"|".str_replace($vowels," ",$vertebraComosetrato).
+		"|".str_replace($vowels," ",$vdorsalesCuantotiempo).
+		"|".str_replace($vowels," ",$vdorsalesComosetrato).
+		"|".str_replace($vowels," ",$vdLumbaresCuantotiempo).
+		"|".str_replace($vowels," ",$vdLumbaresComosetrato).
+		"|".str_replace($vowels," ",$aHombroCuantotiempo).
+		"|".str_replace($vowels," ",$aHombroComosetrato).
+		"|".str_replace($vowels," ",$aCodoCuantotiempo).
+		"|".str_replace($vowels," ",$aCodoComosetrato).
+		"|".str_replace($vowels," ",$aMunecaCuantotiempo).
+		"|".str_replace($vowels," ",$aMunecaComosetrato).
+		"|".str_replace($vowels," ",$adedosCuantotiempo).
+		"|".str_replace($vowels," ",$adedosComosetrato).
+		"|".str_replace($vowels," ",$aCaderaCuantotiempo).
+		"|".str_replace($vowels," ",$aCaderaComosetrato).
+		"|".str_replace($vowels," ",$aRodillaCuantotiempo).
+		"|".str_replace($vowels," ",$aRodillaComosetrato).
+		"|".str_replace($vowels," ",$aTobilloCuantotiempo).
+		"|".str_replace($vowels," ",$aTobilloComosetrato).
+		"|".str_replace($vowels," ",$humeroCuantotiempo).
+		"|".str_replace($vowels," ",$this->input->post('humeroComosetrato')).
+		"|".str_replace($vowels," ",$this->input->post('radioCuantotiempo')).
+		"|".str_replace($vowels," ",$this->input->post('radioComosetrato')).
+		"|".str_replace($vowels," ",$this->input->post('cubitoCuantotiempo')).
+		"|".str_replace($vowels," ",$this->input->post('cubitoComosetrato')).
+		"|".str_replace($vowels," ",$this->input->post('carpianosCuantotiempo')).
+		"|".str_replace($vowels," ",$this->input->post('carpianosComosetrato')).
+		"|".str_replace($vowels," ",$this->input->post('falangesCuantotiempo')).
+		"|".str_replace($vowels," ",$this->input->post('falangesComosetrato')).
+		"|".str_replace($vowels," ",$this->input->post('claviculasCuantotiempo')).
+		"|".str_replace($vowels," ",$this->input->post('claviculasComosetrato')).
+		"|".str_replace($vowels," ",$this->input->post('costillasCuantotiempo')).
+		"|".str_replace($vowels," ",$this->input->post('costillasComosetrato')).
+		"|".str_replace($vowels," ",$this->input->post('craneoCuantotiempo')).
+		"|".str_replace($vowels," ",$this->input->post('craneoComosetrato')).
+		"|".str_replace($vowels," ",$this->input->post('caderaCuantotiempo')).
+		"|".str_replace($vowels," ",$this->input->post('caderaComosetrato')).
+		"|".str_replace($vowels," ",$this->input->post('femurCuantotiempo')).
+		"|".str_replace($vowels," ",$this->input->post('femurComosetrato')).
+		"|".str_replace($vowels," ",$this->input->post('tibiaCuantotiempo')).
+		"|".str_replace($vowels," ",$this->input->post('tibiaComosetrato')).
+		"|".str_replace($vowels," ",$this->input->post('peroneCuantotiempo')).
+		"|".str_replace($vowels," ",$this->input->post('peroneComosetrato')).
+		"|".str_replace($vowels," ",$this->input->post('tarsianosCuantotiempo')).
+		"|".str_replace($vowels," ",$this->input->post('tarsianosComosetrato')).
+		"|".str_replace($vowels," ",$this->input->post('padeces')).
+		"|".str_replace($vowels," ",$this->input->post('padecesprobelmas')).
+		"|".str_replace($vowels," ",$this->input->post('dfFcar')).
+		"|".str_replace($vowels," ",$this->input->post('dfFcarres'));
 
 
 
@@ -1421,24 +1423,24 @@ class Cuestionario extends CI_Controller {
 
 
 		$nombre_archivo = "registros/Experiencias-".$idclientese.".txt"; 
-
+		$vowels = array("&", "-", "_", "|");
 		$mensaje=$idclientese.
-		"|".$this->input->post('pFnctipo').
-		"|".$this->input->post('pFnchace').
-		"|".$this->input->post('pFncCuantos').
-		"|".$this->input->post('pFncCuantas').
-		"|".$this->input->post('pFctipo').
-		"|".$this->input->post('pFchace').
-		"|".$this->input->post('pFcCuantos').
-		"|".$this->input->post('pFcCuantas').
-		"|".$this->input->post('hasEntrenado').
-		"|".$this->input->post('hasEntrenadoPersonal').
-		"|".$this->input->post('entrabaInsCuenta').
-		"|".$this->input->post('desdecuendo').
-		"|".$this->input->post('cuentosDiasEn').
-		"|".$this->input->post('cuentosHorasEn').
-		"|".$this->input->post('utilizasMaPe').
-		"|".$this->input->post('utilizasClases');
+		"|".str_replace($vowels," ",$this->input->post('pFnctipo')).
+		"|".str_replace($vowels," ",$this->input->post('pFnchace')).
+		"|".str_replace($vowels," ",$this->input->post('pFncCuantos')).
+		"|".str_replace($vowels," ",$this->input->post('pFncCuantas')).
+		"|".str_replace($vowels," ",$this->input->post('pFctipo')).
+		"|".str_replace($vowels," ",$this->input->post('pFchace')).
+		"|".str_replace($vowels," ",$this->input->post('pFcCuantos')).
+		"|".str_replace($vowels," ",$this->input->post('pFcCuantas')).
+		"|".str_replace($vowels," ",$this->input->post('hasEntrenado')).
+		"|".str_replace($vowels," ",$this->input->post('hasEntrenadoPersonal')).
+		"|".str_replace($vowels," ",$this->input->post('entrabaInsCuenta')).
+		"|".str_replace($vowels," ",$this->input->post('desdecuendo')).
+		"|".str_replace($vowels," ",$this->input->post('cuentosDiasEn')).
+		"|".str_replace($vowels," ",$this->input->post('cuentosHorasEn')).
+		"|".str_replace($vowels," ",$this->input->post('utilizasMaPe')).
+		"|".str_replace($vowels," ",$this->input->post('utilizasClases'));
 
 
 
@@ -1465,25 +1467,25 @@ class Cuestionario extends CI_Controller {
 
 
 		$nombre_archivo = "registros/Objetivos-".$idclientese.".txt"; 
-
+		$vowels = array("&", "-", "_", "|");
 		$mensaje=$idclientese.
-		"|".$this->input->post('cuantasHorasd').
-		"|".$this->input->post('utilizasMaPe').
-		"|".$this->input->post('conqueHorario').
-		"|".$this->input->post('quediasDispones').
-		"|".$this->input->post('cuantotiempoAlGym').
-		"|".$this->input->post('conqueEquipocardioc').
-		"|".$this->input->post('conqueEquipoPesocuen').
-		"|".$this->input->post('quetipoClaseGruputilizar').
-		"|".$this->input->post('objmejorDepoEspecificaresistencia').
-		"|".$this->input->post('objmejorDepoEspecificaFuerza').
-		"|".$this->input->post('objmejorDepoEspecificaFlexibilidad').
-		"|".$this->input->post('objmejorDepoEspecificaBPErdida').
-		"|".$this->input->post('objmejorDepoEspecificaBGanacia').
-		"|".$this->input->post('opemsvcro').
-		"|".$this->input->post('opemsvespe').
-		"|".$this->input->post('opeSocialSensacion').
-		"|".$this->input->post('opeSocialExpectativas');
+		"|".str_replace($vowels," ",$this->input->post('cuantasHorasd')).
+		"|".str_replace($vowels," ",$this->input->post('utilizasMaPe')).
+		"|".str_replace($vowels," ",$this->input->post('conqueHorario')).
+		"|".str_replace($vowels," ",$this->input->post('quediasDispones')).
+		"|".str_replace($vowels," ",$this->input->post('cuantotiempoAlGym')).
+		"|".str_replace($vowels," ",$this->input->post('conqueEquipocardioc')).
+		"|".str_replace($vowels," ",$this->input->post('conqueEquipoPesocuen')).
+		"|".str_replace($vowels," ",$this->input->post('quetipoClaseGruputilizar')).
+		"|".str_replace($vowels," ",$this->input->post('objmejorDepoEspecificaresistencia')).
+		"|".str_replace($vowels," ",$this->input->post('objmejorDepoEspecificaFuerza')).
+		"|".str_replace($vowels," ",$this->input->post('objmejorDepoEspecificaFlexibilidad')).
+		"|".str_replace($vowels," ",$this->input->post('objmejorDepoEspecificaBPErdida')).
+		"|".str_replace($vowels," ",$this->input->post('objmejorDepoEspecificaBGanacia')).
+		"|".str_replace($vowels," ",$this->input->post('opemsvcro')).
+		"|".str_replace($vowels," ",$this->input->post('opemsvespe')).
+		"|".str_replace($vowels," ",$this->input->post('opeSocialSensacion')).
+		"|".str_replace($vowels," ",$this->input->post('opeSocialExpectativas'));
 
 		$file = fopen($nombre_archivo, "w");
 		fwrite($file, $mensaje);
@@ -1506,26 +1508,26 @@ class Cuestionario extends CI_Controller {
 
 
 		$nombre_archivo = "registros/Suplementos-".$idclientese.".txt"; 
-
+		$vowels = array("&", "-", "_", "|");
 		$mensaje=$idclientese.
-		"|".$this->input->post('usoFarma').
-		"|".$this->input->post('vefarHacecuanto').
-		"|".$this->input->post('vefarDuranteCuanto').
-		"|".$this->input->post('vefarQuienlerecomendo').
-		"|".$this->input->post('vefarQuelomotivo').
-		"|".$this->input->post('vefarQuienloasesoro').
-		"|".$this->input->post('vefarQuefuequelauso').
-		"|".$this->input->post('vefarQuetipodefarmauso').
-		"|".$this->input->post('vefarQueObjetivologrouso').
-		"|".$this->input->post('vefarUsaActualmentefarma').
-		"|".$this->input->post('vefarTienePensadousarfarma').
-		"|".$this->input->post('vefarObjetivostieneeluso').
-		"|".$this->input->post('supleNombre').
-		"|".$this->input->post('supleCaracteristicas').
-		"|".$this->input->post('supleMotivo').
-		"|".$this->input->post('supleTiempo').
-		"|".$this->input->post('supleCantidad').
-		"|".$this->input->post('numSuplemento');
+		"|".str_replace($vowels," ",$this->input->post('usoFarma')).
+		"|".str_replace($vowels," ",$this->input->post('vefarHacecuanto')).
+		"|".str_replace($vowels," ",$this->input->post('vefarDuranteCuanto')).
+		"|".str_replace($vowels," ",$this->input->post('vefarQuienlerecomendo')).
+		"|".str_replace($vowels," ",$this->input->post('vefarQuelomotivo')).
+		"|".str_replace($vowels," ",$this->input->post('vefarQuienloasesoro')).
+		"|".str_replace($vowels," ",$this->input->post('vefarQuefuequelauso')).
+		"|".str_replace($vowels," ",$this->input->post('vefarQuetipodefarmauso')).
+		"|".str_replace($vowels," ",$this->input->post('vefarQueObjetivologrouso')).
+		"|".str_replace($vowels," ",$this->input->post('vefarUsaActualmentefarma')).
+		"|".str_replace($vowels," ",$this->input->post('vefarTienePensadousarfarma')).
+		"|".str_replace($vowels," ",$this->input->post('vefarObjetivostieneeluso')).
+		"|".str_replace($vowels," ",$this->input->post('supleNombre')).
+		"|".str_replace($vowels," ",$this->input->post('supleCaracteristicas')).
+		"|".str_replace($vowels," ",$this->input->post('supleMotivo')).
+		"|".str_replace($vowels," ",$this->input->post('supleTiempo')).
+		"|".str_replace($vowels," ",$this->input->post('supleCantidad')).
+		"|".str_replace($vowels," ",$this->input->post('numSuplemento'));
 
 
 		$valorSuplemne=$this->input->post('numSuplemento');
@@ -1541,11 +1543,11 @@ class Cuestionario extends CI_Controller {
 		for($i=1;$i<=$valorSuplemne;$i++){
 
 
-			$nuevosu=$this->input->post('suple'.$i.'Nombre').
-			"_".$this->input->post('suple'.$i.'Caracteristicas').
-			"_".$this->input->post('suple'.$i.'Motivo').
-			"_".$this->input->post('suple'.$i.'Tiempo').
-			"_".$this->input->post('suple'.$i.'Cantidad');
+			$nuevosu=str_replace($vowels," ",$this->input->post('suple'.$i.'Nombre')).
+			"_".str_replace($vowels," ",$this->input->post('suple'.$i.'Caracteristicas')).
+			"_".str_replace($vowels," ",$this->input->post('suple'.$i.'Motivo')).
+			"_".str_replace($vowels," ",$this->input->post('suple'.$i.'Tiempo')).
+			"_".str_replace($vowels," ",$this->input->post('suple'.$i.'Cantidad'));
 			$bodytag = str_replace("_","",$nuevosu);
 			if(trim($bodytag)===""){
 			}else{
@@ -1654,39 +1656,39 @@ class Cuestionario extends CI_Controller {
 
 
 		$nombre_archivo = "registros/ExperienciaDiatetica-".$idclientese.".txt"; 
-
+		$vowels = array("&", "-", "_", "|");
 		$mensaje=$idclientese.
-		"|".$this->input->post('cdipersoAli').
-		"|".$this->input->post('cdipersoAliporque').
-		"|".$this->input->post('cdipersoANivel').
-		"|".$this->input->post('cdipersoANivelCambios').
-		"|".$this->input->post('cdipersoAlergias').
-		"|".$this->input->post('cdipersoIntoleranciaalimen').
-		"|".$this->input->post('cdipersoAlinoconsumir').
-		"|".$this->input->post('consumoSusAlcolTipo').
-		"|".$this->input->post('consumoSusAlcolcantidad').
-		"|".$this->input->post('consumoSusAlcolFrecuencia').
-		"|".$this->input->post('consumoSusTabacoTipo').
-		"|".$this->input->post('consumoSusTabacocantidad').
-		"|".$this->input->post('consumoSusTabacoFrecuencia').
-		"|".$this->input->post('consumoSusCafeinaTipo').
-		"|".$this->input->post('consumoSusCafeinacocantidad').
-		"|".$this->input->post('consumoSusCafeinaFrecuencia').
-		"|".$this->input->post('consumoSusOtrasTipo').
-		"|".$this->input->post('consumoSusOtrascocantidad').
-		"|".$this->input->post('consumoSusOtrasFrecuencia').
-		"|".$this->input->post('edpduraTiempo').
-		"|".$this->input->post('edpcuantoTiempo').
-		"|".$this->input->post('edpcResulobtuvo').
-		"|".$this->input->post('edpcxqAbandono').
-		"|".$this->input->post('noedpduraTiempo').
-		"|".$this->input->post('noedpcuantoTiempo').
-		"|".$this->input->post('noedpcResulobtuvo').
-		"|".$this->input->post('noedpcxqAbandono').
-		"|".$this->input->post('siedpduraTiempo').
-		"|".$this->input->post('siedpcuantoTiempo').
-		"|".$this->input->post('siedpcResulobtuvo').
-		"|".$this->input->post('siedpcxqAbandono');
+		"|".str_replace($vowels," ",$this->input->post('cdipersoAli')).
+		"|".str_replace($vowels," ",$this->input->post('cdipersoAliporque')).
+		"|".str_replace($vowels," ",$this->input->post('cdipersoANivel')).
+		"|".str_replace($vowels," ",$this->input->post('cdipersoANivelCambios')).
+		"|".str_replace($vowels," ",$this->input->post('cdipersoAlergias')).
+		"|".str_replace($vowels," ",$this->input->post('cdipersoIntoleranciaalimen')).
+		"|".str_replace($vowels," ",$this->input->post('cdipersoAlinoconsumir')).
+		"|".str_replace($vowels," ",$this->input->post('consumoSusAlcolTipo')).
+		"|".str_replace($vowels," ",$this->input->post('consumoSusAlcolcantidad')).
+		"|".str_replace($vowels," ",$this->input->post('consumoSusAlcolFrecuencia')).
+		"|".str_replace($vowels," ",$this->input->post('consumoSusTabacoTipo')).
+		"|".str_replace($vowels," ",$this->input->post('consumoSusTabacocantidad')).
+		"|".str_replace($vowels," ",$this->input->post('consumoSusTabacoFrecuencia')).
+		"|".str_replace($vowels," ",$this->input->post('consumoSusCafeinaTipo')).
+		"|".str_replace($vowels," ",$this->input->post('consumoSusCafeinacocantidad')).
+		"|".str_replace($vowels," ",$this->input->post('consumoSusCafeinaFrecuencia')).
+		"|".str_replace($vowels," ",$this->input->post('consumoSusOtrasTipo')).
+		"|".str_replace($vowels," ",$this->input->post('consumoSusOtrascocantidad')).
+		"|".str_replace($vowels," ",$this->input->post('consumoSusOtrasFrecuencia')).
+		"|".str_replace($vowels," ",$this->input->post('edpduraTiempo')).
+		"|".str_replace($vowels," ",$this->input->post('edpcuantoTiempo')).
+		"|".str_replace($vowels," ",$this->input->post('edpcResulobtuvo')).
+		"|".str_replace($vowels," ",$this->input->post('edpcxqAbandono')).
+		"|".str_replace($vowels," ",$this->input->post('noedpduraTiempo')).
+		"|".str_replace($vowels," ",$this->input->post('noedpcuantoTiempo')).
+		"|".str_replace($vowels," ",$this->input->post('noedpcResulobtuvo')).
+		"|".str_replace($vowels," ",$this->input->post('noedpcxqAbandono')).
+		"|".str_replace($vowels," ",$this->input->post('siedpduraTiempo')).
+		"|".str_replace($vowels," ",$this->input->post('siedpcuantoTiempo')).
+		"|".str_replace($vowels," ",$this->input->post('siedpcResulobtuvo')).
+		"|".str_replace($vowels," ",$this->input->post('siedpcxqAbandono'));
 
 
 
@@ -1714,16 +1716,16 @@ class Cuestionario extends CI_Controller {
 
 
 		$nombre_archivo = "registros/InformacionCorporal-".$idclientese.".txt"; 
-
+		$vowels = array("&", "-", "_", "|");
 		$mensaje=$idclientese.
-		"|".$this->input->post('dabasiPeso').
-		"|".$this->input->post('dabasiAltura').
-		"|".$this->input->post('datosAntroespgrasa').
-		"|".$this->input->post('datosAntroespgrasaporce').
-		"|".$this->input->post('datosAntroespmasakg').
-		"|".$this->input->post('datosAntroespmasaporcen').
-		"|".$this->input->post('datosAntroespmasapmuskg').
-		"|".$this->input->post('datosAntroespmasapmusporcentaje');
+		"|".str_replace($vowels," ",$this->input->post('dabasiPeso')).
+		"|".str_replace($vowels," ",$this->input->post('dabasiAltura')).
+		"|".str_replace($vowels," ",$this->input->post('datosAntroespgrasa')).
+		"|".str_replace($vowels," ",$this->input->post('datosAntroespgrasaporce')).
+		"|".str_replace($vowels," ",$this->input->post('datosAntroespmasakg')).
+		"|".str_replace($vowels," ",$this->input->post('datosAntroespmasaporcen')).
+		"|".str_replace($vowels," ",$this->input->post('datosAntroespmasapmuskg')).
+		"|".str_replace($vowels," ",$this->input->post('datosAntroespmasapmusporcentaje'));
 
 
 
@@ -1752,20 +1754,22 @@ class Cuestionario extends CI_Controller {
 
 		$mensaje=$idclientese;
 
+		$vowels = array("&", "-", "_", "|");
+
 
 		for($i=1;$i<7;$i++){
 
-			$mensaje.="|".$this->input->post('patronalic'.$i.'h').
-			"|".$this->input->post('patronalic'.$i.'l').
-			"|".$this->input->post('patronalic'.$i.'d');
+			$mensaje.="|".str_replace($vowels," ",$this->input->post('patronalic'.$i.'h')).
+			"|".str_replace($vowels," ",$this->input->post('patronalic'.$i.'l')).
+			"|".str_replace($vowels," ",$this->input->post('patronalic'.$i.'d'));
 		}
 
 		for($i=1;$i<7;$i++){
 
-			$mensaje.="|".$this->input->post('recordatorioAlimentos24hras'.$i.'h').
-			"|".$this->input->post('ecordatorioAlimentos24hras'.$i.'d').
-			"|".$this->input->post('ecordatorioAlimentos24hras'.$i.'q').
-			"|".$this->input->post('ecordatorioAlimentos24hras'.$i.'c');
+			$mensaje.="|".str_replace($vowels," ",$this->input->post('recordatorioAlimentos24hras'.$i.'h')).
+			"|".str_replace($vowels," ",$this->input->post('ecordatorioAlimentos24hras'.$i.'d')).
+			"|".str_replace($vowels," ",$this->input->post('ecordatorioAlimentos24hras'.$i.'q')).
+			"|".str_replace($vowels," ",$this->input->post('ecordatorioAlimentos24hras'.$i.'c'));
 		}
 
 
@@ -1794,31 +1798,31 @@ class Cuestionario extends CI_Controller {
 
 
 		$nombre_archivo = "registros/EstilovidaActual-".$idclientese.".txt"; 
-
+		$vowels = array("&", "-", "_", "|");
 		$mensaje=$idclientese.
-		"|".$this->input->post('padDormido').
-		"|".$this->input->post('padRecostado').
-		"|".$this->input->post('padMuysedentario').
-		"|".$this->input->post('padsedentario').
-		"|".$this->input->post('padmuyligeramenteactivo').
-		"|".$this->input->post('padligeramenteactivo').
-		"|".$this->input->post('padmoderadamenteactivo').
-		"|".$this->input->post('padactivo').
-		"|".$this->input->post('padmuyactivo').
-		"|".$this->input->post('padExtemadamenteactivo').
-		"|".$this->input->post('padDormidodes').
-		"|".$this->input->post('padRecostadodes').
-		"|".$this->input->post('padMuysedentariodes').
-		"|".$this->input->post('padsedentariodes').
-		"|".$this->input->post('padmuyligeramenteactivodes').
-		"|".$this->input->post('padligeramenteactivodes').
-		"|".$this->input->post('padmoderadamenteactivodes').
-		"|".$this->input->post('padactivodes').
-		"|".$this->input->post('padmuyactivodes').
-		"|".$this->input->post('padExtemadamenteactivodes').
-		"|".$this->input->post('pEVidaTipo').
-		"|".$this->input->post('pEVidaTipo2').
-		"|".$this->input->post('numActividad');
+		"|".str_replace($vowels," ",$this->input->post('padDormido')).
+		"|".str_replace($vowels," ",$this->input->post('padRecostado')).
+		"|".str_replace($vowels," ",$this->input->post('padMuysedentario')).
+		"|".str_replace($vowels," ",$this->input->post('padsedentario')).
+		"|".str_replace($vowels," ",$this->input->post('padmuyligeramenteactivo')).
+		"|".str_replace($vowels," ",$this->input->post('padligeramenteactivo')).
+		"|".str_replace($vowels," ",$this->input->post('padmoderadamenteactivo')).
+		"|".str_replace($vowels," ",$this->input->post('padactivo')).
+		"|".str_replace($vowels," ",$this->input->post('padmuyactivo')).
+		"|".str_replace($vowels," ",$this->input->post('padExtemadamenteactivo')).
+		"|".str_replace($vowels," ",$this->input->post('padDormidodes')).
+		"|".str_replace($vowels," ",$this->input->post('padRecostadodes')).
+		"|".str_replace($vowels," ",$this->input->post('padMuysedentariodes')).
+		"|".str_replace($vowels," ",$this->input->post('padsedentariodes')).
+		"|".str_replace($vowels," ",$this->input->post('padmuyligeramenteactivodes')).
+		"|".str_replace($vowels," ",$this->input->post('padligeramenteactivodes')).
+		"|".str_replace($vowels," ",$this->input->post('padmoderadamenteactivodes')).
+		"|".str_replace($vowels," ",$this->input->post('padactivodes')).
+		"|".str_replace($vowels," ",$this->input->post('padmuyactivodes')).
+		"|".str_replace($vowels," ",$this->input->post('padExtemadamenteactivodes')).
+		"|".str_replace($vowels," ",$this->input->post('pEVidaTipo')).
+		"|".str_replace($vowels," ",$this->input->post('pEVidaTipo2')).
+		"|".str_replace($vowels," ",$this->input->post('numActividad'));
 
 
 		$numActividad=$this->input->post('numActividad');
@@ -1834,8 +1838,8 @@ class Cuestionario extends CI_Controller {
 		for($i=1;$i<=$numActividad;$i++){
 
 
-			$nuevosu=$this->input->post('pEVidaTipoa'.$i).
-			"_".$this->input->post('pEVidaTipoh'.$i);
+			$nuevosu=str_replace($vowels," ",$this->input->post('pEVidaTipoa'.$i)).
+			"_".str_replace($vowels," ",$this->input->post('pEVidaTipoh'.$i));
 			$bodytag = str_replace("_","",$nuevosu);
 			if(trim($bodytag)===""){
 			}else{
