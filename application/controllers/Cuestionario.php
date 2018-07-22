@@ -559,6 +559,28 @@ class Cuestionario extends CI_Controller {
 					for($i=0;$i<$resultado;$i++){
 
 						$s1 = explode("_",$cantidadSuplementosExtra[$i]);
+						$num_tags = count($s1);
+						
+						$val1='';
+						$val2='';
+						$val3='';
+						$val4='';
+						$val5='';
+						if($num_tags!=0){
+							$val1=$s1[0];
+							if($num_tags==2){
+								$val2=$s1[1];
+							}
+							if($num_tags==3){
+								$val3=$s1[2];
+							}
+							if($num_tags==4){
+								$val4=$s1[3];
+							}
+							if($num_tags==5){
+								$val4=$s1[4];
+							}
+						}
 						$dinamicov.= '<div class="dzen_container">
 						<div class="dzen_column_DD_span11">
 						<div class="dzen-accordion" data-expanded="1" role="tablist">
@@ -571,14 +593,14 @@ class Cuestionario extends CI_Controller {
 						<div class="dzen_column_DD_span5">
 
 						<div class="margin_bottom">
-						<input type="text"  value="'.$s1[0].'" name="suple'.$num.'Nombre" maxlength="300" class="dzencf-text" placeholder="Nombre" >
+						<input type="text"  value="'.$val1.'" name="suple'.$num.'Nombre" maxlength="300" class="dzencf-text" placeholder="Nombre" >
 						</div>
 						</div>
 						<div class="dzen_column_DD_span6">
 
 						<div class="margin_bottom">
 
-						<input type="text" value="'.$s1[1].'" name="suple'.$num.'Caracteristicas" maxlength="300" class="dzencf-text" placeholder="Características" >
+						<input type="text" value="'.$val2.'" name="suple'.$num.'Caracteristicas" maxlength="300" class="dzencf-text" placeholder="Características" >
 
 						</div>
 						</div>
@@ -586,14 +608,14 @@ class Cuestionario extends CI_Controller {
 						<div class="dzen_column_DD_span5">
 
 						<div class="margin_bottom">
-						<input type="text" value="'.$s1[2].'" name="suple'.$num.'Motivo" maxlength="300" class="dzencf-text" placeholder="Motivo de uso" >
+						<input type="text" value="'.$val3.'" name="suple'.$num.'Motivo" maxlength="300" class="dzencf-text" placeholder="Motivo de uso" >
 						</div>
 						</div>
 						<div class="dzen_column_DD_span6">
 
 						<div class="margin_bottom">
 
-						<input type="text" value="'.$s1[3].'" name="suple'.$num.'Tiempo" maxlength="300" class="dzencf-text" placeholder="Tiempo de uso" >
+						<input type="text" value="'.$val4.'" name="suple'.$num.'Tiempo" maxlength="300" class="dzencf-text" placeholder="Tiempo de uso" >
 
 						</div>
 						</div>
@@ -601,7 +623,7 @@ class Cuestionario extends CI_Controller {
 						<div class="dzen_column_DD_span5">
 
 						<div class="margin_bottom">
-						<input type="text" value="'.$s1[4].'" name="suple'.$num.'Cantidad" maxlength="300" class="dzencf-text" placeholder="Cantidad usada" >
+						<input type="text" value="'.$val4.'" name="suple'.$num.'Cantidad" maxlength="300" class="dzencf-text" placeholder="Cantidad usada" >
 						</div>
 						</div>
 						</div>
